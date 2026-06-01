@@ -213,12 +213,14 @@ def build_samples_for_shard(
         end_frame = observation_ids[-1]
         forecast_index = start_index + observation_frames + forecast_horizon - 1
         forecast_frame = frame_ids[forecast_index]
-        members = get_frame_member_names(forecast_frame)
+        object_input_frame = end_frame
+        forecast_members = get_frame_member_names(forecast_frame)
+        object_input_members = get_frame_member_names(object_input_frame)
 
         try:
-            hands_json = read_json_member(shard, members["hands"])
-            objects_json = read_json_member(shard, members["objects"])
-            info_json = read_json_member(shard, members["info"])
+            hands_json = read_json_member(shard, forecast_members["hands"])
+            objects_json = read_json_member(shard, forecast_members["objects"])
+            info_json = read_json_member(shard, forecast_members["info"])
         except (FileNotFoundError, json.JSONDecodeError) as exc:
             skipped[f"read_error:{type(exc).__name__}"] += 1
             continue
@@ -226,7 +228,7 @@ def build_samples_for_shard(
         cameras_json: dict[str, Any] = {}
         if assign_target_proxy:
             try:
-                cameras_json = read_json_member(shard, members["cameras"])
+                cameras_json = read_json_member(shard, forecast_members["cameras"])
             except (FileNotFoundError, json.JSONDecodeError) as exc:
                 skipped[f"proxy_camera_read_error:{type(exc).__name__}"] += 1
 
@@ -249,19 +251,53 @@ def build_samples_for_shard(
             skipped["skipped_no_visible_object"] += 1
             continue
 
+        observation_object_candidates: list[dict[str, Any]] = []
+        observation_object_candidate_scores: list[dict[str, Any]] = []
+        try:
+            input_hands_json = read_json_member(shard, object_input_members["hands"])
+            input_objects_json = read_json_member(shard, object_input_members["objects"])
+            input_cameras_json = read_json_member(shard, object_input_members["cameras"])
+            observation_object_candidates, input_object_missing = extract_object_candidates(
+                input_objects_json,
+                min_visibility=min_visibility,
+            )
+            skipped.update(input_object_missing)
+            if observation_object_candidates:
+                observation_object_proxy = select_target_object_proxy(
+                    {
+                        "hands_json": input_hands_json,
+                        "cameras_json": input_cameras_json,
+                        "target_object_candidates": observation_object_candidates,
+                        "min_visibility": min_visibility,
+                    }
+                )
+                candidate_scores = observation_object_proxy.get("candidate_scores", [])
+                if isinstance(candidate_scores, list):
+                    observation_object_candidate_scores = [
+                        score for score in candidate_scores if isinstance(score, dict)
+                    ]
+        except (FileNotFoundError, json.JSONDecodeError) as exc:
+            skipped[f"object_input_read_error:{type(exc).__name__}"] += 1
+
         sample = {
             "sample_id": f"{clip_id}_{observation_ids[0]}_{end_frame}_f{forecast_frame}",
             "shard": shard_rel,
             "clip_id": clip_id,
             "observation_frame_ids": observation_ids,
             "forecast_frame_id": forecast_frame,
+            "target_object_proxy_frame": forecast_frame,
+            "object_input_frame": object_input_frame,
+            "input_uses_forecast_frame": object_input_frame == forecast_frame,
             "image_streams": observation_image_streams(observation_ids, image_stream_keys),
             "image_stream_keys": image_stream_keys,
             "hand_source": source_used or hand_source,
             "available_hands": available_hands,
             "future_hand_pose": future_hand_pose,
             "target_object_candidates": object_candidates,
+            "observation_object_candidates": observation_object_candidates,
+            "observation_object_candidate_scores": observation_object_candidate_scores,
             "target_object_label": None,
+            "target_object_proxy_label": None,
             "target_object_selection_rule": "TODO: choose a documented rule; candidates only for now.",
             "action_label": None,
             "contact_label": None,
@@ -288,6 +324,11 @@ def build_samples_for_shard(
             )
             sample["target_object_proxy"] = target_object_proxy
             sample["target_object_selection_rule"] = TARGET_OBJECT_PROXY_V1_RULE
+            sample["target_object_proxy_label"] = (
+                target_object_proxy.get("selected_object_name")
+                if target_object_proxy.get("assigned", False)
+                else None
+            )
             if not target_object_proxy.get("assigned", False):
                 reason = target_object_proxy.get("reason", "unknown")
                 skipped[f"proxy_unassigned:{reason}"] += 1
@@ -341,6 +382,8 @@ def build_index(args: argparse.Namespace) -> dict[str, Any]:
                 "No action labels are created.",
                 "No contact labels are created.",
                 "Target object is stored as visible candidates; optional proxy labels are derived labels only.",
+                "Target-object proxy labels are computed at the forecast frame.",
+                "Object-aware input candidates and scores are computed from the last observation frame only.",
                 "Future hand pose is stored as MANO/UmeTrack representation, not converted 3D joints yet.",
             ],
             "todos": [

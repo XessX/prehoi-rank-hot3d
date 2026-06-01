@@ -338,6 +338,28 @@ The script prints `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`, saves metrics to
 `results/logs/hot3d_metadata_baseline_pilot.json`, and saves a checkpoint to
 `results/checkpoints/hot3d_metadata_baseline_pilot.pt`.
 
+## Pilot Object-Aware Metadata Baseline
+
+This pilot adds `object_metadata` inputs without using image tensors. Each
+sample includes the 16-frame metadata sequence, top-K object-candidate geometry
+and proxy-score features from HOT3D-Clips annotations, a candidate mask, the
+derived target-object proxy label, and the forecast-frame MANO vector.
+
+```powershell
+python src/training/train_hot3d_object_aware_baseline.py --config configs/hot3d_object_aware_baseline.yaml
+```
+
+The script prints `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`, saves metrics to
+`results/logs/hot3d_object_aware_baseline_pilot.json`, and saves a checkpoint to
+`results/checkpoints/hot3d_object_aware_baseline_pilot.pt`. Proxy labels remain
+derived labels, not direct HOT3D ground truth, and this baseline is only for
+pipeline validation before image training or paper-facing evaluation.
+
+Object-aware inputs must be extracted from observation frames only. The
+target-object proxy may be computed at the forecast frame, but forecast-frame
+object boxes, hand boxes, proximity scores, IoU, and center-distance features
+must not be used as model input.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml

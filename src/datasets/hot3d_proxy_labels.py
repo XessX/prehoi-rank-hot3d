@@ -157,7 +157,12 @@ def score_object_candidates(
 
 
 def select_target_object_proxy(sample_or_frame_data: dict[str, Any]) -> dict[str, Any]:
-    """Select a derived target-object proxy from forecast-frame box proximity."""
+    """Select a derived object proxy from one frame's hand-object box proximity.
+
+    The caller decides whether that frame is a forecast target frame or an
+    observation input frame. Do not feed scores from a forecast frame into a
+    pre-contact forecasting model.
+    """
     hands_json = sample_or_frame_data.get("hands_json") or sample_or_frame_data.get("hands") or {}
     candidates = sample_or_frame_data.get("target_object_candidates") or []
     cameras_json = sample_or_frame_data.get("cameras_json") or sample_or_frame_data.get("cameras") or {}
