@@ -247,6 +247,24 @@ union of visible hand boxes and each visible object's box, stores all candidate
 scores, and selects the highest-scoring object as a **derived proxy target**.
 This label must not be described as direct HOT3D ground truth.
 
+## Selecting Diverse HOT3D-Clips Shards
+
+Before training, inspect the root HOT3D-Clips metadata and choose a small,
+diverse set of shards. This keeps the next download deliberate and avoids
+building an early classifier around one object class.
+
+```powershell
+python src/datasets/summarize_hot3d_clip_definitions.py --root data/raw/hot3d_clips
+python src/datasets/select_hot3d_diverse_clips.py --root data/raw/hot3d_clips --num-clips 8 --output data/processed/hot3d_diverse_clip_selection.json
+```
+
+The selector avoids already downloaded clip IDs and prefers the train split. If
+object metadata is available in `clip_definitions.json`, it uses it for
+diversity. If not, it falls back to participant, device, and sequence diversity
+and says so in the output. The script prints reviewable downloader commands for
+the selected shards but does not download them unless `--confirm-download` is
+explicitly passed.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
