@@ -323,6 +323,21 @@ pose vector, integer proxy target label, proxy confidence, clip/sample IDs, and
 metadata. Image mode can load one image stream from tar shards for inspection,
 but metadata-only remains the default for quick debugging.
 
+## Pilot Metadata-Only Baseline
+
+This baseline is only a pipeline validation run. It uses `metadata_only`
+features, derived target-object proxy labels, and forecast-frame MANO pose
+vectors. It does not use image data and must not be described as a final paper
+result.
+
+```powershell
+python src/training/train_hot3d_metadata_baseline.py --config configs/hot3d_metadata_baseline.yaml
+```
+
+The script prints `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`, saves metrics to
+`results/logs/hot3d_metadata_baseline_pilot.json`, and saves a checkpoint to
+`results/checkpoints/hot3d_metadata_baseline_pilot.pt`.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml

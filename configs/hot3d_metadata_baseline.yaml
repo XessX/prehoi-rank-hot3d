@@ -1,0 +1,19 @@
+train_index: data/processed/hot3d_clips_train_optimized.json
+val_index: data/processed/hot3d_clips_val_optimized.json
+test_index: data/processed/hot3d_clips_test_optimized.json
+label_map_path: data/processed/hot3d_target_object_label_map.json
+
+batch_size: 64
+epochs: 5
+learning_rate: 0.001
+weight_decay: 0.0001
+hidden_dim: 64
+num_layers: 1
+dropout: 0.1
+pose_loss_weight: 0.1
+seed: 42
+device: cpu
+num_workers: 0
+
+checkpoint_path: results/checkpoints/hot3d_metadata_baseline_pilot.pt
+metrics_path: results/logs/hot3d_metadata_baseline_pilot.json
