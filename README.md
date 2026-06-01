@@ -279,6 +279,31 @@ python src/datasets/build_hot3d_clips_samples.py --root data/raw/hot3d_clips --o
 python src/datasets/inspect_hot3d_clips_samples.py data/processed/hot3d_clips_sample_index_proxy_v1_multi.json
 ```
 
+## Real HOT3D-Clips Dataset v1
+
+The first real PyTorch dataset uses the verified HOT3D-Clips sample index and
+Target Object Proxy v1 labels. These labels are derived from hand/object box
+proximity and must not be described as direct HOT3D ground truth. Any training
+with this dataset is a debug or pilot run until label quality, split policy, and
+feature extraction are fully documented.
+
+Create clip-level splits to avoid sample-level leakage:
+
+```powershell
+python src/datasets/split_hot3d_clips.py --index data/processed/hot3d_clips_sample_index_proxy_v1_multi.json --output-dir data/processed --train-ratio 0.7 --val-ratio 0.15 --test-ratio 0.15
+```
+
+Inspect the dataset in fast metadata-only mode:
+
+```powershell
+python src/datasets/inspect_hot3d_clips_dataset.py --index data/processed/hot3d_clips_train.json --mode metadata_only
+```
+
+Dataset v1 returns lightweight frame features, a flattened forecast-frame MANO
+pose vector, integer proxy target label, proxy confidence, clip/sample IDs, and
+metadata. Image mode can load one image stream from tar shards for inspection,
+but metadata-only remains the default for quick debugging.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
