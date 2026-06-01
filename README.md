@@ -379,6 +379,30 @@ Repeat extraction for validation and test split files before using
 `mode="object_visual_metadata"`. Cached features remain generated data and must
 not be committed.
 
+## Frozen CLIP Visual Feature Extraction
+
+Frozen CLIP extraction caches observation-frame embeddings without training
+CLIP. Start with a tiny smoke extraction on CPU before attempting full split
+extraction.
+
+```powershell
+python src/features/extract_hot3d_visual_features.py --index data/processed/hot3d_clips_train_optimized.json --output data/processed/features/hot3d_visual_features_clip_train_smoke.npz --feature-type clip --max-samples 20 --batch-size 4 --device cpu
+
+python src/features/inspect_hot3d_visual_features.py data/processed/features/hot3d_visual_features_clip_train_smoke.npz
+```
+
+Full extraction commands, after the smoke run is validated:
+
+```powershell
+python src/features/extract_hot3d_visual_features.py --index data/processed/hot3d_clips_train_optimized.json --output data/processed/features/hot3d_visual_features_clip_train.npz --feature-type clip --batch-size 8 --device cpu
+python src/features/extract_hot3d_visual_features.py --index data/processed/hot3d_clips_val_optimized.json --output data/processed/features/hot3d_visual_features_clip_val.npz --feature-type clip --batch-size 8 --device cpu
+python src/features/extract_hot3d_visual_features.py --index data/processed/hot3d_clips_test_optimized.json --output data/processed/features/hot3d_visual_features_clip_test.npz --feature-type clip --batch-size 8 --device cpu
+```
+
+These cached embeddings are still pilot/debug features. They use observation
+frames only and must not be reported as final paper evidence before the full
+pipeline, labels, and splits are validated.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`

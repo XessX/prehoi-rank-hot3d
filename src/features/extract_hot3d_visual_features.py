@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 import tarfile
+import time
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -52,6 +53,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--stream", default="auto", help="Image stream name or auto.")
     parser.add_argument("--image-size", type=int, default=224)
     parser.add_argument("--max-samples", type=int, default=0, help="Optional debug sample limit.")
+    parser.add_argument("--clip-model", default="ViT-B-32")
+    parser.add_argument("--clip-pretrained", default="laion2b_s34b_b79k")
+    parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--device", default="cpu", choices=("cpu", "cuda"))
     return parser.parse_args()
 
 
@@ -72,7 +77,12 @@ class TarImageStatsReader:
         key = (shard_path, member_name)
         if key in self._feature_cache:
             return self._feature_cache[key]
+        decoded = self.read_image(shard_path, member_name)
+        feature = image_stats_feature(decoded, image_size=self.image_size)
+        self._feature_cache[key] = feature
+        return feature
 
+    def read_image(self, shard_path: Path, member_name: str) -> np.ndarray:
         tar = self._tar_handles.get(shard_path)
         if tar is None:
             tar = tarfile.open(shard_path, mode="r")
@@ -85,10 +95,34 @@ class TarImageStatsReader:
         decoded = cv2.imdecode(encoded, cv2.IMREAD_UNCHANGED)
         if decoded is None:
             raise ValueError(f"Could not decode image member: {member_name}")
+        return decoded
 
-        feature = image_stats_feature(decoded, image_size=self.image_size)
-        self._feature_cache[key] = feature
-        return feature
+
+class TarImageReader:
+    """Read raw images from tar shards for neural feature extraction."""
+
+    def __init__(self) -> None:
+        self._tar_handles: dict[Path, tarfile.TarFile] = {}
+
+    def close(self) -> None:
+        for handle in self._tar_handles.values():
+            handle.close()
+        self._tar_handles.clear()
+
+    def read_image(self, shard_path: Path, member_name: str) -> np.ndarray:
+        tar = self._tar_handles.get(shard_path)
+        if tar is None:
+            tar = tarfile.open(shard_path, mode="r")
+            self._tar_handles[shard_path] = tar
+
+        file_obj = tar.extractfile(member_name)
+        if file_obj is None:
+            raise FileNotFoundError(f"Tar member not found: {member_name}")
+        encoded = np.frombuffer(file_obj.read(), dtype=np.uint8)
+        decoded = cv2.imdecode(encoded, cv2.IMREAD_UNCHANGED)
+        if decoded is None:
+            raise ValueError(f"Could not decode image member: {member_name}")
+        return decoded
 
 
 def image_stats_feature(image: np.ndarray, *, image_size: int) -> np.ndarray:
@@ -200,20 +234,172 @@ def extract_image_stats_features(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
+def extract_clip_features(args: argparse.Namespace) -> dict[str, Any]:
+    try:
+        import torch
+        from PIL import Image
+        import open_clip
+    except ImportError as exc:
+        raise RuntimeError(
+            "CLIP feature extraction requires torch, Pillow, and open_clip_torch. "
+            "Install project requirements before running --feature-type clip."
+        ) from exc
+
+    payload = load_index_payload(args.index)
+    samples = [sample for sample in payload["samples"] if isinstance(sample, dict)]
+    if args.max_samples > 0:
+        samples = samples[: args.max_samples]
+    if not samples:
+        raise RuntimeError(f"No samples found in index: {args.index}")
+
+    requested_device = args.device
+    device = torch.device("cuda" if requested_device == "cuda" and torch.cuda.is_available() else "cpu")
+    try:
+        model, _, preprocess = open_clip.create_model_and_transforms(
+            args.clip_model,
+            pretrained=args.clip_pretrained,
+            device=device,
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            "Could not load open_clip model/pretrained weights "
+            f"model={args.clip_model!r} pretrained={args.clip_pretrained!r}: {exc}"
+        ) from exc
+
+    model.eval()
+    root = resolve_clips_root(payload, args.clips_root)
+    observation_length = len(samples[0].get("observation_frame_ids", []))
+    sample_ids = np.empty((len(samples),), dtype=object)
+    selected_streams = np.empty((len(samples),), dtype=object)
+    missing_images_per_sample = np.zeros((len(samples),), dtype=np.int32)
+    stream_counts: Counter[str] = Counter()
+    missing_image_count = 0
+    frame_tasks: list[tuple[int, int, Path, str]] = []
+
+    for sample_index, sample in enumerate(samples):
+        sample_id = str(sample.get("sample_id"))
+        sample_ids[sample_index] = sample_id
+        selection = choose_image_stream(sample, requested_stream=args.stream)
+        stream = str(selection["stream"])
+        selected_streams[sample_index] = stream
+        stream_counts[stream] += 1
+        member_names = list(selection["member_names"])
+        shard_path = shard_path_for_sample(root, sample)
+
+        if len(member_names) != observation_length:
+            missing = abs(observation_length - len(member_names))
+            missing_image_count += missing
+            missing_images_per_sample[sample_index] += missing
+
+        for frame_index, member_name in enumerate(member_names[:observation_length]):
+            frame_tasks.append((sample_index, frame_index, shard_path, str(member_name)))
+
+    reader = TarImageReader()
+    feature_chunks: list[tuple[list[tuple[int, int]], np.ndarray]] = []
+    start_time = time.perf_counter()
+    iterator = range(0, len(frame_tasks), args.batch_size)
+    if tqdm is not None:
+        iterator = tqdm(iterator, total=(len(frame_tasks) + args.batch_size - 1) // args.batch_size, desc="extract clip")
+
+    try:
+        with torch.no_grad():
+            for start in iterator:
+                batch_tasks = frame_tasks[start : start + args.batch_size]
+                image_tensors = []
+                positions: list[tuple[int, int]] = []
+                for sample_index, frame_index, shard_path, member_name in batch_tasks:
+                    try:
+                        image = reader.read_image(shard_path, member_name)
+                    except (FileNotFoundError, ValueError) as exc:
+                        missing_image_count += 1
+                        missing_images_per_sample[sample_index] += 1
+                        print(f"warning: {exc}", file=sys.stderr)
+                        continue
+                    image_tensors.append(preprocess(_image_to_pil(image)))
+                    positions.append((sample_index, frame_index))
+
+                if not image_tensors:
+                    continue
+                batch = torch.stack(image_tensors, dim=0).to(device)
+                encoded = model.encode_image(batch)
+                encoded = torch.nn.functional.normalize(encoded, dim=-1)
+                feature_chunks.append((positions, encoded.detach().cpu().numpy().astype(np.float32)))
+    finally:
+        reader.close()
+
+    if not feature_chunks:
+        raise RuntimeError("No CLIP features were extracted.")
+
+    clip_dim = int(feature_chunks[0][1].shape[-1])
+    features = np.zeros((len(samples), observation_length, clip_dim), dtype=np.float32)
+    for positions, encoded in feature_chunks:
+        for row_index, (sample_index, frame_index) in enumerate(positions):
+            features[sample_index, frame_index] = encoded[row_index]
+
+    elapsed = time.perf_counter() - start_time
+    metadata = {
+        "feature_type": args.feature_type,
+        "index": str(args.index),
+        "clips_root": str(root),
+        "num_samples": len(samples),
+        "feature_shape": list(features.shape),
+        "feature_dim": clip_dim,
+        "model_name": args.clip_model,
+        "pretrained": args.clip_pretrained,
+        "normalize_embeddings": True,
+        "image_size": args.image_size,
+        "stream_request": args.stream,
+        "selected_stream_distribution": dict(stream_counts.most_common()),
+        "missing_image_count": int(missing_image_count),
+        "device": str(device),
+        "batch_size": args.batch_size,
+        "max_samples": args.max_samples,
+        "extraction_seconds": elapsed,
+        "frames_encoded": len(frame_tasks) - int(missing_image_count),
+        "note": "Frozen CLIP features are extracted from observation-frame images only. No forecast-frame images are used.",
+    }
+    return {
+        "features": features,
+        "sample_ids": sample_ids,
+        "selected_streams": selected_streams,
+        "missing_images_per_sample": missing_images_per_sample,
+        "metadata": metadata,
+    }
+
+
+def _image_to_pil(image: np.ndarray) -> Any:
+    from PIL import Image
+
+    if image.ndim == 2:
+        rgb = np.repeat(image[:, :, None], repeats=3, axis=2)
+    elif image.shape[2] == 1:
+        rgb = np.repeat(image, repeats=3, axis=2)
+    else:
+        rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return Image.fromarray(rgb)
+
+
 def main() -> None:
     args = parse_args()
-    if args.feature_type != "image_stats":
-        raise NotImplementedError("Only image_stats extraction is implemented for the CPU-safe MVP path.")
     if args.image_size <= 0:
         raise ValueError("--image-size must be positive.")
+    if args.batch_size <= 0:
+        raise ValueError("--batch-size must be positive.")
 
-    payload = extract_image_stats_features(args)
+    if args.feature_type == "image_stats":
+        payload = extract_image_stats_features(args)
+    elif args.feature_type == "clip":
+        payload = extract_clip_features(args)
+    else:
+        raise ValueError(f"Unsupported feature type: {args.feature_type}")
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
         args.output,
         features=payload["features"],
         sample_ids=payload["sample_ids"],
         selected_streams=payload["selected_streams"],
+        feature_type=np.array(str(args.feature_type), dtype=object),
         missing_images_per_sample=payload["missing_images_per_sample"],
         metadata_json=json.dumps(payload["metadata"], sort_keys=True),
     )

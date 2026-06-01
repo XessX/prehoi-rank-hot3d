@@ -49,16 +49,23 @@ def main() -> None:
         stream_distribution = Counter(str(stream) for stream in selected_streams.tolist())
         feature_min = float(np.min(features)) if features.size else 0.0
         feature_max = float(np.max(features)) if features.size else 0.0
+        feature_mean = float(np.mean(features)) if features.size else 0.0
+        feature_std = float(np.std(features)) if features.size else 0.0
+        nan_count = int(np.isnan(features).sum()) if features.size else 0
 
         summary = {
             "feature_file": str(args.feature_file),
             "num_samples": int(features.shape[0]),
             "feature_tensor_shape": list(features.shape),
+            "feature_dim": int(features.shape[-1]) if features.ndim >= 1 else 0,
             "sample_ids": [str(item) for item in sample_ids[: args.max_samples].tolist()],
             "selected_stream_distribution": dict(stream_distribution.most_common()),
             "missing_image_count": missing_image_count,
             "feature_min": feature_min,
             "feature_max": feature_max,
+            "feature_mean": feature_mean,
+            "feature_std": feature_std,
+            "nan_count": nan_count,
             "metadata": metadata,
         }
 
