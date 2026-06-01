@@ -403,6 +403,21 @@ These cached embeddings are still pilot/debug features. They use observation
 frames only and must not be reported as final paper evidence before the full
 pipeline, labels, and splits are validated.
 
+## Pilot Frozen CLIP Visual-Object Baseline
+
+This pilot uses cached frozen CLIP image embeddings with the same
+`object_visual_metadata` dataset path. CLIP is not trained; the model only
+trains the small temporal/fusion heads on top of cached observation-frame
+features, observation-frame object candidates, and metadata features.
+
+```powershell
+python src/training/train_hot3d_clip_visual_object_baseline.py --config configs/hot3d_clip_visual_object_baseline.yaml
+```
+
+This remains a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy labels are
+derived labels, not direct HOT3D ground truth, and this run must not be used for
+final research claims.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`

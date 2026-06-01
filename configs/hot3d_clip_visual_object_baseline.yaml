@@ -1,0 +1,31 @@
+train_index: data/processed/hot3d_clips_train_optimized.json
+val_index: data/processed/hot3d_clips_val_optimized.json
+test_index: data/processed/hot3d_clips_test_optimized.json
+label_map_path: data/processed/hot3d_target_object_label_map.json
+
+train_visual_features: data/processed/features/hot3d_visual_features_clip_train.npz
+val_visual_features: data/processed/features/hot3d_visual_features_clip_val.npz
+test_visual_features: data/processed/features/hot3d_visual_features_clip_test.npz
+visual_dim: 512
+
+batch_size: 32
+epochs: 5
+learning_rate: 0.001
+weight_decay: 0.0001
+hidden_dim: 64
+visual_hidden_dim: 64
+candidate_hidden_dim: 64
+fusion_hidden_dim: 160
+num_layers: 1
+dropout: 0.1
+pose_loss_weight: 0.1
+max_candidates: 8
+allow_forecast_object_input: false
+seed: 42
+device: cpu
+num_workers: 0
+
+object_aware_metrics_path: results/logs/hot3d_object_aware_baseline_pilot.json
+image_stats_metrics_path: results/logs/hot3d_visual_object_baseline_pilot.json
+checkpoint_path: results/checkpoints/hot3d_clip_visual_object_baseline_pilot.pt
+metrics_path: results/logs/hot3d_clip_visual_object_baseline_pilot.json
