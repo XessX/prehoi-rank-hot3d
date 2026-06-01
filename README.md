@@ -461,6 +461,24 @@ are derived proxy labels, the text embeddings are frozen object-name features,
 and the run must be compared against candidate-0, first-3, random, and
 non-vision-language pilot baselines before making any research claim.
 
+## PreHOI-Former v1 Pilot
+
+`PreHOI-Former v1` is the first model-development pass beyond simple baseline
+fusion. It encodes observation-frame hand/context metadata, object-candidate
+geometry, and frozen CLIP object-name embeddings, then applies candidate-level
+multimodal attention before ranking candidates and regressing the future MANO
+pose vector.
+
+```powershell
+python src/training/train_prehoi_former_v1.py --config configs/prehoi_former_v1.yaml
+```
+
+This remains a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Candidate targets
+are derived proxy labels, CLIP text embeddings are frozen, `candidate_order:
+stable_uid` is required, and no forecast-frame candidate features are used as
+input. The config includes ablation flags for `use_text` and
+`use_candidate_attention`.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
