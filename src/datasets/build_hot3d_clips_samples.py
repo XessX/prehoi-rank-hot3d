@@ -26,6 +26,7 @@ from src.datasets.hot3d_clips_parser import (
     list_shards,
     read_json_member,
 )
+from src.datasets.hot3d_proxy_labels import TARGET_OBJECT_PROXY_V1_RULE, select_target_object_proxy
 
 
 IMAGE_STREAM_KEYS = ("image_214-1", "image_1201-1", "image_1201-2")
@@ -55,6 +56,11 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=0,
         help="Optional shard limit. Use 0 for all local shards.",
+    )
+    parser.add_argument(
+        "--assign-target-proxy",
+        action="store_true",
+        help="Assign derived target-object proxy labels from forecast-frame hand/object box proximity.",
     )
     return parser.parse_args()
 
@@ -177,6 +183,7 @@ def build_samples_for_shard(
     forecast_horizon: int,
     hand_source: str,
     min_visibility: float,
+    assign_target_proxy: bool,
 ) -> tuple[list[dict[str, Any]], Counter[str]]:
     frame_ids = list_frame_ids_from_tar(shard)
     samples: list[dict[str, Any]] = []
@@ -204,6 +211,13 @@ def build_samples_for_shard(
             skipped[f"read_error:{type(exc).__name__}"] += 1
             continue
 
+        cameras_json: dict[str, Any] = {}
+        if assign_target_proxy:
+            try:
+                cameras_json = read_json_member(shard, members["cameras"])
+            except (FileNotFoundError, json.JSONDecodeError) as exc:
+                skipped[f"proxy_camera_read_error:{type(exc).__name__}"] += 1
+
         future_hand_pose, available_hands, hand_missing, source_used = extract_future_hand_pose(
             hands_json=hands_json,
             hand_source=hand_source,
@@ -223,34 +237,49 @@ def build_samples_for_shard(
             skipped["skipped_no_visible_object"] += 1
             continue
 
-        samples.append(
-            {
-                "sample_id": f"{clip_id}_{observation_ids[0]}_{end_frame}_f{forecast_frame}",
-                "shard": shard_rel,
-                "clip_id": clip_id,
-                "observation_frame_ids": observation_ids,
-                "forecast_frame_id": forecast_frame,
-                "image_streams": observation_image_streams(observation_ids),
-                "hand_source": source_used or hand_source,
-                "available_hands": available_hands,
-                "future_hand_pose": future_hand_pose,
-                "target_object_candidates": object_candidates,
-                "target_object_label": None,
-                "target_object_selection_rule": "TODO: choose a documented rule; candidates only for now.",
-                "action_label": None,
-                "contact_label": None,
-                "metadata": {
-                    "sequence_id": info_json.get("sequence_id"),
-                    "participant_id": info_json.get("participant_id"),
-                    "device": info_json.get("device"),
-                    "start_frame": observation_ids[0],
-                    "end_frame": end_frame,
-                    "forecast_frame": forecast_frame,
-                    "ref_timestamp_ns": info_json.get("ref_timestamp_ns"),
-                    "image_timestamps_ns": info_json.get("image_timestamps_ns", {}),
-                },
-            }
-        )
+        sample = {
+            "sample_id": f"{clip_id}_{observation_ids[0]}_{end_frame}_f{forecast_frame}",
+            "shard": shard_rel,
+            "clip_id": clip_id,
+            "observation_frame_ids": observation_ids,
+            "forecast_frame_id": forecast_frame,
+            "image_streams": observation_image_streams(observation_ids),
+            "hand_source": source_used or hand_source,
+            "available_hands": available_hands,
+            "future_hand_pose": future_hand_pose,
+            "target_object_candidates": object_candidates,
+            "target_object_label": None,
+            "target_object_selection_rule": "TODO: choose a documented rule; candidates only for now.",
+            "action_label": None,
+            "contact_label": None,
+            "metadata": {
+                "sequence_id": info_json.get("sequence_id"),
+                "participant_id": info_json.get("participant_id"),
+                "device": info_json.get("device"),
+                "start_frame": observation_ids[0],
+                "end_frame": end_frame,
+                "forecast_frame": forecast_frame,
+                "ref_timestamp_ns": info_json.get("ref_timestamp_ns"),
+                "image_timestamps_ns": info_json.get("image_timestamps_ns", {}),
+            },
+        }
+
+        if assign_target_proxy:
+            target_object_proxy = select_target_object_proxy(
+                {
+                    "hands_json": hands_json,
+                    "cameras_json": cameras_json,
+                    "target_object_candidates": object_candidates,
+                    "min_visibility": min_visibility,
+                }
+            )
+            sample["target_object_proxy"] = target_object_proxy
+            sample["target_object_selection_rule"] = TARGET_OBJECT_PROXY_V1_RULE
+            if not target_object_proxy.get("assigned", False):
+                reason = target_object_proxy.get("reason", "unknown")
+                skipped[f"proxy_unassigned:{reason}"] += 1
+
+        samples.append(sample)
 
     return samples, skipped
 
@@ -271,10 +300,14 @@ def build_index(args: argparse.Namespace) -> dict[str, Any]:
             forecast_horizon=args.forecast_horizon,
             hand_source=args.hand_source,
             min_visibility=args.min_visibility,
+            assign_target_proxy=args.assign_target_proxy,
         )
         all_samples.extend(shard_samples)
         skipped.update(shard_skipped)
 
+    proxy_assignment_count = sum(
+        1 for sample in all_samples if sample.get("target_object_proxy", {}).get("assigned", False)
+    )
     return {
         "schema_version": "hot3d_clips_sample_index_v0",
         "metadata": {
@@ -286,12 +319,15 @@ def build_index(args: argparse.Namespace) -> dict[str, Any]:
             "forecast_horizon": args.forecast_horizon,
             "hand_source_requested": args.hand_source,
             "min_visibility": args.min_visibility,
+            "assign_target_proxy": args.assign_target_proxy,
+            "target_object_proxy_rule": TARGET_OBJECT_PROXY_V1_RULE if args.assign_target_proxy else None,
+            "target_object_proxy_assignment_count": proxy_assignment_count,
             "num_samples": len(all_samples),
             "skipped_counts": dict(skipped),
             "notes": [
                 "No action labels are created.",
                 "No contact labels are created.",
-                "Target object is stored as visible candidates only.",
+                "Target object is stored as visible candidates; optional proxy labels are derived labels only.",
                 "Future hand pose is stored as MANO/UmeTrack representation, not converted 3D joints yet.",
             ],
             "todos": [
@@ -324,6 +360,10 @@ def main() -> None:
                 "num_shards": payload["metadata"]["num_shards"],
                 "observation_frames": args.observation_frames,
                 "forecast_horizon": args.forecast_horizon,
+                "assign_target_proxy": args.assign_target_proxy,
+                "target_object_proxy_assignment_count": payload["metadata"][
+                    "target_object_proxy_assignment_count"
+                ],
                 "skipped_counts": payload["metadata"]["skipped_counts"],
                 "note": "Sample index only. No training or real-result reporting was performed.",
             },

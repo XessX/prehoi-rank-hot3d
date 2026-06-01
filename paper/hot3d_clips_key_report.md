@@ -228,6 +228,36 @@ Remaining TODOs before training:
 - define contact/action labels through a documented proxy or additional annotation source
 - verify train/test split usage against `clip_splits.json`
 
+## Target Object Proxy Label v1
+
+HOT3D-Clips provides per-frame hand and object annotations, but this inspected
+shard does not provide direct action labels, explicit contact frames, or
+interaction-object labels. For supervised forecasting experiments, the first
+safe target-object label is therefore a derived proxy:
+
+`target_object_proxy_v1_hand_object_box_proximity`
+
+Rule:
+
+- use the forecast frame only
+- collect visible hand boxes from `hands.json` / `boxes_amodal`
+- collect visible object boxes from `objects.json` / `boxes_amodal`
+- for each camera stream shared by the hands and an object, compute:
+  - IoU between the union visible-hand box and the object box
+  - center distance normalized by image diagonal
+  - `proxy_score = IoU - normalized_center_distance`
+- score each object by its best stream score
+- select the object with the highest proxy score
+- store all candidate scores and a proxy confidence value
+
+This rule is intended to support early MVP experiments only. It is not a direct
+HOT3D ground-truth interaction label and should be reported as a derived label.
+Its main limitations are that bounding-box proximity can choose a nearby but
+non-interacted object, amodal boxes may overlap even without contact, and the
+rule does not model temporal intent or physical contact. Action labels,
+contact-region labels, and contact-frame labels remain unavailable until a
+separate proxy or annotation source is defined.
+
 ## MVP Readiness
 
 This shard is enough to build a first real-data loader that reads frames, metadata, object annotations, and hand-pose parameters. It is not enough to train the final supervised pre-contact forecasting task because action/contact labels are not directly present and hand parameters still need conversion to 3D joint tensors.

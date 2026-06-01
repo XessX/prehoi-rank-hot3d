@@ -233,6 +233,20 @@ skipped. If multiple objects are visible, all candidates are stored and the
 final target-object decision remains postponed until a documented selection rule
 is implemented.
 
+To build an index with the first derived target-object proxy label:
+
+```powershell
+python src/datasets/build_hot3d_clips_samples.py --root data/raw/hot3d_clips --output data/processed/hot3d_clips_sample_index_proxy_v1.json --observation-frames 16 --forecast-horizon 5 --assign-target-proxy
+python src/datasets/inspect_hot3d_clips_samples.py data/processed/hot3d_clips_sample_index_proxy_v1.json
+```
+
+Because direct action/contact labels are not available in HOT3D-Clips, Target
+Object Proxy v1 chooses a visible object at the forecast frame by hand-object
+box proximity. It computes overlap and normalized center distance between the
+union of visible hand boxes and each visible object's box, stores all candidate
+scores, and selects the highest-scoring object as a **derived proxy target**.
+This label must not be described as direct HOT3D ground truth.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml

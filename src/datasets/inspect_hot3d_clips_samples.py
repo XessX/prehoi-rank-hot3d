@@ -37,6 +37,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Inspect a HOT3D-Clips sample index JSON.")
     parser.add_argument("index_path", type=Path, help="Path to hot3d_clips_sample_index.json.")
     parser.add_argument("--preview-count", type=int, default=2, help="Number of sample previews to print.")
+    parser.add_argument(
+        "--low-confidence-threshold",
+        type=float,
+        default=0.5,
+        help="Threshold used when counting low-confidence proxy labels.",
+    )
     return parser.parse_args()
 
 
@@ -71,6 +77,40 @@ def object_candidate_frequency(samples: list[dict[str, Any]]) -> Counter[str]:
             label = candidate.get("object_name") or candidate.get("object_uid") or candidate.get("object_bop_id")
             frequency[str(label) if label is not None else "unknown_object"] += 1
     return frequency
+
+
+def assigned_proxy(sample: dict[str, Any]) -> dict[str, Any] | None:
+    proxy = sample.get("target_object_proxy")
+    if isinstance(proxy, dict) and proxy.get("assigned") is True:
+        return proxy
+    return None
+
+
+def selected_object_frequency(samples: list[dict[str, Any]]) -> Counter[str]:
+    frequency: Counter[str] = Counter()
+    for sample in samples:
+        proxy = assigned_proxy(sample)
+        if proxy is None:
+            continue
+        label = (
+            proxy.get("selected_object_name")
+            or proxy.get("selected_object_uid")
+            or proxy.get("selected_object_bop_id")
+        )
+        frequency[str(label) if label is not None else "unknown_object"] += 1
+    return frequency
+
+
+def proxy_confidences(samples: list[dict[str, Any]]) -> list[float]:
+    confidences: list[float] = []
+    for sample in samples:
+        proxy = assigned_proxy(sample)
+        if proxy is None:
+            continue
+        confidence = proxy.get("proxy_confidence")
+        if isinstance(confidence, (int, float)):
+            confidences.append(float(confidence))
+    return confidences
 
 
 def count_missing_fields(samples: list[dict[str, Any]]) -> Counter[str]:
@@ -151,7 +191,42 @@ def preview_sample(sample: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_summary(payload: dict[str, Any], preview_count: int) -> dict[str, Any]:
+def preview_proxy(sample: dict[str, Any]) -> dict[str, Any]:
+    proxy = sample.get("target_object_proxy", {})
+    if not isinstance(proxy, dict):
+        return {"sample_id": sample.get("sample_id"), "assigned": False, "reason": "missing_proxy_block"}
+
+    candidate_scores = proxy.get("candidate_scores", [])
+    return {
+        "sample_id": sample.get("sample_id"),
+        "assigned": proxy.get("assigned", False),
+        "rule": proxy.get("rule"),
+        "selected_object_uid": proxy.get("selected_object_uid"),
+        "selected_object_bop_id": proxy.get("selected_object_bop_id"),
+        "selected_object_name": proxy.get("selected_object_name"),
+        "proxy_score": proxy.get("proxy_score"),
+        "proxy_confidence": proxy.get("proxy_confidence"),
+        "best_stream_id": proxy.get("best_stream_id"),
+        "top_candidate_scores": [
+            {
+                "object_uid": candidate.get("object_uid"),
+                "object_bop_id": candidate.get("object_bop_id"),
+                "object_name": candidate.get("object_name"),
+                "proxy_score": candidate.get("proxy_score"),
+                "proxy_confidence": candidate.get("proxy_confidence"),
+                "best_stream_id": candidate.get("best_stream_id"),
+                "best_iou": candidate.get("best_iou"),
+                "best_normalized_center_distance": candidate.get("best_normalized_center_distance"),
+            }
+            for candidate in candidate_scores[:5]
+            if isinstance(candidate, dict)
+        ]
+        if isinstance(candidate_scores, list)
+        else [],
+    }
+
+
+def build_summary(payload: dict[str, Any], preview_count: int, low_confidence_threshold: float) -> dict[str, Any]:
     metadata = payload.get("metadata", {})
     samples = payload.get("samples", [])
     if not isinstance(samples, list):
@@ -168,6 +243,9 @@ def build_summary(payload: dict[str, Any], preview_count: int) -> dict[str, Any]
     hands_distribution = Counter(hands_key(sample) for sample in samples)
     missing = count_missing_fields(samples)
     candidate_frequency = object_candidate_frequency(samples)
+    assigned_proxies = [proxy for sample in samples if (proxy := assigned_proxy(sample)) is not None]
+    confidences = proxy_confidences(samples)
+    proxy_samples = [sample for sample in samples if isinstance(sample.get("target_object_proxy"), dict)]
 
     return {
         "index_metadata": {
@@ -178,6 +256,8 @@ def build_summary(payload: dict[str, Any], preview_count: int) -> dict[str, Any]
             "forecast_horizon": forecast_horizons,
             "hand_source_requested": metadata.get("hand_source_requested"),
             "min_visibility": metadata.get("min_visibility"),
+            "assign_target_proxy": metadata.get("assign_target_proxy"),
+            "target_object_proxy_rule": metadata.get("target_object_proxy_rule"),
         },
         "num_samples": len(samples),
         "num_shards": len(shards),
@@ -185,18 +265,31 @@ def build_summary(payload: dict[str, Any], preview_count: int) -> dict[str, Any]
         "observation_length_distribution": dict(observation_lengths),
         "available_hands_distribution": dict(hands_distribution),
         "object_candidate_frequency_top20": dict(candidate_frequency.most_common(20)),
+        "target_object_proxy_count": len(proxy_samples),
+        "target_object_proxy_assignment_count": len(assigned_proxies),
+        "selected_object_frequency": dict(selected_object_frequency(samples).most_common(20)),
+        "average_proxy_confidence": (sum(confidences) / len(confidences)) if confidences else None,
+        "low_confidence_threshold": low_confidence_threshold,
+        "low_confidence_proxy_count": sum(
+            1 for confidence in confidences if confidence < low_confidence_threshold
+        ),
         "missing_field_counts": dict(missing),
         "builder_skipped_counts": metadata.get("skipped_counts", {}),
         "notes": metadata.get("notes", []),
         "todos": metadata.get("todos", []),
         "first_sample_previews": [preview_sample(sample) for sample in samples[:preview_count]],
+        "first_proxy_previews": [preview_proxy(sample) for sample in proxy_samples[:preview_count]],
     }
 
 
 def main() -> None:
     args = parse_args()
     payload = load_index(args.index_path)
-    summary = build_summary(payload, preview_count=max(0, args.preview_count))
+    summary = build_summary(
+        payload,
+        preview_count=max(0, args.preview_count),
+        low_confidence_threshold=args.low_confidence_threshold,
+    )
     print(json.dumps(summary, indent=2))
     print("No training was run. This is a sample-index inspection only.")
 
