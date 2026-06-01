@@ -379,6 +379,22 @@ Repeat extraction for validation and test split files before using
 `mode="object_visual_metadata"`. Cached features remain generated data and must
 not be committed.
 
+## Pilot Visual-Object Metadata Baseline
+
+This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
+features, observation-frame object candidates, metadata features, and
+forecast-frame MANO targets. It does not train a CNN or CLIP encoder; the visual
+branch consumes only the cached mean/std/min/max image-stat features.
+
+```powershell
+python src/training/train_hot3d_visual_object_baseline.py --config configs/hot3d_visual_object_baseline.yaml
+```
+
+This is still a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy labels are
+derived labels, not direct HOT3D ground truth, and the run must not be used for
+final research claims. The training script verifies cached feature alignment by
+`sample_id` and rejects forecast-frame visual/object input.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
