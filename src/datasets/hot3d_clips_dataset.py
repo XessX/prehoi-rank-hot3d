@@ -6,6 +6,7 @@ from the sample index, but it does not treat them as direct HOT3D ground truth.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 from collections import Counter
@@ -26,6 +27,7 @@ DEFAULT_INDEX_PATH = Path("data/processed/hot3d_clips_sample_index_proxy_v1_mult
 DEFAULT_LABEL_MAP_PATH = Path("data/processed/hot3d_target_object_label_map.json")
 STREAM_ORDER = ("image_1201-1", "image_1201-2", "image_214-1")
 HAND_ORDER = ("left", "right")
+CANDIDATE_ORDER_MODES = {"stable_uid", "random_seeded", "as_is"}
 MANO_THETA_DIM = 15
 MANO_WRIST_DIM = 6
 MANO_DIM_PER_HAND = MANO_THETA_DIM + MANO_WRIST_DIM
@@ -133,6 +135,8 @@ class HOT3DClipsDataset(Dataset):
         image_stream: str = "auto",
         image_size: int = 224,
         max_candidates: int = 8,
+        candidate_order: str = "stable_uid",
+        candidate_order_seed: int = 42,
         allow_forecast_object_input: bool = False,
         visual_features_path: str | Path | None = None,
     ) -> None:
@@ -142,6 +146,11 @@ class HOT3DClipsDataset(Dataset):
             raise ValueError("hand_selection must be 'left', 'right', or 'both'.")
         if int(max_candidates) <= 0:
             raise ValueError("max_candidates must be positive.")
+        if candidate_order not in CANDIDATE_ORDER_MODES:
+            raise ValueError(
+                "candidate_order must be one of: "
+                + ", ".join(sorted(CANDIDATE_ORDER_MODES))
+            )
 
         self.index_path = Path(index_path)
         self.mode = mode
@@ -149,6 +158,8 @@ class HOT3DClipsDataset(Dataset):
         self.image_stream = image_stream
         self.image_size = int(image_size)
         self.max_candidates = int(max_candidates)
+        self.candidate_order = candidate_order
+        self.candidate_order_seed = int(candidate_order_seed)
         self.allow_forecast_object_input = bool(allow_forecast_object_input)
         self.visual_features_path = Path(visual_features_path) if visual_features_path else None
 
@@ -217,11 +228,17 @@ class HOT3DClipsDataset(Dataset):
         if self.mode == "image":
             item["frames"] = self._load_image_frames(sample)
         if self.mode in {"object_metadata", "object_visual_metadata"}:
-            candidate_features, candidate_mask, candidate_names = self._object_candidate_features(sample)
+            candidate_features, candidate_mask, candidate_names, target_index = self._object_candidate_features(sample)
+            target_mask = torch.zeros((self.max_candidates,), dtype=torch.float32)
+            if target_index >= 0:
+                target_mask[target_index] = 1.0
             item["observation_object_candidates"] = candidate_features
             item["object_candidates"] = candidate_features
             item["candidate_mask"] = candidate_mask
             item["candidate_object_names"] = candidate_names
+            item["candidate_target_index"] = torch.tensor(target_index, dtype=torch.long)
+            item["candidate_target_mask"] = target_mask
+            item["rankable"] = torch.tensor(target_index >= 0, dtype=torch.bool)
         if self.mode == "object_visual_metadata":
             visual_features, selected_stream = self._cached_visual_features(sample)
             item["visual_features"] = visual_features
@@ -239,6 +256,8 @@ class HOT3DClipsDataset(Dataset):
             "frame_feature_dim": self.frame_feature_dim,
             "future_hand_pose_dim": self.future_hand_pose_dim,
             "max_candidates": self.max_candidates,
+            "candidate_order": self.candidate_order,
+            "candidate_order_seed": self.candidate_order_seed,
             "object_candidate_feature_dim": self.object_candidate_feature_dim,
             "object_candidate_feature_names": self.object_candidate_feature_names,
             "visual_features_path": str(self.visual_features_path) if self.visual_features_path else None,
@@ -266,6 +285,7 @@ class HOT3DClipsDataset(Dataset):
 
         for sample in self.samples:
             candidates, _ = self._observation_candidate_payload(sample)
+            candidates = self._order_candidates(candidates, sample)
             if not candidates:
                 missing_candidate_scores += 1
                 continue
@@ -442,7 +462,10 @@ class HOT3DClipsDataset(Dataset):
         selected_stream = self.visual_feature_cache["selected_streams"][row_index]
         return torch.tensor(features, dtype=torch.float32), str(selected_stream)
 
-    def _object_candidate_features(self, sample: dict[str, Any]) -> tuple[torch.Tensor, torch.Tensor, list[str]]:
+    def _object_candidate_features(
+        self,
+        sample: dict[str, Any],
+    ) -> tuple[torch.Tensor, torch.Tensor, list[str], int]:
         self._validate_object_input_frame(sample)
         features = torch.zeros(
             (self.max_candidates, self.object_candidate_feature_dim),
@@ -452,15 +475,17 @@ class HOT3DClipsDataset(Dataset):
         candidate_names: list[str] = []
         candidate_scores, raw_candidates_list = self._observation_candidate_payload(sample)
         raw_candidates = self._raw_candidate_lookup(raw_candidates_list)
+        visible_candidates = self._order_candidates(candidate_scores, sample)[: self.max_candidates]
 
-        for row_index, candidate in enumerate(candidate_scores[: self.max_candidates]):
+        for row_index, candidate in enumerate(visible_candidates):
             raw_candidate = raw_candidates.get(_candidate_identity_key(candidate), {})
             vector = self._candidate_feature_vector(candidate, raw_candidate)
             features[row_index] = torch.tensor(vector, dtype=torch.float32)
             mask[row_index] = 1.0
             candidate_names.append(str(candidate.get("object_name") or "unknown"))
 
-        return features, mask, candidate_names
+        target_index = self._target_candidate_index(sample, visible_candidates)
+        return features, mask, candidate_names, target_index
 
     def _candidate_feature_vector(self, candidate: dict[str, Any], raw_candidate: dict[str, Any]) -> list[float]:
         class_count = max(1, len(self.class_to_idx))
@@ -506,7 +531,7 @@ class HOT3DClipsDataset(Dataset):
         indexed_candidates = sample.get("observation_object_candidates")
         if isinstance(indexed_scores, list) and isinstance(indexed_candidates, list):
             return (
-                self._sort_candidate_scores(indexed_scores),
+                [candidate for candidate in indexed_scores if isinstance(candidate, dict)],
                 [candidate for candidate in indexed_candidates if isinstance(candidate, dict)],
             )
 
@@ -551,9 +576,27 @@ class HOT3DClipsDataset(Dataset):
         candidate_scores = observation_proxy.get("candidate_scores", [])
         if not isinstance(candidate_scores, list):
             candidate_scores = []
-        payload = (self._sort_candidate_scores(candidate_scores), raw_candidates)
+        payload = ([candidate for candidate in candidate_scores if isinstance(candidate, dict)], raw_candidates)
         self._observation_candidate_cache[cache_key] = payload
         return payload
+
+    def _order_candidates(self, candidates: list[Any], sample: dict[str, Any]) -> list[dict[str, Any]]:
+        typed_candidates = [candidate for candidate in candidates if isinstance(candidate, dict)]
+        if self.candidate_order == "as_is":
+            return typed_candidates
+        if self.candidate_order == "random_seeded":
+            ordered = list(typed_candidates)
+            random_seed = self._candidate_order_random_seed(sample)
+            import random
+
+            random.Random(random_seed).shuffle(ordered)
+            return ordered
+        return sorted(typed_candidates, key=_candidate_stable_order_key)
+
+    def _candidate_order_random_seed(self, sample: dict[str, Any]) -> int:
+        identity = f"{self.candidate_order_seed}:{sample.get('sample_id', '')}"
+        digest = hashlib.sha256(identity.encode("utf-8")).hexdigest()
+        return int(digest[:16], 16)
 
     def _sort_candidate_scores(self, candidates: list[Any]) -> list[dict[str, Any]]:
         typed_candidates = [candidate for candidate in candidates if isinstance(candidate, dict)]
@@ -608,9 +651,12 @@ class HOT3DClipsDataset(Dataset):
             )
 
     def _selected_object_in_top_k(self, sample: dict[str, Any], top_candidates: list[dict[str, Any]]) -> bool:
+        return self._target_candidate_index(sample, top_candidates) >= 0
+
+    def _target_candidate_index(self, sample: dict[str, Any], top_candidates: list[dict[str, Any]]) -> int:
         proxy = sample.get("target_object_proxy", {})
         if not isinstance(proxy, dict):
-            return False
+            return -1
         selected = {
             "object_uid": proxy.get("selected_object_uid"),
             "object_bop_id": proxy.get("selected_object_bop_id"),
@@ -619,7 +665,10 @@ class HOT3DClipsDataset(Dataset):
             "instance_index": proxy.get("selected_instance_index"),
         }
         selected_key = _candidate_identity_key(selected)
-        return any(_candidate_identity_key(candidate) == selected_key for candidate in top_candidates)
+        for index, candidate in enumerate(top_candidates):
+            if _candidate_identity_key(candidate) == selected_key:
+                return index
+        return -1
 
 
 def _safe_int(value: Any) -> int:
@@ -702,6 +751,16 @@ def _candidate_identity_key(candidate: dict[str, Any]) -> tuple[str, str, str, s
         str(candidate.get("object_uid") or ""),
         str(candidate.get("object_bop_id") or ""),
         str(candidate.get("object_name") or ""),
+        str(candidate.get("object_group_key") or ""),
+        _safe_int(candidate.get("instance_index")),
+    )
+
+
+def _candidate_stable_order_key(candidate: dict[str, Any]) -> tuple[str, str, str, str, int]:
+    return (
+        str(candidate.get("object_uid") or ""),
+        str(candidate.get("object_name") or ""),
+        str(candidate.get("object_bop_id") or ""),
         str(candidate.get("object_group_key") or ""),
         _safe_int(candidate.get("instance_index")),
     )

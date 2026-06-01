@@ -418,6 +418,29 @@ This remains a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy labels are
 derived labels, not direct HOT3D ground truth, and this run must not be used for
 final research claims.
 
+## Pilot Candidate-Ranking Baseline
+
+This pilot scores the observed object candidates instead of predicting one
+global class label. A sample is rankable only when the forecast-frame target
+proxy object is also present among the observation-frame candidate list. The
+ranking loss uses observation-frame candidate features only. Candidate ordering
+must not leak the proxy answer: the default dataset order is `stable_uid`, which
+sorts by object identity rather than proxy score. Use `as_is` only for explicit
+debugging because the raw proxy-score order can make candidate 0 a strong
+position-only baseline.
+
+```powershell
+python src/datasets/check_hot3d_candidate_order_bias.py --index data/processed/hot3d_clips_train_optimized.json --candidate-order stable_uid
+
+python src/datasets/inspect_hot3d_candidate_ranking.py --index data/processed/hot3d_clips_train_optimized.json
+
+python src/training/train_hot3d_candidate_ranker.py --config configs/hot3d_candidate_ranker.yaml
+```
+
+This is still a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy labels are
+derived labels, not direct HOT3D ground truth, and candidate-ranking metrics are
+not directly comparable with global object-class accuracy.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
