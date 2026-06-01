@@ -299,6 +299,12 @@ Inspect the dataset in fast metadata-only mode:
 python src/datasets/inspect_hot3d_clips_dataset.py --index data/processed/hot3d_clips_train.json --mode metadata_only
 ```
 
+Check split quality before any debug training:
+
+```powershell
+python src/datasets/check_hot3d_split_quality.py --train data/processed/hot3d_clips_train.json --val data/processed/hot3d_clips_val.json --test data/processed/hot3d_clips_test.json --label-map data/processed/hot3d_target_object_label_map.json
+```
+
 Dataset v1 returns lightweight frame features, a flattened forecast-frame MANO
 pose vector, integer proxy target label, proxy confidence, clip/sample IDs, and
 metadata. Image mode can load one image stream from tar shards for inspection,

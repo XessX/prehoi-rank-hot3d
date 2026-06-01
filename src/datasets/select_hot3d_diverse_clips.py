@@ -45,6 +45,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--python-executable", default="python")
     parser.add_argument("--max-total-gb", type=float, default=2.0)
     parser.add_argument(
+        "--avoid-downloaded",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Avoid clip IDs that already exist under the local root.",
+    )
+    parser.add_argument(
+        "--prefer-new-sequences",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Prefer sequences that do not already have a downloaded local clip.",
+    )
+    parser.add_argument(
+        "--prefer-both-devices",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Prefer balancing Aria and Quest3 clips in the selection.",
+    )
+    parser.add_argument(
         "--confirm-download",
         action="store_true",
         help="Execute generated downloader commands. Omit for dry-run command generation.",
@@ -91,6 +109,7 @@ def build_candidate_records(
     clip_splits: dict[str, dict[str, list[int]]],
     preferred_split: str,
     downloaded: set[str],
+    avoid_downloaded: bool,
     avoided_sequences: set[str],
 ) -> list[dict[str, Any]]:
     lookup = split_lookup(clip_splits)
@@ -98,7 +117,7 @@ def build_candidate_records(
     for clip_id, split_info in lookup.items():
         if split_info["split"] != preferred_split:
             continue
-        if clip_id in downloaded:
+        if avoid_downloaded and clip_id in downloaded:
             continue
         definition = clip_definitions.get(clip_id)
         if definition is None:
@@ -130,6 +149,7 @@ def candidate_gain(
     seen_devices: set[str],
     seen_sequences: set[str],
     seen_objects: set[str],
+    prefer_both_devices: bool,
 ) -> tuple[int, list[str]]:
     reasons: list[str] = []
     score = 0
@@ -140,10 +160,10 @@ def candidate_gain(
         reasons.append(f"adds participant {participant}")
 
     device = candidate.get("device")
-    if device and device not in seen_devices:
+    if prefer_both_devices and device and device not in seen_devices:
         score += 3
         reasons.append(f"adds device {device}")
-    elif device:
+    elif prefer_both_devices and device:
         device_counts = Counter(str(item.get("device")) for item in selected if item.get("device"))
         if device_counts:
             lowest_count = min(device_counts.values())
@@ -170,7 +190,12 @@ def candidate_gain(
     return score, reasons
 
 
-def select_candidates(candidates: list[dict[str, Any]], num_clips: int) -> list[dict[str, Any]]:
+def select_candidates(
+    candidates: list[dict[str, Any]],
+    num_clips: int,
+    *,
+    prefer_both_devices: bool,
+) -> list[dict[str, Any]]:
     selected: list[dict[str, Any]] = []
     remaining = list(candidates)
     seen_participants: set[str] = set()
@@ -188,6 +213,7 @@ def select_candidates(candidates: list[dict[str, Any]], num_clips: int) -> list[
                 seen_devices,
                 seen_sequences,
                 seen_objects,
+                prefer_both_devices,
             )
             ranked.append((score, -int(candidate["clip_id"]), candidate, reasons))
 
@@ -271,15 +297,24 @@ def main() -> None:
         for clip_id in downloaded
         if clip_id in clip_definitions and clip_definitions[clip_id].get("sequence_id")
     }
-    avoided_sequences = set() if args.allow_downloaded_sequences else downloaded_sequences
+    avoided_sequences = (
+        set()
+        if args.allow_downloaded_sequences or not args.prefer_new_sequences
+        else downloaded_sequences
+    )
     candidates = build_candidate_records(
         clip_definitions=clip_definitions,
         clip_splits=clip_splits,
         preferred_split=args.preferred_split,
         downloaded=downloaded,
+        avoid_downloaded=args.avoid_downloaded,
         avoided_sequences=avoided_sequences,
     )
-    selected = select_candidates(candidates, num_clips=args.num_clips)
+    selected = select_candidates(
+        candidates,
+        num_clips=args.num_clips,
+        prefer_both_devices=args.prefer_both_devices,
+    )
     command_lists = [make_download_command(args, item["expected_shard_path"]) for item in selected]
     commands = [command_to_string(command) for command in command_lists]
     object_distribution = object_metadata_distribution(clip_definitions)
@@ -291,6 +326,9 @@ def main() -> None:
         "num_candidates_after_download_filter": len(candidates),
         "num_selected": len(selected),
         "already_downloaded_clip_ids": sorted(downloaded, key=lambda value: int(value)),
+        "avoid_downloaded": args.avoid_downloaded,
+        "prefer_new_sequences": args.prefer_new_sequences,
+        "prefer_both_devices": args.prefer_both_devices,
         "avoided_downloaded_sequence_ids": sorted(avoided_sequences),
         "object_metadata_available": object_distribution["available"],
         "selection_basis": "object metadata if available; otherwise participant, device, and sequence diversity",
