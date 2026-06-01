@@ -441,6 +441,26 @@ This is still a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy labels are
 derived labels, not direct HOT3D ground truth, and candidate-ranking metrics are
 not directly comparable with global object-class accuracy.
 
+## Pilot Vision-Language Candidate Ranker
+
+This pilot extends the order-safe candidate ranker with frozen CLIP text
+features for candidate object names. It does not train CLIP, does not use
+forecast-frame object candidates as input, and keeps `candidate_order:
+stable_uid` so candidate position does not leak the proxy target.
+
+```powershell
+python src/features/extract_hot3d_text_features.py --label-map data/processed/hot3d_target_object_label_map.json --output data/processed/features/hot3d_object_text_features_clip.npz
+
+python src/features/inspect_hot3d_text_features.py data/processed/features/hot3d_object_text_features_clip.npz
+
+python src/training/train_hot3d_vl_candidate_ranker.py --config configs/hot3d_vl_candidate_ranker.yaml
+```
+
+This is still a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. The target labels
+are derived proxy labels, the text embeddings are frozen object-name features,
+and the run must be compared against candidate-0, first-3, random, and
+non-vision-language pilot baselines before making any research claim.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
