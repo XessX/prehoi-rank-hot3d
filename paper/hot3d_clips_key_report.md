@@ -190,9 +190,46 @@ Postpone:
 
 These must wait until a defensible proxy or manual/external annotation source is defined.
 
+## MVP Sample Definition
+
+The first verified HOT3D-Clips preparation step builds a JSON sample index from
+tar member names and annotation files. The index is preparation metadata only,
+not a trained dataset result.
+
+Default windowing:
+
+- observation length: 16 frames
+- forecast horizon: 5 frames
+- forecast frame: `start + observation_length + forecast_horizon - 1`
+- frame data: stored as tar member names, not decoded image tensors
+
+Each sample records:
+
+- `sample_id`, `shard`, and `clip_id`
+- `observation_frame_ids`
+- `forecast_frame_id`
+- `image_streams` for `image_214-1`, `image_1201-1`, and `image_1201-2`
+- `hand_source` and `available_hands`
+- `future_hand_pose` from `hands.json`, currently using MANO or UmeTrack payloads directly
+- `target_object_candidates` from visible objects in `objects.json`
+- `metadata` with sequence ID, participant ID, device, start/end frame, forecast frame, and timestamps
+
+Safety rules:
+
+- skip a window if no future hand is visible in the forecast frame
+- skip a window if no object is visible in the forecast frame
+- store all visible object candidates when multiple objects are visible
+- leave `target_object_label`, `action_label`, and `contact_label` unset
+
+Remaining TODOs before training:
+
+- define and validate a target-object selection rule
+- convert MANO/UmeTrack hand pose payloads to the model's 3D joint tensor target
+- define contact/action labels through a documented proxy or additional annotation source
+- verify train/test split usage against `clip_splits.json`
+
 ## MVP Readiness
 
 This shard is enough to build a first real-data loader that reads frames, metadata, object annotations, and hand-pose parameters. It is not enough to train the final supervised pre-contact forecasting task because action/contact labels are not directly present and hand parameters still need conversion to 3D joint tensors.
 
 No training has been run on this shard, and no real HOT3D result has been produced.
-

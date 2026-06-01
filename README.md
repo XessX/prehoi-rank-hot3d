@@ -213,6 +213,26 @@ Downloaded datasets, tar shards, VRS files, archives, videos, logs, and
 checkpoints must not be committed. The current code still treats all real-data
 inspection as preparation only; no real HOT3D result has been produced yet.
 
+## Building a HOT3D-Clips Sample Index
+
+After a shard has been downloaded and inspected, build a lightweight JSON index
+for pre-contact forecasting samples. This step records tar member names and
+annotation metadata only. It does not decode image tensors, train a model, or
+choose final target-object/contact/action labels.
+
+```powershell
+python src/datasets/build_hot3d_clips_samples.py --root data/raw/hot3d_clips --output data/processed/hot3d_clips_sample_index.json --observation-frames 16 --forecast-horizon 5
+python src/datasets/inspect_hot3d_clips_samples.py data/processed/hot3d_clips_sample_index.json
+```
+
+The generated samples contain observation frame IDs, image member paths for the
+three HOT3D-Clips streams, future hand-pose payloads from `hands.json`, visible
+object candidates from `objects.json`, and sequence metadata from `info.json`.
+If no visible future hand or object is available, that candidate window is
+skipped. If multiple objects are visible, all candidates are stored and the
+final target-object decision remains postponed until a documented selection rule
+is implemented.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
