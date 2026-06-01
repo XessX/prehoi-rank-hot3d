@@ -1,0 +1,43 @@
+dataset_name: HOT3D
+root_dir: data/raw/hot3d
+annotation_dir: data/raw/hot3d/annotations
+split_file: data/processed/hot3d_splits.json
+
+# Keep true for the MVP. Set false only after implementing the real parser.
+use_synthetic: true
+synthetic_num_samples: 64
+synthetic_seed: 123
+
+seq_len: 16
+feature_dim: 128
+image_size: 32
+future_steps: 5
+num_hand_joints: 21
+num_objects: 33
+num_actions: 8
+
+precontact:
+  input_frames: 16
+  forecast_horizon: 5
+  contact_definition: "TODO: define from HOT3D contact/event annotations or a documented proxy."
+
+hot3d_integration_todos:
+  - "Confirm official HOT3D frame, calibration, hand, object, and timestamp file layout."
+  - "Map HOT3D object identifiers to stable class IDs."
+  - "Define pre-contact windows ending before physical contact or closest approach."
+  - "Parse 3D hand joints or MANO parameters into Tensor[seq_len, num_hand_joints, 3]."
+  - "Parse object pose into Tensor[4, 4] or a compact object-pose feature."
+  - "Construct future hand-pose targets at t + forecast_horizon."
+  - "Add interaction labels from annotations or a documented taxonomy."
+  - "Add contact or affordance labels only when real labels or a defensible proxy exist."
+
+action_taxonomy:
+  - pick
+  - grasp
+  - rotate
+  - place
+  - pour
+  - push
+  - handover
+  - other
+

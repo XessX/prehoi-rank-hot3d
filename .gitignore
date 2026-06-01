@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Large or generated research artifacts
+data/raw/**
+data/processed/**
+results/checkpoints/**
+results/logs/**
+results/tables/**
+results/figures/**
+
+# Keep directory placeholders
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!results/checkpoints/.gitkeep
+!results/logs/.gitkeep
+!results/tables/.gitkeep
+!results/figures/.gitkeep
+

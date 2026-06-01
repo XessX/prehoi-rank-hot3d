@@ -1,0 +1,39 @@
+seed: 42
+device: auto
+
+dataset:
+  name: hot3d
+  use_synthetic: true
+  synthetic_num_samples: 64
+  synthetic_seed: 123
+  seq_len: 16
+  feature_dim: 128
+  image_size: 32
+  future_steps: 5
+  num_hand_joints: 21
+  num_objects: 33
+  num_actions: 8
+
+model:
+  input_dim: 128
+  hidden_dim: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  max_seq_len: 64
+  pooling: last
+
+training:
+  epochs: 2
+  batch_size: 8
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  num_workers: 0
+  val_fraction: 0.2
+  checkpoint_dir: results/checkpoints
+  log_dir: results/logs
+  loss_weights:
+    object: 1.0
+    action: 1.0
+    pose: 1.0
+

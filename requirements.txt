@@ -1,0 +1,11 @@
+torch>=2.1
+numpy>=1.24
+pyyaml>=6.0
+tqdm>=4.66
+scikit-learn>=1.3
+pandas>=2.0
+matplotlib>=3.7
+opencv-python>=4.8
+transformers>=4.40
+open-clip-torch>=2.24
+

@@ -1,0 +1,19 @@
+name: prehoi-former
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - numpy
+  - pyyaml
+  - tqdm
+  - scikit-learn
+  - pandas
+  - matplotlib
+  - opencv
+  - pip:
+      - transformers>=4.40
+      - open-clip-torch>=2.24
+

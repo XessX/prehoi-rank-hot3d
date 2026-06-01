@@ -1,0 +1,13 @@
+dataset_name: DexYCB
+root_dir: data/raw/dexycb
+annotation_dir: data/raw/dexycb/annotations
+split_file: data/processed/dexycb_splits.json
+
+enabled: false
+
+dexycb_integration_todos:
+  - "Use DexYCB as backup or cross-dataset validation after HOT3D MVP works."
+  - "Map DexYCB object and grasp labels to the project taxonomy."
+  - "Normalize 3D hand-pose representation to match HOT3D samples."
+  - "Document any label mismatch before reporting cross-dataset results."
+
