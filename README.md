@@ -305,6 +305,19 @@ Check split quality before any debug training:
 python src/datasets/check_hot3d_split_quality.py --train data/processed/hot3d_clips_train.json --val data/processed/hot3d_clips_val.json --test data/processed/hot3d_clips_test.json --label-map data/processed/hot3d_target_object_label_map.json
 ```
 
+## Optimized Clip-Level Split
+
+Because HOT3D-Clips root metadata does not expose object names, use the proxy
+index itself to build a clip-by-class matrix before choosing evaluation splits.
+The optimized splitter still splits only by `clip_id`; it never performs random
+sample-level splitting.
+
+```powershell
+python src/datasets/summarize_hot3d_clip_class_matrix.py --index data/processed/hot3d_clips_sample_index_proxy_v1_multi.json
+python src/datasets/optimize_hot3d_clip_split.py --index data/processed/hot3d_clips_sample_index_proxy_v1_multi.json --output-dir data/processed --train-ratio 0.7 --val-ratio 0.15 --test-ratio 0.15 --min-class-samples 30 --min-class-clips 2 --num-attempts 1000
+python src/datasets/check_hot3d_split_quality.py --train data/processed/hot3d_clips_train_optimized.json --val data/processed/hot3d_clips_val_optimized.json --test data/processed/hot3d_clips_test_optimized.json --label-map data/processed/hot3d_target_object_label_map.json
+```
+
 Dataset v1 returns lightweight frame features, a flattened forecast-frame MANO
 pose vector, integer proxy target label, proxy confidence, clip/sample IDs, and
 metadata. Image mode can load one image stream from tar shards for inspection,
