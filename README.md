@@ -479,6 +479,21 @@ stable_uid` is required, and no forecast-frame candidate features are used as
 input. The config includes ablation flags for `use_text` and
 `use_candidate_attention`.
 
+## PreHOI-Former v1 Ablation Pilot
+
+Run controlled pilot ablations to separate the effects of frozen text
+embeddings, candidate-level attention, and pose-loss weighting. The runner uses
+the same optimized clip-level split and keeps `candidate_order: stable_uid`.
+
+```powershell
+python src/training/run_prehoi_former_v1_ablation.py --config configs/prehoi_former_v1_ablation.yaml
+
+python src/training/summarize_prehoi_ablation.py --summary results/tables/prehoi_former_v1_ablation_summary.csv
+```
+
+This is still pilot/model-development evidence only. Do not describe proxy
+targets as HOT3D ground truth or use the ablation table as final paper results.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`

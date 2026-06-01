@@ -1,0 +1,57 @@
+base:
+  train_index: data/processed/hot3d_clips_train_optimized.json
+  val_index: data/processed/hot3d_clips_val_optimized.json
+  test_index: data/processed/hot3d_clips_test_optimized.json
+  label_map_path: data/processed/hot3d_target_object_label_map.json
+  text_features_path: data/processed/features/hot3d_object_text_features_clip.npz
+
+  batch_size: 64
+  epochs: 5
+  learning_rate: 0.0007
+  weight_decay: 0.0001
+  hidden_dim: 96
+  num_heads: 4
+  num_layers: 2
+  dropout: 0.1
+  pose_loss_weight: 0.1
+  ranking_loss_weight: 1.0
+  max_candidates: 8
+  candidate_order: stable_uid
+  candidate_order_seed: 42
+  seed: 42
+  device: cpu
+  num_workers: 0
+
+  metrics_dir: results/logs/ablation
+  summary_csv: results/tables/prehoi_former_v1_ablation_summary.csv
+
+runs:
+  - name: geometry_only_attention
+    use_text: false
+    use_candidate_attention: true
+    pose_loss_weight: 0.1
+
+  - name: geometry_text_attention
+    use_text: true
+    use_candidate_attention: true
+    pose_loss_weight: 0.1
+
+  - name: geometry_text_no_attention
+    use_text: true
+    use_candidate_attention: false
+    pose_loss_weight: 0.1
+
+  - name: geometry_only_no_attention
+    use_text: false
+    use_candidate_attention: false
+    pose_loss_weight: 0.1
+
+  - name: rank_focused
+    use_text: true
+    use_candidate_attention: true
+    pose_loss_weight: 0.03
+
+  - name: pose_focused
+    use_text: true
+    use_candidate_attention: true
+    pose_loss_weight: 0.3
