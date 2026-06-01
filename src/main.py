@@ -139,6 +139,9 @@ def main() -> None:
     config = load_yaml(PROJECT_ROOT / args.config)
     raw_dataset_config = load_yaml(PROJECT_ROOT / args.dataset_config)
     dataset_config = merge_dicts(raw_dataset_config, config.get("dataset", {}))
+    if "synthetic_mode" in raw_dataset_config:
+        dataset_config["synthetic_mode"] = raw_dataset_config["synthetic_mode"]
+        dataset_config["use_synthetic"] = raw_dataset_config["synthetic_mode"]
 
     seed = int(config.get("seed", 42))
     seed_everything(seed)

@@ -112,10 +112,12 @@ These numbers are only a pipeline sanity check. They are not dataset results.
 Current status:
 
 - synthetic mode remains the default for smoke testing,
-- real mode can scan a HOT3D-style raw root for image-containing sequence/session folders,
-- real mode looks for JSON annotations in each sequence folder or under `annotation_dir`,
+- official HOT3D schema notes are tracked in `paper/hot3d_schema_notes.md`,
+- real mode recognizes the official full HOT3D VRS layout and HOT3D-Clips tar/WebDataset layout,
+- real mode can inspect VRS sequence folders for `metadata.json`, `recording.vrs`, `dynamic_objects.csv`, `headset_trajectory.csv`, hand annotation files, masks, and device-specific metadata,
+- real mode can inspect HOT3D-Clips roots for split folders, clip tar files, `clip_definitions.json`, and `clip_splits.json`,
 - a sample index is saved/loaded at `data/processed/hot3d_sample_index.json`,
-- pre-contact windows are generated around contact/event frames when annotations expose them,
+- pre-contact training windows are still blocked until contact/event labels or a documented proxy are implemented,
 - validation checks report missing frame paths, missing annotations, missing required labels, and tensor-shape issues,
 - dataset startup prints a compact summary before training.
 
@@ -134,6 +136,33 @@ Missing real labels or future hand-pose targets are not fabricated. If required
 HOT3D annotations are unavailable or use an unconfirmed schema, real mode raises
 or skips samples and reports TODO-style missing-field counts. Keep
 `use_synthetic: true` until the official HOT3D layout is verified locally.
+
+Inspect a local HOT3D root without training:
+
+```powershell
+python src/datasets/inspect_hot3d.py data/raw/hot3d
+```
+
+Keep synthetic mode on for smoke tests:
+
+```yaml
+synthetic_mode: true
+use_synthetic: true
+data_format: unknown
+```
+
+Later, after downloading licensed data and installing the official HOT3D toolkit
+dependencies, switch real mode deliberately:
+
+```yaml
+synthetic_mode: false
+use_synthetic: false
+dataset_root: D:/path/to/hot3d_dataset
+data_format: vrs # or webdataset for HOT3D-Clips
+use_official_toolkit: true
+```
+
+No real HOT3D results have been produced by this repository yet.
 
 The intended real sample contract is:
 

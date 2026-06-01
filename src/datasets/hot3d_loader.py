@@ -19,6 +19,23 @@ from torch.utils.data import Dataset
 
 
 DEFAULT_FRAME_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp")
+OFFICIAL_VRS_COMMON_FILES = (
+    "metadata.json",
+    "recording.vrs",
+    "dynamic_objects.csv",
+    "headset_trajectory.csv",
+    "mano_hand_pose_trajectory.jsonl",
+)
+OFFICIAL_VRS_OPTIONAL_FILES = (
+    "umetrack_hand_pose_trajectory.jsonl",
+    "umetrack_hand_user_profile.json",
+    "box2d_objects.csv",
+    "box2d_hands.csv",
+)
+OFFICIAL_VRS_ARIA_HINTS = ("mps",)
+OFFICIAL_VRS_QUEST_FILES = ("camera_models.json",)
+HOT3D_CLIPS_SPLIT_DIRS = ("train_aria", "train_quest3", "test_aria", "test_quest3")
+HOT3D_CLIPS_REQUIRED_ROOT_FILES = ("clip_definitions.json", "clip_splits.json")
 DEFAULT_ANNOTATION_CANDIDATES = (
     "annotations.json",
     "annotation.json",
@@ -40,30 +57,39 @@ class HOT3DPreContactDataset(Dataset):
     Synthetic mode is for pipeline testing only. It produces deterministic
     dummy tensors with the same keys the real parser should return.
 
-    Real mode currently supports a conservative HOT3D-style JSON layout:
-    sequence/session folders with image frames and JSON annotations containing
-    event/contact frames plus hand/object/action fields. Unknown official fields
-    are reported as TODO/missing rather than silently invented.
+    Real mode is aligned with two official HOT3D access patterns:
+    full VRS sequences loaded through the official Hot3dDataProvider, and
+    HOT3D-Clips WebDataset/tar clips. The current loader can inspect these
+    layouts and build safe metadata, but it will not create training samples
+    until action/contact event definitions and 3D hand-joint conversion are
+    implemented from official providers.
     """
 
     def __init__(self, config: dict[str, Any], split: str = "train") -> None:
         self.config = config
         self.split = split
-        self.use_synthetic = bool(config.get("use_synthetic", True))
+        self.use_synthetic = bool(config.get("synthetic_mode", config.get("use_synthetic", True)))
 
-        self.root_dir = self._resolve_path(config.get("root_dir", "data/raw/hot3d"))
+        self.root_dir = self._resolve_path(
+            config.get("dataset_root", config.get("root_dir", "data/raw/hot3d"))
+        )
         self.annotation_dir = self._resolve_path(
             config.get("annotation_dir", self.root_dir / "annotations")
         )
         self.index_file = self._resolve_path(
-            config.get("index_file", "data/processed/hot3d_sample_index.json")
+            config.get(
+                "index_path",
+                config.get("index_file", "data/processed/hot3d_sample_index.json"),
+            )
         )
         self.rebuild_index = bool(config.get("rebuild_index", False))
+        self.use_official_toolkit = bool(config.get("use_official_toolkit", False))
+        self.data_format = str(config.get("data_format", "unknown")).lower()
 
-        self.seq_len = int(config.get("seq_len", 16))
+        self.seq_len = int(config.get("observation_frames", config.get("seq_len", 16)))
         self.feature_dim = int(config.get("feature_dim", 128))
         self.image_size = int(config.get("image_size", 32))
-        self.future_steps = int(config.get("future_steps", 5))
+        self.future_steps = int(config.get("forecast_horizon", config.get("future_steps", 5)))
         self.num_hand_joints = int(config.get("num_hand_joints", 21))
         self.num_objects = int(config.get("num_objects", 33))
         self.num_actions = int(config.get("num_actions", 8))
@@ -252,6 +278,81 @@ class HOT3DPreContactDataset(Dataset):
         return samples
 
     def _build_real_index(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        data_format = self._infer_data_format()
+        if data_format == "vrs":
+            return self._build_official_vrs_index()
+        if data_format == "webdataset":
+            return self._build_hot3d_clips_index()
+        return self._build_legacy_json_index()
+
+    def _build_official_vrs_index(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        """Inspect official VRS sequences without creating fake samples.
+
+        TODO:
+        - Instantiate the official Hot3dDataProvider for each sequence.
+        - Use device_data_provider timestamps/stream_ids for camera frames.
+        - Use mano_hand_data_provider or umetrack_hand_data_provider for 3D hands.
+        - Use object_pose_data_provider and object_library for object_uid labels.
+        - Define contact/event frames from a verified label source or documented proxy.
+        """
+        sequence_dirs = self._discover_official_vrs_sequence_dirs()
+        sequence_summaries = [self._summarize_official_vrs_sequence(path) for path in sequence_dirs]
+        metadata = {
+            "mode": "real",
+            "data_format": "vrs",
+            "root_dir": str(self.root_dir),
+            "num_sequence_dirs": len(sequence_dirs),
+            "num_samples": 0,
+            "sequence_summaries": sequence_summaries,
+            "note": (
+                "Official HOT3D VRS layout detected/inspected. No forecasting samples "
+                "were built because HOT3D does not directly provide this repo's "
+                "action/contact-event labels, and hand-joint conversion must be done "
+                "through the official providers before real training."
+            ),
+            "remaining_todos": [
+                "Install/use facebookresearch/hot3d Hot3dDataProvider with projectaria_tools and vrs.",
+                "Load recording.vrs image streams by timestamp_ns and stream_id.",
+                "Convert MANO/UmeTrack provider output into 21-joint tensors.",
+                "Map object_uid and instance_bop_id to target-object IDs.",
+                "Define pre-contact event frames from annotations or a documented distance/contact proxy.",
+            ],
+        }
+        return [], metadata
+
+    def _build_hot3d_clips_index(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        """Inspect HOT3D-Clips tar/WebDataset layout without creating fake labels."""
+        split_counts: dict[str, int] = {}
+        for split_dir in HOT3D_CLIPS_SPLIT_DIRS:
+            path = self.root_dir / split_dir
+            split_counts[split_dir] = len(list(path.glob("*.tar"))) if path.exists() else 0
+
+        metadata = {
+            "mode": "real",
+            "data_format": "webdataset",
+            "root_dir": str(self.root_dir),
+            "num_samples": 0,
+            "split_tar_counts": split_counts,
+            "root_files": {
+                name: (self.root_dir / name).exists()
+                for name in HOT3D_CLIPS_REQUIRED_ROOT_FILES
+            },
+            "note": (
+                "HOT3D-Clips layout detected/inspected. Clips provide per-frame "
+                "images, cameras, hand annotations, and object annotations, but this "
+                "project still needs a verified pre-contact/action-label definition "
+                "before creating supervised forecasting samples."
+            ),
+            "remaining_todos": [
+                "Read tar members <FRAME-ID>.image_<STREAM-ID>.jpg, cameras.json, hands.json, objects.json, info.json.",
+                "Use clip_definitions.json and clip_splits.json for provenance and splits.",
+                "Derive or import event/action labels before training.",
+                "Convert MANO/UmeTrack clip hand annotations into future 3D hand-pose targets.",
+            ],
+        }
+        return [], metadata
+
+    def _build_legacy_json_index(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         sequence_dirs = self._discover_sequence_dirs()
         samples: list[dict[str, Any]] = []
         skipped: Counter[str] = Counter()
@@ -349,8 +450,9 @@ class HOT3DPreContactDataset(Dataset):
             "future_steps": self.future_steps,
             "skipped_counts": dict(skipped),
             "note": (
-                "Index is built from conservative HOT3D-style JSON heuristics. "
-                "Verify official HOT3D fields before reporting real results."
+                "Index is built from a legacy extracted-frame JSON path, not the "
+                "official VRS/WebDataset path. Use only for local parser debugging "
+                "unless documented in a real experiment."
             ),
         }
         return samples, metadata
@@ -527,6 +629,57 @@ class HOT3DPreContactDataset(Dataset):
         if self.require_future_hand_pose:
             required.append("future_hand_pose_3d")
         return not any(field in missing_fields for field in required)
+
+    def _infer_data_format(self) -> str:
+        if self.data_format in {"vrs", "webdataset"}:
+            return self.data_format
+        if self._discover_official_vrs_sequence_dirs():
+            return "vrs"
+        if any((self.root_dir / split_dir).exists() for split_dir in HOT3D_CLIPS_SPLIT_DIRS):
+            return "webdataset"
+        if any(self.root_dir.rglob("*.tar")):
+            return "webdataset"
+        return "legacy_json"
+
+    def _discover_official_vrs_sequence_dirs(self) -> list[Path]:
+        sequence_dirs: list[Path] = []
+        for metadata_path in self.root_dir.rglob("metadata.json"):
+            sequence_dir = metadata_path.parent
+            has_vrs = (sequence_dir / "recording.vrs").exists()
+            has_pose_files = (sequence_dir / "dynamic_objects.csv").exists() or (
+                sequence_dir / "mano_hand_pose_trajectory.jsonl"
+            ).exists()
+            if has_vrs or has_pose_files:
+                sequence_dirs.append(sequence_dir)
+        return sorted(set(sequence_dirs))
+
+    def _summarize_official_vrs_sequence(self, sequence_dir: Path) -> dict[str, Any]:
+        metadata = self._load_json_if_available(sequence_dir / "metadata.json")
+        headset = metadata.get("headset", "unknown") if isinstance(metadata, dict) else "unknown"
+        required_files = list(OFFICIAL_VRS_COMMON_FILES)
+        if headset == "Quest3":
+            required_files.extend(OFFICIAL_VRS_QUEST_FILES)
+
+        missing_required = [
+            filename for filename in required_files if not (sequence_dir / filename).exists()
+        ]
+        optional_present = [
+            filename for filename in OFFICIAL_VRS_OPTIONAL_FILES if (sequence_dir / filename).exists()
+        ]
+        mask_dir = sequence_dir / "masks"
+        mask_files = sorted(path.name for path in mask_dir.glob("mask_*.csv")) if mask_dir.exists() else []
+        has_aria_mps = any((sequence_dir / hint).exists() for hint in OFFICIAL_VRS_ARIA_HINTS)
+
+        return {
+            "sequence_id": sequence_dir.name,
+            "headset": headset,
+            "participant_id": metadata.get("participant_id") if isinstance(metadata, dict) else None,
+            "gt_available_status": metadata.get("gt_available_status", {}) if isinstance(metadata, dict) else {},
+            "missing_required_files": missing_required,
+            "optional_files_present": optional_present,
+            "mask_files": mask_files,
+            "has_aria_mps": has_aria_mps,
+        }
 
     def _discover_sequence_dirs(self) -> list[Path]:
         """Detect sequence/session directories by locating image-containing folders."""
@@ -763,3 +916,9 @@ class HOT3DPreContactDataset(Dataset):
         path = Path(value)
         return path if path.is_absolute() else Path.cwd() / path
 
+    def _load_json_if_available(self, path: Path) -> dict[str, Any]:
+        if not path.exists():
+            return {}
+        with path.open("r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+        return payload if isinstance(payload, dict) else {}

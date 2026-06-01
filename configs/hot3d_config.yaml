@@ -1,15 +1,22 @@
 dataset_name: HOT3D
+dataset_root: data/raw/hot3d
 root_dir: data/raw/hot3d
 annotation_dir: data/raw/hot3d/annotations
 split_file: data/processed/hot3d_splits.json
+index_path: data/processed/hot3d_sample_index.json
 index_file: data/processed/hot3d_sample_index.json
 rebuild_index: false
+use_official_toolkit: false
+data_format: unknown # vrs, webdataset, or unknown
 
 # Keep true for the MVP. Set false only after implementing the real parser.
+synthetic_mode: true
 use_synthetic: true
 synthetic_num_samples: 64
 synthetic_seed: 123
 
+observation_frames: 16
+forecast_horizon: 5
 seq_len: 16
 feature_dim: 128
 image_size: 32
@@ -43,17 +50,18 @@ require_future_hand_pose: true
 precontact:
   input_frames: 16
   forecast_horizon: 5
-  contact_definition: "TODO: define from HOT3D contact/event annotations or a documented proxy."
+  contact_definition: "TODO: HOT3D does not directly provide action/contact-event labels for our forecasting task; derive and document a proxy only after validating hand/object pose timestamps."
 
 hot3d_integration_todos:
-  - "Confirm official HOT3D frame, calibration, hand, object, and timestamp file layout."
-  - "Map HOT3D object identifiers to stable class IDs."
-  - "Define pre-contact windows ending before physical contact or closest approach."
-  - "Parse 3D hand joints or MANO parameters into Tensor[seq_len, num_hand_joints, 3]."
-  - "Parse object pose into Tensor[4, 4] or a compact object-pose feature."
-  - "Construct future hand-pose targets at t + forecast_horizon."
-  - "Add interaction labels from annotations or a documented taxonomy."
-  - "Add contact or affordance labels only when real labels or a defensible proxy exist."
+  - "Full HOT3D VRS sequences use metadata.json, recording.vrs, dynamic_objects.csv, headset_trajectory.csv, mano_hand_pose_trajectory.jsonl, optional umetrack_hand_pose_trajectory.jsonl, box2d files, masks, and Aria MPS/Quest camera metadata."
+  - "HOT3D-Clips use tar/WebDataset-style clips with <FRAME-ID>.image_<STREAM-ID>.jpg, cameras.json, hands.json, objects.json, info.json, optional __hand_shapes.json__, clip_definitions.json, and clip_splits.json."
+  - "Use official Hot3dDataProvider and projectaria_tools/vrs for image streams, calibration, timestamp lookup, MANO/UmeTrack hand providers, object pose providers, object library, and gaze/MPS data."
+  - "Map object_uid / instance_bop_id to stable target-object class IDs using the object library or clip object model metadata."
+  - "Define pre-contact windows from validated timestamp_ns sequences, ending before a documented contact or closest-approach proxy."
+  - "Convert MANO/UmeTrack hand representations to Tensor[observation_frames, num_hand_joints, 3] with the official provider or hand_tracking_toolkit."
+  - "Construct future hand-pose targets at timestamp t + forecast_horizon frames or equivalent timestamp offset."
+  - "Add action labels only from a documented taxonomy or external annotation source; do not infer actions silently."
+  - "Add contact/affordance labels only from real contact labels or a defensible documented proxy."
 
 action_taxonomy:
   - pick
