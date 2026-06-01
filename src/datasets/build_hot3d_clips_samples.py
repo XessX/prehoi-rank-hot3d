@@ -22,6 +22,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.datasets.hot3d_clips_parser import (
     get_frame_member_names,
+    list_frame_keys_from_tar,
     list_frame_ids_from_tar,
     list_shards,
     read_json_member,
@@ -167,12 +168,21 @@ def extract_object_candidates(
     return candidates, missing
 
 
-def observation_image_streams(frame_ids: list[str]) -> dict[str, list[str]]:
-    streams = {key: [] for key in IMAGE_STREAM_KEYS}
+def image_stream_keys_for_shard(shard: Path, frame_id: str) -> list[str]:
+    frame_keys = list_frame_keys_from_tar(shard, frame_id)
+    image_streams = [
+        key.removesuffix(".jpg")
+        for key in frame_keys
+        if key.startswith("image_") and key.endswith(".jpg")
+    ]
+    return sorted(image_streams) if image_streams else list(IMAGE_STREAM_KEYS)
+
+
+def observation_image_streams(frame_ids: list[str], image_stream_keys: list[str]) -> dict[str, list[str]]:
+    streams = {key: [] for key in image_stream_keys}
     for frame_id in frame_ids:
-        members = get_frame_member_names(frame_id)
-        for key in IMAGE_STREAM_KEYS:
-            streams[key].append(members[key])
+        for key in image_stream_keys:
+            streams[key].append(f"{frame_id}.{key}.jpg")
     return streams
 
 
@@ -195,6 +205,8 @@ def build_samples_for_shard(
     if max_start < 0:
         skipped["too_few_frames"] += 1
         return samples, skipped
+
+    image_stream_keys = image_stream_keys_for_shard(shard, frame_ids[0])
 
     for start_index in range(max_start + 1):
         observation_ids = frame_ids[start_index : start_index + observation_frames]
@@ -243,7 +255,8 @@ def build_samples_for_shard(
             "clip_id": clip_id,
             "observation_frame_ids": observation_ids,
             "forecast_frame_id": forecast_frame,
-            "image_streams": observation_image_streams(observation_ids),
+            "image_streams": observation_image_streams(observation_ids, image_stream_keys),
+            "image_stream_keys": image_stream_keys,
             "hand_source": source_used or hand_source,
             "available_hands": available_hands,
             "future_hand_pose": future_hand_pose,

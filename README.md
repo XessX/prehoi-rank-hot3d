@@ -265,6 +265,20 @@ and says so in the output. The script prints reviewable downloader commands for
 the selected shards but does not download them unless `--confirm-download` is
 explicitly passed.
 
+Download only the reviewed selected shards:
+
+```powershell
+python src/datasets/download_selected_hot3d_clips.py --selection data/processed/hot3d_diverse_clip_selection.json --output-dir data/raw/hot3d_clips --max-clips 8 --max-total-gb 2
+python src/datasets/download_selected_hot3d_clips.py --selection data/processed/hot3d_diverse_clip_selection.json --output-dir data/raw/hot3d_clips --max-clips 8 --max-total-gb 2 --confirm-download
+```
+
+After download, rebuild and inspect the proxy index across all local shards:
+
+```powershell
+python src/datasets/build_hot3d_clips_samples.py --root data/raw/hot3d_clips --output data/processed/hot3d_clips_sample_index_proxy_v1_multi.json --observation-frames 16 --forecast-horizon 5 --assign-target-proxy
+python src/datasets/inspect_hot3d_clips_samples.py data/processed/hot3d_clips_sample_index_proxy_v1_multi.json
+```
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
