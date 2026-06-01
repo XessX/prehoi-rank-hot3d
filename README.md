@@ -42,12 +42,38 @@ Not implemented yet:
 - AR visualization,
 - journal-ready real experiments.
 
-## Setup
+## Environment Setup
 
-```bash
+Windows PowerShell:
+
+```powershell
 python -m venv .venv
-.\.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+If PowerShell blocks activation scripts for the current session, use this safe
+process-scoped bypass and activate again:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+```
+
+Confirm the environment:
+
+```powershell
+where.exe python
+pip --version
+python -m compileall src
+python src/main.py --config configs/model_config.yaml --dataset-config configs/hot3d_config.yaml
+```
+
+Deactivate when finished:
+
+```powershell
+deactivate
 ```
 
 If PyTorch installation needs a CUDA-specific wheel, install PyTorch from the official selector first, then install the rest of the requirements.
@@ -81,6 +107,34 @@ These numbers are only a pipeline sanity check. They are not dataset results.
 - contact or affordance labels if available,
 - frame timestamps and calibration metadata.
 
+## Dataset Integration Status
+
+Current status:
+
+- synthetic mode remains the default for smoke testing,
+- real mode can scan a HOT3D-style raw root for image-containing sequence/session folders,
+- real mode looks for JSON annotations in each sequence folder or under `annotation_dir`,
+- a sample index is saved/loaded at `data/processed/hot3d_sample_index.json`,
+- pre-contact windows are generated around contact/event frames when annotations expose them,
+- validation checks report missing frame paths, missing annotations, missing required labels, and tensor-shape issues,
+- dataset startup prints a compact summary before training.
+
+Real-mode sample fields are designed to include:
+
+- `frames` when `load_frames: true`, otherwise `frame_paths`,
+- `hand_pose_3d`,
+- `object_id`,
+- `object_pose` when available, with `has_object_pose` marking availability,
+- `future_hand_pose_3d`,
+- `action_label` and `interaction_label`,
+- `contact_region` when available, with `has_contact_region` marking availability,
+- metadata such as `sequence_id`, `frame_start`, `frame_end`, `event_frame`, and `forecast_frame`.
+
+Missing real labels or future hand-pose targets are not fabricated. If required
+HOT3D annotations are unavailable or use an unconfirmed schema, real mode raises
+or skips samples and reports TODO-style missing-field counts. Keep
+`use_synthetic: true` until the official HOT3D layout is verified locally.
+
 The intended real sample contract is:
 
 ```python
@@ -105,4 +159,3 @@ The first target is **Machine Learning with Applications**. The waiver plan shou
 - Real results must include dataset version, split definition, preprocessing details, seed, config, and commit hash.
 - No state-of-the-art, first-ever, or real-time claims should be made before verified experiments.
 - Contact-region claims require real contact annotations or a defensible proxy.
-

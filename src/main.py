@@ -145,6 +145,7 @@ def main() -> None:
     device = resolve_device(str(config.get("device", "auto")))
 
     dataset = HOT3DPreContactDataset(dataset_config, split="all")
+    dataset.print_summary()
     training_config = config["training"]
     train_loader, val_loader = build_dataloaders(
         dataset=dataset,
@@ -185,4 +186,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
