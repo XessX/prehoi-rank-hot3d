@@ -19,6 +19,7 @@ from torch.utils.data import Dataset
 
 from src.datasets.hot3d_clips_parser import get_frame_member_names, read_image_member, read_json_member
 from src.datasets.hot3d_proxy_labels import FALLBACK_IMAGE_SIZES, select_target_object_proxy
+from src.datasets.hot3d_stream_selection import choose_image_stream
 
 
 DEFAULT_INDEX_PATH = Path("data/processed/hot3d_clips_sample_index_proxy_v1_multi.json")
@@ -116,6 +117,7 @@ class HOT3DClipsDataset(Dataset):
     Modes:
     - metadata_only: returns lightweight per-frame metadata features.
     - object_metadata: adds padded object-candidate geometry/proxy features.
+    - object_visual_metadata: adds cached observation-frame visual features.
     - image: loads one image stream from each tar shard and resizes to 224x224
       by default.
     """
@@ -132,9 +134,10 @@ class HOT3DClipsDataset(Dataset):
         image_size: int = 224,
         max_candidates: int = 8,
         allow_forecast_object_input: bool = False,
+        visual_features_path: str | Path | None = None,
     ) -> None:
-        if mode not in {"metadata_only", "object_metadata", "image"}:
-            raise ValueError("mode must be 'metadata_only', 'object_metadata', or 'image'.")
+        if mode not in {"metadata_only", "object_metadata", "object_visual_metadata", "image"}:
+            raise ValueError("mode must be 'metadata_only', 'object_metadata', 'object_visual_metadata', or 'image'.")
         if hand_selection not in {"left", "right", "both"}:
             raise ValueError("hand_selection must be 'left', 'right', or 'both'.")
         if int(max_candidates) <= 0:
@@ -147,6 +150,7 @@ class HOT3DClipsDataset(Dataset):
         self.image_size = int(image_size)
         self.max_candidates = int(max_candidates)
         self.allow_forecast_object_input = bool(allow_forecast_object_input)
+        self.visual_features_path = Path(visual_features_path) if visual_features_path else None
 
         payload = load_index_payload(self.index_path)
         self.index_metadata = payload.get("metadata", {})
@@ -164,6 +168,7 @@ class HOT3DClipsDataset(Dataset):
             tuple[str, str],
             tuple[list[dict[str, Any]], list[dict[str, Any]]],
         ] = {}
+        self.visual_feature_cache = self._load_visual_feature_cache() if mode == "object_visual_metadata" else None
         self.samples = self._filter_usable_samples(raw_samples)
         if not self.samples:
             raise RuntimeError("No usable HOT3D-Clips samples after proxy-label filtering.")
@@ -175,6 +180,7 @@ class HOT3DClipsDataset(Dataset):
             *CANDIDATE_NUMERIC_FEATURE_NAMES,
         ]
         self.object_candidate_feature_dim = len(self.object_candidate_feature_names)
+        self.visual_feature_dim = self._visual_feature_dim()
 
     def __len__(self) -> int:
         return len(self.samples)
@@ -210,12 +216,16 @@ class HOT3DClipsDataset(Dataset):
 
         if self.mode == "image":
             item["frames"] = self._load_image_frames(sample)
-        if self.mode == "object_metadata":
+        if self.mode in {"object_metadata", "object_visual_metadata"}:
             candidate_features, candidate_mask, candidate_names = self._object_candidate_features(sample)
             item["observation_object_candidates"] = candidate_features
             item["object_candidates"] = candidate_features
             item["candidate_mask"] = candidate_mask
             item["candidate_object_names"] = candidate_names
+        if self.mode == "object_visual_metadata":
+            visual_features, selected_stream = self._cached_visual_features(sample)
+            item["visual_features"] = visual_features
+            item["selected_stream"] = selected_stream
 
         return item
 
@@ -231,6 +241,8 @@ class HOT3DClipsDataset(Dataset):
             "max_candidates": self.max_candidates,
             "object_candidate_feature_dim": self.object_candidate_feature_dim,
             "object_candidate_feature_names": self.object_candidate_feature_names,
+            "visual_features_path": str(self.visual_features_path) if self.visual_features_path else None,
+            "visual_feature_dim": self.visual_feature_dim,
             "object_input_source": "last_observation_frame",
             "input_uses_forecast_frame": False,
             "allow_forecast_object_input": self.allow_forecast_object_input,
@@ -291,6 +303,11 @@ class HOT3DClipsDataset(Dataset):
             if not isinstance(sample.get("future_hand_pose"), dict):
                 self.skipped_counts["missing_future_hand_pose"] += 1
                 continue
+            if self.mode == "object_visual_metadata" and self.visual_feature_cache is not None:
+                sample_id = str(sample.get("sample_id"))
+                if sample_id not in self.visual_feature_cache["sample_id_to_index"]:
+                    self.skipped_counts["missing_cached_visual_features"] += 1
+                    continue
             usable.append(sample)
         return usable
 
@@ -357,7 +374,7 @@ class HOT3DClipsDataset(Dataset):
         if not isinstance(image_streams, dict) or not image_streams:
             raise RuntimeError(f"Sample has no image streams: {sample.get('sample_id')}")
 
-        stream = self._resolve_image_stream(image_streams)
+        stream = self._resolve_image_stream(sample)
         shard_path = self._shard_path(sample)
         frames: list[torch.Tensor] = []
         for member_name in image_streams[stream]:
@@ -365,13 +382,9 @@ class HOT3DClipsDataset(Dataset):
             frames.append(_image_to_tensor(image, image_size=self.image_size))
         return torch.stack(frames, dim=0)
 
-    def _resolve_image_stream(self, image_streams: dict[str, Any]) -> str:
-        if self.image_stream != "auto" and self.image_stream in image_streams:
-            return self.image_stream
-        for stream in ("image_214-1", "image_1201-1", "image_1201-2"):
-            if stream in image_streams:
-                return stream
-        return sorted(image_streams.keys())[0]
+    def _resolve_image_stream(self, sample: dict[str, Any]) -> str:
+        selection = choose_image_stream(sample, requested_stream=self.image_stream)
+        return str(selection["stream"])
 
     def _shard_path(self, sample: dict[str, Any]) -> Path:
         shard = str(sample.get("shard", "")).replace("\\", "/")
@@ -379,6 +392,55 @@ class HOT3DClipsDataset(Dataset):
         if not path.exists():
             raise FileNotFoundError(f"Shard not found for sample {sample.get('sample_id')}: {path}")
         return path
+
+    def _load_visual_feature_cache(self) -> dict[str, Any]:
+        if self.visual_features_path is None:
+            raise ValueError("visual_features_path is required for mode='object_visual_metadata'.")
+        if not self.visual_features_path.exists():
+            raise FileNotFoundError(f"Visual feature cache not found: {self.visual_features_path}")
+
+        with np.load(self.visual_features_path, allow_pickle=True) as npz:
+            features = np.array(npz["features"], dtype=np.float32)
+            sample_ids = [str(sample_id) for sample_id in npz["sample_ids"].tolist()]
+            selected_streams = [str(stream) for stream in npz["selected_streams"].tolist()]
+            metadata_json = str(npz["metadata_json"].item()) if "metadata_json" in npz else "{}"
+
+        try:
+            metadata = json.loads(metadata_json)
+        except json.JSONDecodeError:
+            metadata = {"metadata_json": metadata_json}
+
+        if features.ndim != 3:
+            raise ValueError(
+                f"Expected cached visual features with shape [N, T, C], got {tuple(features.shape)}"
+            )
+        if features.shape[0] != len(sample_ids):
+            raise ValueError("Visual feature row count does not match sample_ids length.")
+
+        return {
+            "features": features,
+            "sample_ids": sample_ids,
+            "selected_streams": selected_streams,
+            "sample_id_to_index": {sample_id: index for index, sample_id in enumerate(sample_ids)},
+            "metadata": metadata,
+        }
+
+    def _visual_feature_dim(self) -> int:
+        if self.visual_feature_cache is None:
+            return 0
+        features = self.visual_feature_cache["features"]
+        return int(features.shape[-1])
+
+    def _cached_visual_features(self, sample: dict[str, Any]) -> tuple[torch.Tensor, str]:
+        if self.visual_feature_cache is None:
+            raise RuntimeError("Visual feature cache is not loaded.")
+        sample_id = str(sample.get("sample_id"))
+        row_index = self.visual_feature_cache["sample_id_to_index"].get(sample_id)
+        if row_index is None:
+            raise RuntimeError(f"Cached visual features missing for sample_id={sample_id}")
+        features = self.visual_feature_cache["features"][row_index]
+        selected_stream = self.visual_feature_cache["selected_streams"][row_index]
+        return torch.tensor(features, dtype=torch.float32), str(selected_stream)
 
     def _object_candidate_features(self, sample: dict[str, Any]) -> tuple[torch.Tensor, torch.Tensor, list[str]]:
         self._validate_object_input_frame(sample)

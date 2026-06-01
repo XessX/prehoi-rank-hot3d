@@ -341,9 +341,10 @@ The script prints `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`, saves metrics to
 ## Pilot Object-Aware Metadata Baseline
 
 This pilot adds `object_metadata` inputs without using image tensors. Each
-sample includes the 16-frame metadata sequence, top-K object-candidate geometry
-and proxy-score features from HOT3D-Clips annotations, a candidate mask, the
-derived target-object proxy label, and the forecast-frame MANO vector.
+sample includes the 16-frame metadata sequence, top-K observation-frame
+object-candidate geometry and proxy-score features from HOT3D-Clips
+annotations, a candidate mask, the derived target-object proxy label, and the
+forecast-frame MANO vector.
 
 ```powershell
 python src/training/train_hot3d_object_aware_baseline.py --config configs/hot3d_object_aware_baseline.yaml
@@ -359,6 +360,24 @@ Object-aware inputs must be extracted from observation frames only. The
 target-object proxy may be computed at the forecast frame, but forecast-frame
 object boxes, hand boxes, proximity scores, IoU, and center-distance features
 must not be used as model input.
+
+## Cached Visual Feature Extraction
+
+This stage extracts lightweight visual features from observation-frame images
+and writes them under `data/processed/features/`. It does not train a model and
+does not use forecast-frame images. The default `image_stats` feature is
+CPU-friendly: mean, standard deviation, min, and max per RGB-like channel for
+each observation frame.
+
+```powershell
+python src/features/extract_hot3d_visual_features.py --index data/processed/hot3d_clips_train_optimized.json --output data/processed/features/hot3d_visual_features_image_stats_train.npz --feature-type image_stats
+
+python src/features/inspect_hot3d_visual_features.py data/processed/features/hot3d_visual_features_image_stats_train.npz
+```
+
+Repeat extraction for validation and test split files before using
+`mode="object_visual_metadata"`. Cached features remain generated data and must
+not be committed.
 
 Keep synthetic mode on for smoke tests:
 
