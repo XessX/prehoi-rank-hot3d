@@ -180,6 +180,39 @@ The inspector reports shard counts, sample/frame keys, image stream keys,
 whether hand/object/camera/metadata files appear, and whether gaze-like keys are
 present. It does not decode labels, train models, or create publishable results.
 
+## Downloading a Small HOT3D-Clips Sample
+
+HOT3D-Clips is hosted on Hugging Face under `bop-benchmark/hot3d`. Review the
+dataset page and license/access requirements before downloading data. If access
+requires authentication, login first:
+
+```powershell
+huggingface-cli login
+```
+
+Always start with a dry run that lists matching files without downloading:
+
+```powershell
+python src/datasets/download_hot3d_clips_sample.py --repo-id bop-benchmark/hot3d --pattern "train_aria/*.tar" --max-files 1
+```
+
+After reviewing the selected file and approving the download, fetch only that
+small sample:
+
+```powershell
+python src/datasets/download_hot3d_clips_sample.py --repo-id bop-benchmark/hot3d --pattern "train_aria/*.tar" --max-files 1 --output-dir data/raw/hot3d_clips --confirm-download --allow-large-files
+```
+
+Then inspect it:
+
+```powershell
+python src/datasets/inspect_hot3d_clips.py data/raw/hot3d_clips
+```
+
+Downloaded datasets, tar shards, VRS files, archives, videos, logs, and
+checkpoints must not be committed. The current code still treats all real-data
+inspection as preparation only; no real HOT3D result has been produced yet.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml

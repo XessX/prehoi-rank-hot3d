@@ -8,4 +8,4 @@ matplotlib>=3.7
 opencv-python>=4.8
 transformers>=4.40
 open-clip-torch>=2.24
-
+huggingface_hub>=0.23

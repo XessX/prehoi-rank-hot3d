@@ -20,11 +20,19 @@ Thumbs.db
 
 # Large or generated research artifacts
 data/raw/**
+data/raw/hot3d/
+data/raw/hot3d_clips/
 data/processed/**
 results/checkpoints/**
 results/logs/**
 results/tables/**
 results/figures/**
+*.tar
+*.vrs
+*.mps
+*.mp4
+*.zip
+*.z01
 
 # Keep directory placeholders
 !data/raw/.gitkeep
@@ -33,4 +41,3 @@ results/figures/**
 !results/logs/.gitkeep
 !results/tables/.gitkeep
 !results/figures/.gitkeep
-
