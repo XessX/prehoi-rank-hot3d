@@ -7,7 +7,10 @@ index_path: data/processed/hot3d_sample_index.json
 index_file: data/processed/hot3d_sample_index.json
 rebuild_index: false
 use_official_toolkit: false
-data_format: unknown # vrs, webdataset, or unknown
+data_format: webdataset # vrs, webdataset, or unknown
+clips_root: data/raw/hot3d_clips
+max_shards_for_inspection: 2
+max_samples_for_inspection: 5
 
 # Keep true for the MVP. Set false only after implementing the real parser.
 synthetic_mode: true

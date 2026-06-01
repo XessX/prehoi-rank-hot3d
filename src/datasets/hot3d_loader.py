@@ -17,6 +17,8 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset
 
+from src.datasets.hot3d_clips_loader import HOT3DClipsAdapter
+
 
 DEFAULT_FRAME_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp")
 OFFICIAL_VRS_COMMON_FILES = (
@@ -73,6 +75,7 @@ class HOT3DPreContactDataset(Dataset):
         self.root_dir = self._resolve_path(
             config.get("dataset_root", config.get("root_dir", "data/raw/hot3d"))
         )
+        self.clips_root = self._resolve_path(config.get("clips_root", "data/raw/hot3d_clips"))
         self.annotation_dir = self._resolve_path(
             config.get("annotation_dir", self.root_dir / "annotations")
         )
@@ -85,6 +88,10 @@ class HOT3DPreContactDataset(Dataset):
         self.rebuild_index = bool(config.get("rebuild_index", False))
         self.use_official_toolkit = bool(config.get("use_official_toolkit", False))
         self.data_format = str(config.get("data_format", "unknown")).lower()
+        if self.data_format == "webdataset":
+            self.root_dir = self.clips_root
+        self.max_shards_for_inspection = int(config.get("max_shards_for_inspection", 2))
+        self.max_samples_for_inspection = int(config.get("max_samples_for_inspection", 5))
 
         self.seq_len = int(config.get("observation_frames", config.get("seq_len", 16)))
         self.feature_dim = int(config.get("feature_dim", 128))
@@ -322,21 +329,19 @@ class HOT3DPreContactDataset(Dataset):
 
     def _build_hot3d_clips_index(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         """Inspect HOT3D-Clips tar/WebDataset layout without creating fake labels."""
-        split_counts: dict[str, int] = {}
-        for split_dir in HOT3D_CLIPS_SPLIT_DIRS:
-            path = self.root_dir / split_dir
-            split_counts[split_dir] = len(list(path.glob("*.tar"))) if path.exists() else 0
+        adapter = HOT3DClipsAdapter(
+            clips_root=self.root_dir,
+            max_shards_for_inspection=self.max_shards_for_inspection,
+            max_samples_for_inspection=self.max_samples_for_inspection,
+        )
+        inspection = adapter.inspect(use_webdataset=False)
 
         metadata = {
             "mode": "real",
             "data_format": "webdataset",
             "root_dir": str(self.root_dir),
             "num_samples": 0,
-            "split_tar_counts": split_counts,
-            "root_files": {
-                name: (self.root_dir / name).exists()
-                for name in HOT3D_CLIPS_REQUIRED_ROOT_FILES
-            },
+            "inspection": inspection,
             "note": (
                 "HOT3D-Clips layout detected/inspected. Clips provide per-frame "
                 "images, cameras, hand annotations, and object annotations, but this "

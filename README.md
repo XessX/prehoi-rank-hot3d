@@ -143,24 +143,66 @@ Inspect a local HOT3D root without training:
 python src/datasets/inspect_hot3d.py data/raw/hot3d
 ```
 
+## HOT3D-Clips First Workflow
+
+For the first real-data path, start with HOT3D-Clips/WebDataset rather than the
+full VRS dataset. Place downloaded HOT3D-Clips data like this:
+
+```text
+data/raw/hot3d_clips/
+  clip_definitions.json
+  clip_splits.json
+  object_models/
+  object_models_eval/
+  train_aria/
+    clip-*.tar
+  train_quest3/
+    clip-*.tar
+  test_aria/
+    clip-*.tar
+  test_quest3/
+    clip-*.tar
+```
+
+Inspect the clips without training:
+
+```powershell
+python src/datasets/inspect_hot3d_clips.py data/raw/hot3d_clips
+```
+
+Optional, only if `webdataset` is installed:
+
+```powershell
+python src/datasets/inspect_hot3d_clips.py data/raw/hot3d_clips --use-webdataset
+```
+
+The inspector reports shard counts, sample/frame keys, image stream keys,
+whether hand/object/camera/metadata files appear, and whether gaze-like keys are
+present. It does not decode labels, train models, or create publishable results.
+
 Keep synthetic mode on for smoke tests:
 
 ```yaml
 synthetic_mode: true
 use_synthetic: true
-data_format: unknown
+data_format: webdataset
+clips_root: data/raw/hot3d_clips
 ```
 
-Later, after downloading licensed data and installing the official HOT3D toolkit
-dependencies, switch real mode deliberately:
+Later, after downloading licensed data and validating HOT3D-Clips contents,
+switch real mode deliberately:
 
 ```yaml
 synthetic_mode: false
 use_synthetic: false
-dataset_root: D:/path/to/hot3d_dataset
-data_format: vrs # or webdataset for HOT3D-Clips
-use_official_toolkit: true
+clips_root: D:/path/to/hot3d_clips
+data_format: webdataset
+use_official_toolkit: false
 ```
+
+Even after switching to real mode, do not claim real results until target-object
+labels, future hand-pose conversion, action labels, contact/pre-contact windows,
+and splits are validated and documented.
 
 No real HOT3D results have been produced by this repository yet.
 
