@@ -494,6 +494,23 @@ python src/training/summarize_prehoi_ablation.py --summary results/tables/prehoi
 This is still pilot/model-development evidence only. Do not describe proxy
 targets as HOT3D ground truth or use the ablation table as final paper results.
 
+## PreHOI-Former v2 Dual-Branch Pilot
+
+`PreHOI-Former v2` separates candidate ranking and future MANO-pose regression
+into dual branches. The temporal hand/context encoder is shared, but ranking
+uses its own candidate-scoring branch and pose regression uses a separate pose
+decoder. The default pilot starts with geometry-only candidate inputs, no
+candidate attention, and `candidate_order: stable_uid`.
+
+```powershell
+python src/training/train_prehoi_former_v2.py --config configs/prehoi_former_v2.yaml
+```
+
+This is still a `PILOT DEBUG RUN -- NOT FINAL PAPER RESULT`. Proxy targets are
+derived labels, not direct HOT3D ground truth. Inputs must remain
+observation-frame only, and the training script rejects forecast-frame candidate
+features.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`

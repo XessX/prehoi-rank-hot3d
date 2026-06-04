@@ -1,0 +1,47 @@
+train_index: data/processed/hot3d_clips_train_optimized.json
+val_index: data/processed/hot3d_clips_val_optimized.json
+test_index: data/processed/hot3d_clips_test_optimized.json
+label_map_path: data/processed/hot3d_target_object_label_map.json
+text_features_path: data/processed/features/hot3d_object_text_features_clip.npz
+
+variant_name: v2_geometry_only
+batch_size: 64
+epochs: 10
+learning_rate: 0.0007
+weight_decay: 0.0001
+hidden_dim: 96
+num_heads: 4
+num_layers: 2
+dropout: 0.1
+pose_loss_weight: 0.1
+ranking_loss_weight: 1.0
+max_candidates: 8
+candidate_order: stable_uid
+candidate_order_seed: 42
+use_text: false
+use_attention: false
+pose_uses_candidates: true
+detach_pose_from_ranking: false
+detach_ranking_from_pose: false
+early_stopping_patience: 3
+seed: 42
+device: cpu
+num_workers: 0
+
+v1_ablation_summary: results/tables/prehoi_former_v1_ablation_summary.csv
+checkpoint_path: results/checkpoints/prehoi_former_v2_pilot.pt
+metrics_path: results/logs/prehoi_former_v2_pilot.json
+
+suggested_variants:
+  - name: v2_geometry_only
+    use_text: false
+    use_attention: false
+    pose_loss_weight: 0.1
+  - name: v2_geometry_text
+    use_text: true
+    use_attention: false
+    pose_loss_weight: 0.1
+  - name: v2_geometry_only_higher_pose_loss
+    use_text: false
+    use_attention: false
+    pose_loss_weight: 0.3
