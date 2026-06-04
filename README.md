@@ -511,6 +511,23 @@ derived labels, not direct HOT3D ground truth. Inputs must remain
 observation-frame only, and the training script rejects forecast-frame candidate
 features.
 
+## Pilot Result Registry
+
+Collect all current pilot/debug metrics into one summary table before comparing
+models or drafting paper text:
+
+```powershell
+python src/training/collect_pilot_results.py
+
+python src/training/print_best_pilot_models.py --summary results/tables/pilot_experiment_summary.csv
+```
+
+The registry writes `results/tables/pilot_experiment_summary.csv` and
+`paper/pilot_experiment_summary.md`, and the static status registry lives at
+`paper/pilot_experiment_registry.md`. All entries remain pilot/debug evidence
+only. Invalid or superseded runs with leakage/order-bias risk are marked
+separately and must be excluded from paper claims.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
