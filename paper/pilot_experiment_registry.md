@@ -41,15 +41,32 @@ HOT3D ground truth.
 
 ## Current Interpretation
 
-The strongest current candidate-ranking pilot is expected to come from the
-PreHOI-Former v1 ablation table, especially the geometry-only/no-attention
-variant. PreHOI-Former v2 is useful infrastructure because it adds dual-branch
-separation, early stopping, and validation-MRR checkpointing, but its first
-geometry-only pilot did not improve over the best v1 ablation.
+The seed-stability check changes the model-development interpretation. Although
+PreHOI-Former v1 had the best single pilot run, the non-VL candidate ranker is
+currently the strongest stable pilot across seeds. PreHOI-Former v2 remains
+useful infrastructure because it adds dual-branch separation, early stopping,
+and validation-MRR checkpointing, but its first geometry-only pilot did not
+improve over the stable candidate-ranker baseline.
 
 Pose regression and candidate ranking still appear to compete. Future model
 work should focus on cleaner loss balancing, better pose targets/features, and
 better validated labels before any paper-facing claims.
+
+## Seed Stability Update
+
+Three-seed pilot stability was run for the current best candidates using seeds
+42, 123, and 2026.
+
+| Model | Top-1 | MRR | Pose MAE |
+| --- | --- | --- | --- |
+| Non-VL candidate ranker | 0.5624 +/- 0.0693 | 0.7502 +/- 0.0312 | 0.4412 +/- 0.0042 |
+| PreHOI-Former v1 | 0.4131 +/- 0.0283 | 0.6603 +/- 0.0143 | 0.4933 +/- 0.0382 |
+| PreHOI-Former v1 geometry-only/no-attention | 0.5164 +/- 0.0180 | 0.7306 +/- 0.0092 | 0.4941 +/- 0.0370 |
+
+The non-VL candidate ranker is currently the best stable pilot. The strong
+single-run PreHOI-Former v1 result should not be used as the main claim. All
+current results remain pilot/debug evidence only, based on derived proxy labels
+rather than direct HOT3D ground truth.
 
 Generate the metric summary with:
 

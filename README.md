@@ -545,6 +545,17 @@ Results are saved under `results/logs/seed_stability/` and
 `results/tables/pilot_seed_stability_summary.csv`; these generated artifacts
 remain ignored by Git.
 
+## Current Research Decision
+
+The current best stable pilot is the non-VL candidate ranker, with three-seed
+MRR `0.7502 +/- 0.0312` and pose MAE `0.4412 +/- 0.0042`. PreHOI-Former v1 had
+a strong single run, but seed stability does not support treating it as the
+final model yet. The next research step should be either data expansion for a
+stronger split or an architecture redesign around the stable candidate-ranking
+formulation.
+
+See `paper/research_decision_note.md` for the current model-selection decision.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
