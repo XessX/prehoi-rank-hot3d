@@ -11,11 +11,11 @@ pose estimation toward joint reasoning about hands, objects, and their spatial
 relationships. Early and widely used datasets such as HO-3D introduced real
 hand-object image sequences with 3D hand and object pose annotations, making it
 possible to evaluate joint hand-object pose estimation under occlusion
-[HO3D]. DexYCB expanded the benchmark setting with multi-view RGB-D capture of
+[@ho3d2020]. DexYCB expanded the benchmark setting with multi-view RGB-D capture of
 hand grasping over YCB objects and tasks including 6D object pose and 3D hand
-pose estimation [DexYCB]. HOT3D extends this line toward egocentric multi-view
+pose estimation [@dexycb2021]. HOT3D extends this line toward egocentric multi-view
 recordings from head-mounted devices, with synchronized camera streams,
-hand/object pose annotations, object models, and multimodal data [HOT3D].
+hand/object pose annotations, object models, and multimodal data [@hot3d2025].
 
 PreHOI-Rank differs from full hand-object reconstruction benchmarks. It does not
 claim to recover full interaction geometry from raw video. Instead, it uses
@@ -27,9 +27,9 @@ target-selection than to pure reconstruction.
 
 Many recent hand-object datasets and models rely on parametric hand
 representations. MANO provides a compact articulated hand model that is widely
-used for hand pose and shape modeling [MANO]. HOT3D also provides hand
+used for hand pose and shape modeling [@mano2017]. HOT3D also provides hand
 annotations in MANO and UmeTrack formats, which makes these representations
-directly relevant to the current pose targets [HOT3D], [UmeTrack].
+directly relevant to the current pose targets [@hot3d2025], [@umetrack2022].
 
 In the present project, future hand pose is evaluated as a MANO/UmeTrack
 pose-vector regression target. This is a practical first step for pipeline
@@ -41,7 +41,7 @@ before making stronger pose-estimation claims.
 
 Egocentric video datasets such as FPHA and EPIC-KITCHENS have helped frame hand
 action recognition and action anticipation from first-person observations
-[FPHA], [EPIC-KITCHENS]. AssemblyHands focuses on egocentric 3D hand pose for
+[@fpha2018], [EPIC-KITCHENS]. AssemblyHands focuses on egocentric 3D hand pose for
 activity understanding, showing the value of accurate hand pose annotations in
 challenging hand-object settings [AssemblyHands]. These works motivate
 pre-contact forecasting, where the system must reason about what the wearer is
@@ -106,7 +106,7 @@ video forecasting [Temporal leakage].
 
 Vision-language models such as CLIP provide transferable image-text
 representations and are natural candidates for object-centric interaction
-reasoning [CLIP]. The project includes frozen CLIP and vision-language
+reasoning [@clip2021]. The project includes frozen CLIP and vision-language
 experiments as exploratory ablations. However, these components are not the
 current main claim because repeated-seed evidence favors the non-vision-language
 candidate ranker on the 50-clip local subset.

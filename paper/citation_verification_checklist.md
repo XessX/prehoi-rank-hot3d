@@ -64,3 +64,27 @@ Use this checklist before converting citation placeholders into BibTeX.
 - [ ] `[Affordance reasoning]`
 - [ ] `[ActiveObjectRanking]`
 - [ ] `[CandidateRankingLoss]`
+
+## Current Citation Key Verification Table
+
+| Citation Key | Verified | Source Checked | Remaining Action |
+| --- | --- | --- | --- |
+| `@hot3d2025` | yes | CVF Open Access HOT3D paper | Recheck final BibTeX formatting before submission. |
+| `@hot3dtoolkit2026` | partial | Official GitHub toolkit | Verify formal software citation recommendation. |
+| `@hot3dclips2026` | partial | Official HOT3D-Clips README | Verify formal standalone citation recommendation. |
+| `@bop2024` | yes | arXiv page | Cite only if BOP/HOT3D-Clips challenge context remains. |
+| `@dexycb2021` | yes | Official DexYCB project page | Recheck final BibTeX formatting. |
+| `@ho3d2020` | yes | arXiv page and HO-3D repository citation | Recheck final BibTeX formatting. |
+| `@ho3dv32021` | yes | arXiv page | Use only if discussing HO-3D v3/contact-region accuracy. |
+| `@fpha2018` | yes | Official FPHA project page | Recheck final BibTeX formatting. |
+| `@assemblyhands2023` | no | Project page title checked | Verify authors, venue, and BibTeX. |
+| `@mano2017` | yes | arXiv metadata with journal DOI | Recheck final journal formatting. |
+| `@umetrack2022` | yes | arXiv and citation page | Recheck exact author capitalization. |
+| `@epickitchens2020` | partial | arXiv page | Verify complete author list and final venue. |
+| `@clip2021` | yes | arXiv/Hugging Face paper metadata | Recheck ICML proceedings formatting. |
+| `@mlwa2026` | yes | ScienceDirect journal page | Internal note only; not likely a manuscript citation. |
+| `@activeObjectRankingTODO` | no | none | Find verified active-object/candidate-ranking paper. |
+| `@candidateRankingLossTODO` | no | none | Find verified ranking/loss reference if needed. |
+| `@temporalLeakageTODO` | no | none | Find verified temporal leakage or split-design reference. |
+| `@contactposeTODO` | no | none | Verify ContactPose or another affordance/contact source. |
+| `@openclipTODO` | no | none | Verify software citation if OpenCLIP remains in paper. |

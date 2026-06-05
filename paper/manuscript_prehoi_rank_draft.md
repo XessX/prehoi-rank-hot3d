@@ -9,7 +9,7 @@ forecasting likely future hand-object targets before contact. Rather than
 training a closed-set classifier over all object classes, the method ranks
 visible object candidates from the observation window using hand-object geometry
 and temporal metadata. We construct derived affordance-grounded proxy labels
-from HOT3D-Clips [HOT3D], [HOT3D-Clips] by selecting the forecast-frame object
+from HOT3D-Clips [@hot3d2025], [@hot3dclips2026] by selecting the forecast-frame object
 most aligned with hand proximity, while strictly preventing forecast-frame
 features from entering the model input. Candidate order is fixed with stable
 object identifiers, and
@@ -48,7 +48,7 @@ as the likely future hand-object target.
 The central contribution of this draft is not a claim of state-of-the-art
 performance. Instead, we present a reproducible, leakage-safe protocol for
 building and evaluating an affordance-grounded candidate-ranking task from
-HOT3D-Clips [HOT3D-Clips]. The current evidence supports the following narrower
+HOT3D-Clips [@hot3dclips2026]. The current evidence supports the following narrower
 claim: with careful proxy-label construction, clip-level splitting, stable
 candidate ordering, and explicit position baselines, hand-object geometry
 provides a strong signal for pre-contact target-object candidate ranking.
@@ -70,15 +70,15 @@ on the 50-clip local subset.
 This section will later review:
 
 - egocentric action anticipation and hand-object interaction forecasting
-  [FPHA], [EPIC-KITCHENS], [AssemblyHands],
-- hand-object pose estimation and affordance reasoning [MANO], [UmeTrack],
+  [@fpha2018], [EPIC-KITCHENS], [AssemblyHands],
+- hand-object pose estimation and affordance reasoning [@mano2017], [@umetrack2022],
   [Affordance reasoning],
 - target-object prediction and object-centric interaction modeling
   [ActiveObjectRanking],
 - candidate ranking versus closed-set classification [CandidateRankingLoss],
 - leakage and split design in video forecasting benchmarks
   [Temporal leakage],
-- vision-language models for object and interaction reasoning [CLIP].
+- vision-language models for object and interaction reasoning [@clip2021].
 
 The current draft does not yet include full citations. This section should be
 completed before submission.
@@ -95,7 +95,7 @@ completed before submission.
 
 ## 3. Dataset and Preprocessing
 
-We use HOT3D-Clips [HOT3D-Clips] as the current source for egocentric
+We use HOT3D-Clips [@hot3dclips2026] as the current source for egocentric
 hand-object interaction data. The present experiments use a 50-clip local
 subset rather than the full dataset. Each clip is stored as a tar shard
 containing image streams and per-frame annotations including hands, objects,
@@ -127,7 +127,7 @@ interpretation.
 ## 4. Derived Target-Object Proxy Label
 
 The current task uses a derived target-object proxy rather than direct HOT3D
-ground truth [HOT3D]. For each forecast frame, visible hand boxes are combined
+ground truth [@hot3d2025]. For each forecast frame, visible hand boxes are combined
 into a hand union box. Visible object candidates are scored according to overlap
 with the hand union box and normalized center distance. The object with the
 highest score is selected as the target-object proxy.
@@ -144,7 +144,7 @@ Each sample stores:
 - forecast frame ID,
 - observation-frame object candidates,
 - forecast-frame derived target-object proxy,
-- future MANO/UmeTrack pose vector [MANO], [UmeTrack],
+- future MANO/UmeTrack pose vector [@mano2017], [@umetrack2022],
 - metadata and safety flags.
 
 The key safety flag is `input_uses_forecast_frame=false`, which must hold for
@@ -201,7 +201,7 @@ Required safety rules:
 
 Metrics include top-1 candidate accuracy, top-3 candidate accuracy, mean
 reciprocal rank, pose MSE, and pose MAE. Pose metrics currently operate on
-MANO/UmeTrack pose vectors [MANO], [UmeTrack]. MPJPE-style 3D joint evaluation
+MANO/UmeTrack pose vectors [@mano2017], [@umetrack2022]. MPJPE-style 3D joint evaluation
 is future work.
 
 [Figure 4 here: leakage/order-bias prevention protocol.]
@@ -275,7 +275,7 @@ candidate count distribution, and class imbalance.]
 
 ## 9. Limitations
 
-- The experiment uses a 50-clip local HOT3D-Clips subset [HOT3D-Clips], not the
+- The experiment uses a 50-clip local HOT3D-Clips subset [@hot3dclips2026], not the
   full dataset.
 - Target-object labels are derived proxy labels, not direct HOT3D ground truth.
 - The proxy is based on forecast-frame hand-object proximity and may not always
