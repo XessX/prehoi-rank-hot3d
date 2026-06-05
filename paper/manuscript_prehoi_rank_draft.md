@@ -58,7 +58,7 @@ as ablations and future extensions. The current strongest model is the simpler
 non-vision-language candidate ranker, which is more stable under repeated seeds
 on the 50-clip local subset.
 
-[Figure 1 here: pre-contact forecasting problem overview.]
+[Figure 1 here: `paper/figures/fig1_problem_overview.png`.]
 
 [Contribution statement here: summarize the four contributions from
 `paper/contribution_statement_prehoi_rank.md`.]
@@ -150,8 +150,7 @@ Each sample stores:
 The key safety flag is `input_uses_forecast_frame=false`, which must hold for
 all valid experiments.
 
-[Figure 2 here: proxy-label generation from forecast-frame hand-object
-proximity.]
+[Figure 2 here: `paper/figures/fig2_proxy_label_generation.png`.]
 
 [Citation needed: contact/affordance proxy motivation.]
 
@@ -180,7 +179,7 @@ Vision-language and PreHOI-Former models are retained as exploratory ablations.
 They are not treated as the primary method because the present repeated-seed
 evidence favors the non-vision-language candidate ranker.
 
-[Figure 3 here: PreHOI-Rank candidate-ranking architecture.]
+[Figure 3 here: `paper/figures/fig3_prehoi_rank_architecture.png`.]
 
 [Citation needed: candidate ranking or proposal scoring.]
 
@@ -204,7 +203,7 @@ reciprocal rank, pose MSE, and pose MAE. Pose metrics currently operate on
 MANO/UmeTrack pose vectors [@mano2017], [@umetrack2022]. MPJPE-style 3D joint evaluation
 is future work.
 
-[Figure 4 here: leakage/order-bias prevention protocol.]
+[Figure 4 here: `paper/figures/fig4_protocol_safety.png`.]
 
 [Table 2 here: protocol safety table.]
 
@@ -247,7 +246,7 @@ baselines. Top-3 accuracy is high, but it should be interpreted alongside the
 first-3 and random top-3 baselines because many samples contain a small number
 of candidates.
 
-[Figure 5 here: results summary and 25-clip vs 50-clip comparison.]
+[Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`.]
 
 [Add exploratory ablation table placeholder: vision-language and PreHOI-Former
 results should be marked exploratory, not main.]

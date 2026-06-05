@@ -6,6 +6,9 @@ ranking on a 50-clip local HOT3D-Clips subset with derived proxy labels.
 
 ## Fig. 1: Pre-Contact Forecasting Problem Overview
 
+Status: first version generated at
+`paper/figures/fig1_problem_overview.png`.
+
 Purpose:
 
 Show the task setup: an observation window precedes a forecast frame, and the
@@ -33,6 +36,9 @@ targets. The forecast frame is used only to define a derived proxy target and is
 not used as model input.
 
 ## Fig. 2: Proxy-Label Generation from Forecast-Frame Hand-Object Proximity
+
+Status: first version generated at
+`paper/figures/fig2_proxy_label_generation.png`.
 
 Purpose:
 
@@ -64,6 +70,9 @@ only and are excluded from model inputs.
 
 ## Fig. 3: PreHOI-Rank Candidate-Ranking Architecture
 
+Status: first version generated at
+`paper/figures/fig3_prehoi_rank_architecture.png`.
+
 Purpose:
 
 Show the current strongest model: non-VL candidate ranker with temporal context,
@@ -92,6 +101,9 @@ head, and regresses a future hand-pose vector. The current strongest model does
 not require vision-language features.
 
 ## Fig. 4: Leakage and Candidate-Order Bias Prevention Protocol
+
+Status: first version generated at
+`paper/figures/fig4_protocol_safety.png`.
 
 Purpose:
 
@@ -126,6 +138,9 @@ observation-frame inputs, stable UID candidate ordering, and position baselines.
 Runs with forecast-frame inputs or target-aware candidate ordering are excluded.
 
 ## Fig. 5: Results Summary and 25-Clip Versus 50-Clip Comparison
+
+Status: first version generated at
+`paper/figures/fig5_25clip_vs_50clip_results.png`.
 
 Purpose:
 
