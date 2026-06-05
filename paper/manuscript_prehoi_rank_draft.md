@@ -57,7 +57,14 @@ as ablations and future extensions. The current strongest model is the simpler
 non-vision-language candidate ranker, which is more stable under repeated seeds
 on the 50-clip local subset.
 
+[Figure 1 here: pre-contact forecasting problem overview.]
+
+[Contribution statement here: summarize the four contributions from
+`paper/contribution_statement_prehoi_rank.md`.]
+
 ## 2. Related Work Placeholder
+
+[Expand related work using `paper/related_work_plan_prehoi_rank.md`.]
 
 This section will later review:
 
@@ -71,12 +78,26 @@ This section will later review:
 The current draft does not yet include full citations. This section should be
 completed before submission.
 
+[Citation needed: 3D hand-object interaction understanding.]
+
+[Citation needed: egocentric hand-object forecasting.]
+
+[Citation needed: hand-object contact and affordance reasoning.]
+
+[Citation needed: candidate ranking and active-object prediction.]
+
+[Citation needed: leakage-safe temporal forecasting evaluation.]
+
 ## 3. Dataset and Preprocessing
 
 We use HOT3D-Clips as the current source for egocentric hand-object interaction
 data. The present experiments use a 50-clip local subset rather than the full
 dataset. Each clip is stored as a tar shard containing image streams and
 per-frame annotations including hands, objects, cameras, and metadata.
+
+[Add dataset license/access note.]
+
+[Add ethics/data-use note.]
 
 Samples are built as fixed pre-contact forecasting windows. Each sample contains
 16 observation frames and a forecast frame 5 frames after the observation
@@ -94,6 +115,8 @@ The test split is missing `food_waffles`, `potato_masher`, and `spatula_red`,
 and the train split has low counts for `bottle_ranch`, `cellphone`, and
 `mug_white`. These limitations must be retained in any paper-facing
 interpretation.
+
+[Table 1 here: dataset and split summary.]
 
 ## 4. Derived Target-Object Proxy Label
 
@@ -121,6 +144,11 @@ Each sample stores:
 The key safety flag is `input_uses_forecast_frame=false`, which must hold for
 all valid experiments.
 
+[Figure 2 here: proxy-label generation from forecast-frame hand-object
+proximity.]
+
+[Citation needed: contact/affordance proxy motivation.]
+
 ## 5. PreHOI-Rank Method
 
 PreHOI-Rank formulates target anticipation as candidate ranking over visible
@@ -146,6 +174,10 @@ Vision-language and PreHOI-Former models are retained as exploratory ablations.
 They are not treated as the primary method because the present repeated-seed
 evidence favors the non-vision-language candidate ranker.
 
+[Figure 3 here: PreHOI-Rank candidate-ranking architecture.]
+
+[Citation needed: candidate ranking or proposal scoring.]
+
 ## 6. Experimental Protocol
 
 The protocol uses the 50-clip local HOT3D-Clips subset with optimized clip-level
@@ -165,10 +197,18 @@ Metrics include top-1 candidate accuracy, top-3 candidate accuracy, mean
 reciprocal rank, pose MSE, and pose MAE. Pose metrics currently operate on
 MANO/UmeTrack pose vectors. MPJPE-style 3D joint evaluation is future work.
 
+[Figure 4 here: leakage/order-bias prevention protocol.]
+
+[Table 2 here: protocol safety table.]
+
+[Citation needed: temporal leakage and split policy.]
+
 ## 7. Results
 
 The primary paper-candidate result is the 5-seed final-protocol run of the
 order-safe non-vision-language candidate ranker on the 50-clip local subset.
+
+[Table 3 here: main 50-clip five-seed result.]
 
 | Metric | Mean +/- Std |
 | --- | ---: |
@@ -200,6 +240,11 @@ baselines. Top-3 accuracy is high, but it should be interpreted alongside the
 first-3 and random top-3 baselines because many samples contain a small number
 of candidates.
 
+[Figure 5 here: results summary and 25-clip vs 50-clip comparison.]
+
+[Add exploratory ablation table placeholder: vision-language and PreHOI-Former
+results should be marked exploratory, not main.]
+
 ## 8. Discussion
 
 The current evidence suggests that candidate-level ranking is a better fit for
@@ -218,6 +263,9 @@ It indicates that observation-window hand-object geometry is a strong signal
 and that vision-language components should remain ablations until they improve
 under the same leakage-safe, order-safe repeated-seed protocol.
 
+[Add threats-to-validity discussion: proxy label assumptions, local subset,
+candidate count distribution, and class imbalance.]
+
 ## 9. Limitations
 
 - The experiment uses a 50-clip local HOT3D-Clips subset, not the full dataset.
@@ -229,6 +277,12 @@ under the same leakage-safe, order-safe repeated-seed protocol.
 - Vision-language and PreHOI-Former variants are not yet the strongest
   components.
 - The related-work section and citation grounding are not yet complete.
+
+[Add data/code availability note.]
+
+[Add author contribution statement placeholder.]
+
+[Add Research4Life/APC route note if required by submission plan.]
 
 ## 10. Conclusion
 
