@@ -579,6 +579,34 @@ exploratory ablations and future extensions, not the main paper claim.
 
 See `paper/research_decision_note.md` for the current model-selection decision.
 
+## Final Experiment Protocol
+
+Before making paper-ready claims, follow the formal protocol in
+`paper/final_experiment_protocol.md`. The protocol keeps the current
+PreHOI-Rank direction centered on leakage-safe candidate ranking, requires
+`candidate_order: stable_uid`, requires `input_uses_forecast_frame=false`, and
+continues to describe target-object labels as derived proxy labels rather than
+direct HOT3D ground truth.
+
+Dry-run the final candidate-ranker workflow before launching any repeated-seed
+experiment:
+
+```powershell
+python src/training/run_final_candidate_ranker_protocol.py --dry-run
+```
+
+After reviewing the dry-run output, the planned 5-seed command is:
+
+```powershell
+python src/training/run_final_candidate_ranker_protocol.py --seeds 42 123 2026 7 99
+```
+
+The protocol runner saves candidate final-protocol logs under
+`results/logs/final_protocol/` and the summary table at
+`results/tables/final_candidate_ranker_summary.csv`. These artifacts are still
+review-required and must not be treated as final paper claims until the split,
+baselines, seed statistics, and proxy-label limitations are reviewed.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
