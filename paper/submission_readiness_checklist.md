@@ -41,6 +41,8 @@ not a completed journal submission.
 - [ ] Generate Fig. 3 model architecture diagram.
 - [ ] Generate Fig. 4 leakage/order-bias protocol diagram.
 - [ ] Generate Fig. 5 results summary figure.
+- [ ] Review generated figure quality, resolution, fonts, and journal-style
+      readability.
 - [ ] Add dataset license/access note.
 - [ ] Add ethics and data-use note.
 - [ ] Add threats-to-validity section or expand limitations.
@@ -52,7 +54,14 @@ not a completed journal submission.
 - [ ] Verify target journal formatting requirements.
 - [ ] Verify Machine Learning with Applications article type and scope fit.
 - [ ] Verify APC, waiver, or Research4Life route.
-- [ ] Prepare cover letter.
+- [ ] Journal route verification pending; see
+      `paper/journal_route_verification.md`.
+- [ ] Research4Life verification pending for final corresponding-author and
+      co-author affiliations.
+- [x] Prepare cover letter draft:
+      `paper/cover_letter_draft_prehoi_rank.md`.
+- [x] Prepare data/code availability draft:
+      `paper/data_code_availability_draft.md`.
 - [ ] Prepare highlights if required.
 - [ ] Prepare graphical abstract if required.
 - [ ] Confirm all tables and figures are cited in text.
@@ -66,5 +75,7 @@ not a completed journal submission.
 - 50-clip final-protocol candidate-ranker run: done.
 - First manuscript draft: started.
 - Related work: planned, citations incomplete.
-- Figures: planned, not generated.
+- Figures: first versions generated; quality review pending.
+- Journal route verification: started; APC/Research4Life status not final.
+- Cover letter and data/code availability drafts: started.
 - Submission-ready status: not yet.
