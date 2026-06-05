@@ -620,6 +620,27 @@ This is the first paper-candidate PreHOI-Rank diagnostic, but it still uses a
 `paper/final_candidate_ranker_result_note.md` for limitations and the per-seed
 table.
 
+## Manuscript Draft Status
+
+The first PreHOI-Rank manuscript draft is tracked at:
+
+```text
+paper/manuscript_prehoi_rank_draft.md
+```
+
+Supporting paper tables:
+
+```text
+paper/tables/results_table_prehoi_rank.md
+paper/tables/protocol_safety_table.md
+```
+
+The draft frames the contribution as leakage-safe, affordance-grounded
+candidate ranking for pre-contact target-object forecasting. It does not claim
+state of the art, does not call proxy labels ground truth, and treats
+vision-language and PreHOI-Former experiments as exploratory ablations rather
+than the main result.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
