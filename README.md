@@ -528,6 +528,23 @@ The registry writes `results/tables/pilot_experiment_summary.csv` and
 only. Invalid or superseded runs with leakage/order-bias risk are marked
 separately and must be excluded from paper claims.
 
+## Pilot Seed Stability
+
+Run a small seed-stability check for the current best pilot candidates before
+choosing any model for deeper experiments:
+
+```powershell
+python src/training/run_pilot_seed_stability.py --seeds 42 123 2026
+
+python src/training/summarize_seed_stability.py --summary results/tables/pilot_seed_stability_summary.csv
+```
+
+The runner checks the non-VL candidate ranker, PreHOI-Former v1, and the
+geometry-only/no-attention v1 ablation with `candidate_order: stable_uid`.
+Results are saved under `results/logs/seed_stability/` and
+`results/tables/pilot_seed_stability_summary.csv`; these generated artifacts
+remain ignored by Git.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
