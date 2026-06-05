@@ -34,20 +34,21 @@ not a completed journal submission.
 
 ## Writing and Figures
 
+- [x] Create expanded journal-style manuscript draft.
 - [ ] Complete related-work citations.
 - [ ] Replace all `[Citation needed]` and `[REF-*]` placeholders.
-- [ ] Generate Fig. 1 problem overview.
-- [ ] Generate Fig. 2 proxy-label construction diagram.
-- [ ] Generate Fig. 3 model architecture diagram.
-- [ ] Generate Fig. 4 leakage/order-bias protocol diagram.
-- [ ] Generate Fig. 5 results summary figure.
+- [x] Generate Fig. 1 problem overview.
+- [x] Generate Fig. 2 proxy-label construction diagram.
+- [x] Generate Fig. 3 model architecture diagram.
+- [x] Generate Fig. 4 leakage/order-bias protocol diagram.
+- [x] Generate Fig. 5 results summary figure.
 - [ ] Review generated figure quality, resolution, fonts, and journal-style
       readability.
 - [ ] Add dataset license/access note.
-- [ ] Add ethics and data-use note.
-- [ ] Add threats-to-validity section or expand limitations.
+- [x] Add ethics and data-use note.
+- [x] Add threats-to-validity section or expand limitations.
 - [ ] Add author contribution statement.
-- [ ] Add data/code availability statement.
+- [x] Add data/code availability statement.
 
 ## Journal and Submission Logistics
 
@@ -73,9 +74,10 @@ not a completed journal submission.
 - Working title: done.
 - Candidate-ranking method framing: done.
 - 50-clip final-protocol candidate-ranker run: done.
-- First manuscript draft: started.
-- Related work: planned, citations incomplete.
+- First manuscript draft: expanded journal-style draft created.
+- Related work: expanded draft started, citations incomplete.
 - Figures: first versions generated; quality review pending.
 - Journal route verification: started; APC/Research4Life status not final.
 - Cover letter and data/code availability drafts: started.
+- Final formatting: pending.
 - Submission-ready status: not yet.

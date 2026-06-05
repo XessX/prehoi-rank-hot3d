@@ -2,26 +2,28 @@
 
 ## Abstract
 
-Anticipating which object a person is about to interact with is an important
-step toward pre-contact hand-object interaction forecasting in egocentric
-video. We present PreHOI-Rank, a leakage-safe candidate-ranking formulation for
-forecasting likely future hand-object targets before contact. Rather than
-training a closed-set classifier over all object classes, the method ranks
-visible object candidates from the observation window using hand-object geometry
-and temporal metadata. We construct derived affordance-grounded proxy labels
-from HOT3D-Clips [@hot3d2025], [@hot3dclips2026] by selecting the forecast-frame object
-most aligned with hand proximity, while strictly preventing forecast-frame
-features from entering the model input. Candidate order is fixed with stable
-object identifiers, and
-position-biased candidate orders are excluded. On a 50-clip local HOT3D-Clips
+Pre-contact hand-object forecasting asks whether an egocentric perception system
+can anticipate the likely object of a future hand interaction before contact
+occurs. This setting is important for assistive augmented reality, wearable
+interfaces, and robot systems that must reason about human intent from partial
+observation. We present PreHOI-Rank, a leakage-safe candidate-ranking
+formulation for pre-contact 3D hand-object interaction forecasting. Instead of
+predicting a target from a global closed-set object vocabulary, PreHOI-Rank
+scores the visible object candidates in an observation window and jointly
+predicts a future hand-pose representation. We construct derived
+affordance-grounded target-object proxy labels from HOT3D-Clips
+[@hot3d2025], [@hot3dclips2026] using forecast-frame hand-object proximity,
+while strictly preventing forecast-frame images, annotations, candidate scores,
+or metadata from entering the model input. We also enforce stable candidate
+ordering to avoid candidate-position leakage. On a local 50-clip HOT3D-Clips
 subset with clip-level splits, the order-safe non-vision-language candidate
-ranker achieves 5-seed paper-candidate diagnostics of 0.7499 +/- 0.0450 top-1
-candidate accuracy, 0.9699 +/- 0.0161 top-3 accuracy, 0.8605 +/- 0.0221 MRR,
-and 0.4102 +/- 0.0051 future pose-vector MAE. These results support candidate
-ranking as a practical and reproducible formulation for pre-contact target
-forecasting, while remaining limited by derived proxy labels, local-subset
-evaluation, residual class imbalance, and pose-vector rather than MPJPE-style
-pose evaluation.
+ranker achieves five-seed paper-candidate diagnostics of 0.7499 +/- 0.0450
+Top-1 candidate accuracy, 0.9699 +/- 0.0161 Top-3 candidate accuracy, 0.8605
++/- 0.0221 MRR, and 0.4102 +/- 0.0051 future pose-vector MAE. These results
+support candidate ranking as a practical formulation for pre-contact target
+forecasting under derived labels, while the study remains limited by the local
+50-clip subset, residual class imbalance, proxy-label assumptions, and
+pose-vector rather than MPJPE-style evaluation.
 
 ## Keywords
 
@@ -30,191 +32,293 @@ ranking; HOT3D-Clips; affordance proxy labels; leakage prevention; 3D hand pose.
 
 ## 1. Introduction
 
-Pre-contact hand-object interaction forecasting asks whether a system can infer
-an upcoming interaction before physical contact occurs. This problem is useful
-for assistive augmented reality, robotic anticipation, and wearable systems
-that need to reason about a user's likely next object target. In egocentric
-video, the challenge is not only to recognize what is visible, but also to
-anticipate which visible object is likely to become the target of a future hand
-interaction.
+Humans often reveal their next object interaction before contact through hand
+motion, body-centered viewpoint, and the spatial relation between hands and
+nearby objects. Anticipating this interaction is useful for egocentric systems:
+an assistive AR interface may need to prepare object-specific guidance, a robot
+may need to infer a user's intended target, and a wearable perception system may
+need to forecast hand-object contact before it becomes visually obvious.
 
-An intuitive approach is to train a global object classifier. However, this can
-be brittle when the relevant target is one of several visible candidates and
-when class coverage is limited by the available local subset. We therefore
-frame pre-contact target forecasting as candidate ranking: given an observation
-window and a set of visible object candidates, the model scores each candidate
-as the likely future hand-object target.
-
-The central contribution of this draft is not a claim of state-of-the-art
-performance. Instead, we present a reproducible, leakage-safe protocol for
-building and evaluating an affordance-grounded candidate-ranking task from
-HOT3D-Clips [@hot3dclips2026]. The current evidence supports the following narrower
-claim: with careful proxy-label construction, clip-level splitting, stable
-candidate ordering, and explicit position baselines, hand-object geometry
-provides a strong signal for pre-contact target-object candidate ranking.
-
-Vision-language and transformer variants explored during development are kept
-as ablations and future extensions. The current strongest model is the simpler
-non-vision-language candidate ranker, which is more stable under repeated seeds
-on the 50-clip local subset.
+This paper focuses on pre-contact target-object forecasting in egocentric
+video. The goal is to use an observation window before contact to infer which
+visible object candidate is most likely to become the future hand-object target,
+while also predicting a future hand-pose representation. Figure 1 summarizes
+this problem setting.
 
 [Figure 1 here: `paper/figures/fig1_problem_overview.png`.]
 
-[Contribution statement here: summarize the four contributions from
-`paper/contribution_statement_prehoi_rank.md`.]
+A direct approach would treat the task as global object classification. That
+framing is convenient, but it is not always well matched to the egocentric
+interaction setting. In many frames, the question is not "which object class in
+the dataset is present?" but "which of the currently visible objects will the
+hand approach?" A global classifier also makes evaluation sensitive to local
+class coverage and can obscure candidate-order or temporal leakage issues.
 
-## 2. Related Work Placeholder
+We therefore propose PreHOI-Rank: a candidate-level formulation that ranks the
+visible object candidates in each observation window. The current strongest
+model is intentionally simple. It uses observation-window hand/object metadata
+and object candidate features, excludes forecast-frame inputs, sorts candidates
+with stable identifiers, and trains with a candidate-ranking objective plus
+future pose-vector regression. More complex vision-language and transformer
+variants are retained as exploratory ablations, but they are not the main
+claim because they have not yet outperformed the order-safe non-vision-language
+ranker under repeated-seed evaluation.
 
-[Expand related work using `paper/related_work_plan_prehoi_rank.md`.]
+The paper makes four contributions:
 
-This section will later review:
+1. We formulate pre-contact target-object forecasting as ranking visible object
+   candidates rather than closed-set global classification.
+2. We define a reproducible derived target-object proxy from forecast-frame
+   hand-object proximity and clearly distinguish it from human ground-truth
+   contact or action labels.
+3. We introduce a leakage- and order-bias-safe evaluation protocol with
+   observation-frame-only inputs, clip-level splitting, stable candidate
+   ordering, and position-only baselines.
+4. We provide five-seed paper-candidate diagnostics on a 50-clip local
+   HOT3D-Clips subset, showing that the order-safe candidate ranker is stronger
+   than candidate-position baselines and improves over the earlier 25-clip
+   pilot.
 
-- egocentric action anticipation and hand-object interaction forecasting
-  [@fpha2018], [EPIC-KITCHENS], [AssemblyHands],
-- hand-object pose estimation and affordance reasoning [@mano2017], [@umetrack2022],
-  [Affordance reasoning],
-- target-object prediction and object-centric interaction modeling
-  [ActiveObjectRanking],
-- candidate ranking versus closed-set classification [CandidateRankingLoss],
-- leakage and split design in video forecasting benchmarks
-  [Temporal leakage],
-- vision-language models for object and interaction reasoning [@clip2021].
+The manuscript is not framed as a state-of-the-art claim. It is framed as a
+reproducible method and protocol for pre-contact candidate ranking using
+derived affordance-grounded proxy labels.
 
-The current draft does not yet include full citations. This section should be
-completed before submission.
+## 2. Related Work
 
-[Citation needed: 3D hand-object interaction understanding.]
+Prior work on 3D hand-object interaction has produced increasingly rich
+datasets for hand pose, object pose, and hand-object state estimation. HO-3D
+and HOnnotate support 3D hand-object pose estimation in object interaction
+scenes [@ho3d2020], while DexYCB provides multi-view RGB-D data for hand-object
+grasping and pose estimation [@dexycb2021]. HOT3D extends this direction to
+egocentric multi-view video with hand and object tracking in 3D, object models,
+and multiple annotation streams [@hot3d2025]. The present work builds on
+HOT3D-Clips [@hot3dclips2026], but uses only a local 50-clip subset and does
+not redistribute the dataset.
 
-[Citation needed: egocentric hand-object forecasting.]
+Hand-pose representations are also central to this work. MANO provides a
+widely used parametric hand model [@mano2017], and HOT3D includes hand
+annotations compatible with MANO/UmeTrack-style representations
+[@umetrack2022]. The current experiments regress future pose vectors directly.
+They do not yet convert the pose representation to 3D joints for MPJPE-style
+evaluation, which remains an important future improvement.
 
-[Citation needed: hand-object contact and affordance reasoning.]
+Egocentric interaction datasets and action anticipation benchmarks motivate the
+pre-contact forecasting setting. First-person action and hand-action datasets
+such as FPHA [@fpha2018], EPIC-KITCHENS [@epickitchens2020], and AssemblyHands
+[@assemblyhands2023] show the importance of modeling hands, objects, and
+temporal context in first-person video. This work differs by focusing on a
+candidate-ranking formulation over visible object candidates before contact,
+using derived proxy labels when direct target-contact labels are unavailable.
 
-[Citation needed: candidate ranking and active-object prediction.]
+Affordance and contact reasoning are closely related because the target proxy
+uses hand-object proximity at a future frame. However, the proxy should not be
+interpreted as semantic affordance ground truth or human contact annotation.
+The final related-work section still needs verified citations for contact and
+affordance reasoning [contactposeTODO].
 
-[Citation needed: leakage-safe temporal forecasting evaluation.]
+The candidate-ranking formulation is related to learning-to-rank and
+object-centric interaction prediction, where the model scores a set of
+candidates rather than predicting a single global class [activeObjectRankingTODO],
+[candidateRankingLossTODO]. In this paper, that formulation is also a safety
+choice: ranking visible candidates makes candidate-order leakage measurable and
+allows position-only baselines.
+
+Finally, temporal leakage is a major concern in forecasting. Any method that
+uses forecast-frame features as input can appear to perform well while failing
+the pre-contact premise. This paper therefore enforces observation-frame-only
+inputs and clip-level train/validation/test splitting. A verified citation for
+temporal leakage and temporal split design remains to be added
+[temporalLeakageTODO].
 
 ## 3. Dataset and Preprocessing
 
-We use HOT3D-Clips [@hot3dclips2026] as the current source for egocentric
-hand-object interaction data. The present experiments use a 50-clip local
-subset rather than the full dataset. Each clip is stored as a tar shard
-containing image streams and per-frame annotations including hands, objects,
-cameras, and metadata.
+### 3.1 HOT3D-Clips Local Subset
 
-[Add dataset license/access note.]
+We use HOT3D-Clips as the current data source [@hot3d2025],
+[@hot3dclips2026]. HOT3D-Clips provides curated HOT3D subsequences in
+WebDataset shard format, including image streams and per-frame annotations for
+hands, objects, cameras, and metadata. The current experiments use a local
+subset of 50 downloaded shards, not the full HOT3D or HOT3D-Clips dataset.
 
-[Add ethics/data-use note.]
+The local subset contains 6500 proxy-labeled samples before optimized
+class-based filtering. After filtering and optimized clip-level splitting, the
+final protocol uses 4175 training samples, 1040 validation samples, and 910 test
+samples. The split uses 35 training clips, 8 validation clips, and 7 test clips.
+Clip-level splitting is required because neighboring samples from the same clip
+can be highly correlated.
 
-Samples are built as fixed pre-contact forecasting windows. Each sample contains
-16 observation frames and a forecast frame 5 frames after the observation
-window. Observation frames provide all model inputs. The forecast frame provides
-the derived target-object proxy and future hand-pose vector.
+### 3.2 Sample Construction
 
-The current 50-clip index contains 6500 derived proxy samples before optimized
-class filtering. The optimized clip-level split contains 4175 train samples,
-1040 validation samples, and 910 test samples. Clip-level splitting is required
-to avoid leakage from temporally adjacent samples appearing across different
-splits.
-
-The split is improved over earlier 25-clip pilots, but it remains imperfect.
-The test split is missing `food_waffles`, `potato_masher`, and `spatula_red`,
-and the train split has low counts for `bottle_ranch`, `cellphone`, and
-`mug_white`. These limitations must be retained in any paper-facing
-interpretation.
-
-[Table 1 here: dataset and split summary.]
-
-## 4. Derived Target-Object Proxy Label
-
-The current task uses a derived target-object proxy rather than direct HOT3D
-ground truth [@hot3d2025]. For each forecast frame, visible hand boxes are combined
-into a hand union box. Visible object candidates are scored according to overlap
-with the hand union box and normalized center distance. The object with the
-highest score is selected as the target-object proxy.
-
-This proxy is intended to approximate the object most aligned with future hand
-contact or affordance use. It is not a human action label, contact label, or
-official target-object annotation. The proxy is used only as the supervised
-target. The model is not allowed to use forecast-frame hand boxes, object boxes,
-proxy scores, candidate scores, images, or metadata as input.
+Each sample is a pre-contact forecasting window with 16 observation frames and
+a forecast frame 5 frames after the observation window. If the observation
+frames are indexed from `t` to `t + 15`, the forecast target is defined at
+`t + 20`. Model inputs may use only the observation frames. The forecast frame
+is used only to derive the target-object proxy and the future hand-pose vector.
 
 Each sample stores:
 
-- observation frame IDs,
-- forecast frame ID,
-- observation-frame object candidates,
-- forecast-frame derived target-object proxy,
-- future MANO/UmeTrack pose vector [@mano2017], [@umetrack2022],
-- metadata and safety flags.
+- observation frame identifiers;
+- the forecast frame identifier;
+- observation-frame hand/object metadata;
+- observation-frame object candidates;
+- the forecast-frame derived target-object proxy label;
+- the future MANO/UmeTrack pose vector;
+- metadata including clip ID and safety flags.
 
-The key safety flag is `input_uses_forecast_frame=false`, which must hold for
-all valid experiments.
+The key safety flag is `input_uses_forecast_frame=false`. Any run that violates
+this flag should be excluded.
+
+### 3.3 Ethics and Data Use
+
+This study uses an existing third-party dataset. The authors did not collect
+new human-subject data. HOT3D-Clips data, image streams, raw annotations,
+WebDataset shards, object models, and other restricted dataset files are not
+redistributed by this project. Users must obtain HOT3D-Clips from the official
+provider and follow the dataset license, access conditions, and citation
+requirements.
+
+The current manuscript should include a final dataset license/access note after
+the official HOT3D-Clips terms are rechecked. The repository should contain
+code and regeneration scripts, not downloaded dataset files.
+
+## 4. Derived Target-Object Proxy Label
+
+The current target-object labels are derived proxy labels, not direct HOT3D
+ground truth. This distinction is central to the paper.
+
+For each forecast frame, the proxy generator collects visible hand boxes and
+visible object boxes. It forms a hand union box and scores each candidate object
+using overlap with the hand union box and normalized center distance. The
+highest-scoring forecast-frame object is selected as the target-object proxy.
+Figure 2 illustrates this proxy-label construction.
 
 [Figure 2 here: `paper/figures/fig2_proxy_label_generation.png`.]
 
-[Citation needed: contact/affordance proxy motivation.]
+The proxy is intended to approximate the object most aligned with future hand
+contact or affordance use. It is not a human action label, not an official
+contact annotation, and not a semantic intention label. It can be wrong when
+the nearest future object is not the intended object, when bounding boxes are
+noisy, when multiple objects are close to the hand, or when the action depends
+on context that is not captured by proximity.
+
+The proxy is allowed only as a supervised target. The following forecast-frame
+signals are not allowed as model inputs:
+
+- forecast-frame images;
+- forecast-frame object boxes;
+- forecast-frame hand boxes;
+- forecast-frame proxy scores;
+- forecast-frame candidate ordering;
+- forecast-frame metadata.
+
+This separation preserves the pre-contact forecasting setting: the model sees
+only the past observation window and predicts a future target proxy.
 
 ## 5. PreHOI-Rank Method
 
-PreHOI-Rank formulates target anticipation as candidate ranking over visible
-object candidates [ActiveObjectRanking], [CandidateRankingLoss]. The model
-receives an observation-window metadata sequence and a padded set of object
-candidates. Candidate features include object geometry, visibility, hand-object
-proximity features computed from observation frames, and candidate masks.
+### 5.1 Candidate-Ranking Formulation
 
-The current strongest model is the non-vision-language candidate ranker. It
-uses a temporal encoder for observation metadata and an object-candidate encoder
-for candidate features. The model outputs one ranking score per candidate and a
-future pose-vector regression output. Training combines candidate-ranking
-cross-entropy with pose regression loss.
+Given an observation window and a set of visible object candidates, PreHOI-Rank
+predicts a score for each candidate. The target is the candidate matching the
+derived forecast-frame target-object proxy. Candidates are padded to a fixed
+maximum count and accompanied by a candidate mask so invalid padded candidates
+do not contribute to the ranking loss.
 
-Candidate order is fixed using `stable_uid`, which sorts by stable object
-identifier or name rather than by proxy score or target-aware information.
-Raw/as-is and proxy-sorted orderings are excluded because they can produce
-candidate-position leakage. The model must outperform position-only baselines,
-including candidate-0 top-1, first-3 top-3, random-candidate expectation, and
-position-only MRR.
+This formulation differs from global object classification. The model is not
+asked to choose among every object class in the dataset. Instead, it chooses
+among the objects visible in the current observation context. This better
+matches egocentric interaction forecasting, where the target is constrained by
+what is present around the hand.
 
-Vision-language and PreHOI-Former models are retained as exploratory ablations.
-They are not treated as the primary method because the present repeated-seed
-evidence favors the non-vision-language candidate ranker.
+### 5.2 Input Features
+
+The current strongest model uses observation-window metadata and object
+candidate features. Temporal metadata summarizes hand/object context over the
+16 observation frames. Candidate features describe each visible object from the
+observation window, including geometry, visibility, hand-object proximity
+computed from observation frames, and object identity features. No image,
+CLIP, or forecast-frame features are used in the final candidate-ranker
+protocol.
+
+The model also predicts a future MANO/UmeTrack pose vector. This auxiliary
+target keeps the formulation connected to 3D hand-object forecasting, although
+future work should convert pose parameters to 3D joints for MPJPE-style
+evaluation.
+
+### 5.3 Model Architecture
+
+The non-vision-language candidate ranker contains:
+
+- a temporal encoder for observation-window metadata;
+- an object-candidate encoder for padded candidate features;
+- a fusion module that combines temporal context with candidate features;
+- a candidate score head producing one score per candidate;
+- a future pose-vector regression head.
+
+The training objective combines candidate-ranking cross-entropy with pose
+regression loss. Figure 3 shows the current architecture at a high level.
 
 [Figure 3 here: `paper/figures/fig3_prehoi_rank_architecture.png`.]
 
-[Citation needed: candidate ranking or proposal scoring.]
+### 5.4 Candidate-Order Safety
+
+Candidate order can create a hidden leakage path. Earlier pilot checks found
+that unsafe candidate ordering could place the target candidate near position
+0 too often, inflating candidate-ranking metrics. PreHOI-Rank therefore uses
+`candidate_order: stable_uid`, which sorts candidates by stable object
+identifier or object name. The model is not evaluated with raw/as-is ordering,
+proxy-score ordering, target-aware ordering, or any order based on
+forecast-frame information.
+
+The evaluation also reports position-only baselines, including candidate-0
+Top-1, first-3 Top-3, and position-only MRR. A valid ranker must be interpreted
+relative to these baselines.
 
 ## 6. Experimental Protocol
 
-The protocol uses the 50-clip local HOT3D-Clips subset with optimized clip-level
-train/validation/test splits [Temporal leakage]. The final-protocol
-candidate-ranker run uses five seeds: 42, 123, 2026, 7, and 99.
-
-Required safety rules:
-
-- forecast-frame proxy labels may be used only as targets,
-- no forecast-frame features may be used as input,
-- candidate order must be `stable_uid`,
-- raw/as-is and proxy-sorted candidate orderings are excluded,
-- train/validation/test splitting must be clip-level,
-- proxy labels must be described as derived labels, not ground truth.
-
-Metrics include top-1 candidate accuracy, top-3 candidate accuracy, mean
-reciprocal rank, pose MSE, and pose MAE. Pose metrics currently operate on
-MANO/UmeTrack pose vectors [@mano2017], [@umetrack2022]. MPJPE-style 3D joint evaluation
-is future work.
+The final-protocol candidate-ranker experiment uses the 50-clip local
+HOT3D-Clips subset and optimized clip-level splits. The protocol is summarized
+in Table 2 and Figure 4.
 
 [Figure 4 here: `paper/figures/fig4_protocol_safety.png`.]
 
-[Table 2 here: protocol safety table.]
+[Table 2 here: `paper/tables/protocol_safety_table.md`.]
 
-[Citation needed: temporal leakage and split policy.]
+The required safety rules are:
+
+- use only observation-frame inputs;
+- keep `input_uses_forecast_frame=false`;
+- use forecast-frame proxy labels only as supervised targets;
+- use `candidate_order: stable_uid`;
+- exclude raw/as-is, proxy-sorted, and target-aware candidate orderings;
+- split train/validation/test by clip ID, not random sample ID;
+- call labels derived proxy labels, not ground truth.
+
+The final candidate-ranker protocol uses five seeds: 42, 123, 2026, 7, and 99.
+Metrics are reported as mean +/- standard deviation over seeds.
+
+The ranking metrics are:
+
+- Top-1 candidate accuracy;
+- Top-3 candidate accuracy;
+- mean reciprocal rank (MRR).
+
+The pose metrics are:
+
+- future pose-vector mean squared error (MSE);
+- future pose-vector mean absolute error (MAE).
+
+These pose metrics are computed on the current pose-vector representation, not
+on reconstructed 3D joints.
 
 ## 7. Results
 
-The primary paper-candidate result is the 5-seed final-protocol run of the
-order-safe non-vision-language candidate ranker on the 50-clip local subset.
+### 7.1 Main 50-Clip Five-Seed Result
 
-[Table 3 here: main 50-clip five-seed result.]
+Table 1 reports the main paper-candidate result for the order-safe
+non-vision-language candidate ranker on the 50-clip local HOT3D-Clips subset.
+
+[Table 1 here: `paper/tables/results_table_prehoi_rank.md`.]
 
 | Metric | Mean +/- Std |
 | --- | ---: |
@@ -224,6 +328,14 @@ order-safe non-vision-language candidate ranker on the 50-clip local subset.
 | Pose MSE | 0.4301 +/- 0.0116 |
 | Pose MAE | 0.4102 +/- 0.0051 |
 
+The candidate ranker substantially exceeds the test-split candidate-0 and
+position-only MRR baselines under stable UID ordering. However, Top-3 accuracy
+should be interpreted with care because the candidate set can be small; the
+first-3 and random Top-3 baselines are therefore reported alongside model
+metrics.
+
+### 7.2 25-Clip Versus 50-Clip Comparison
+
 The 50-clip protocol improves over the earlier 25-clip pilot:
 
 | Setting | Top-1 | MRR | Pose MAE |
@@ -231,74 +343,116 @@ The 50-clip protocol improves over the earlier 25-clip pilot:
 | 25-clip, 3-seed pilot | 0.5624 | 0.7502 | 0.4412 |
 | 50-clip, 5-seed protocol | 0.7499 | 0.8605 | 0.4102 |
 
-The test split position baselines under `stable_uid` order are:
-
-| Baseline | Value |
-| --- | ---: |
-| Candidate-0 top-1 | 0.1857 |
-| First-3 top-3 | 0.5681 |
-| Position-only MRR | 0.4377 |
-| Expected random top-1 | 0.2025 |
-| Expected random top-3 | 0.5947 |
-
-The candidate ranker substantially exceeds candidate-0 and position-only MRR
-baselines. Top-3 accuracy is high, but it should be interpreted alongside the
-first-3 and random top-3 baselines because many samples contain a small number
-of candidates.
+Figure 5 visualizes this comparison.
 
 [Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`.]
 
-[Add exploratory ablation table placeholder: vision-language and PreHOI-Former
-results should be marked exploratory, not main.]
+The improvement suggests that data expansion and split quality materially
+affect this task. It does not prove final generalization to the full HOT3D
+dataset.
+
+### 7.3 Exploratory Ablations
+
+During development, metadata-only, object-aware, image-statistics, frozen-CLIP,
+candidate-ranker, vision-language candidate-ranker, PreHOI-Former v1, and
+PreHOI-Former v2 variants were tested as pilot experiments. Some early runs
+were excluded because of leakage or candidate-order safety concerns.
+
+The current manuscript should treat vision-language and PreHOI-Former variants
+as exploratory ablations. They are useful for understanding the design space,
+but the repeated-seed evidence currently favors the simpler order-safe
+non-vision-language candidate ranker.
 
 ## 8. Discussion
 
-The current evidence suggests that candidate-level ranking is a better fit for
-this local HOT3D-Clips proxy task than global target-object classification.
-The formulation asks the model to choose among observed candidates, which
-matches the pre-contact setting more directly than predicting one class from a
-fixed global vocabulary.
+The results support candidate ranking as the most evidence-backed formulation
+in the current project. The model benefits from asking a local, interaction
+specific question: among the visible candidates, which object is most likely to
+become the future hand-object target? This is more aligned with egocentric
+interaction forecasting than predicting a global object class.
 
-The improvement from the 25-clip pilot to the 50-clip protocol suggests that
-data expansion and split quality matter strongly. The current result should be
-read as evidence that the PreHOI-Rank formulation is promising, not as a final
-benchmark claim.
+The safety protocol is as important as the model. Because the target proxy is
+derived from the forecast frame, any forecast-frame feature in the input would
+make the problem artificially easy. Similarly, candidate ordering can leak the
+answer if candidates are sorted by target-aware quantities. The manuscript
+therefore reports explicit leakage and order-bias controls rather than treating
+candidate-ranking metrics in isolation.
 
-The fact that the non-vision-language ranker is strongest is also important.
-It indicates that observation-window hand-object geometry is a strong signal
-and that vision-language components should remain ablations until they improve
-under the same leakage-safe, order-safe repeated-seed protocol.
+The finding that the non-vision-language ranker outperforms current
+vision-language variants is also informative. It suggests that hand-object
+geometry and candidate-level structure are strong signals for this proxy task.
+Vision-language fusion may still be valuable, but it should be redesigned and
+evaluated as an ablation under the same protocol instead of being claimed as
+the central contribution.
 
-[Add threats-to-validity discussion: proxy label assumptions, local subset,
-candidate count distribution, and class imbalance.]
+## 9. Threats to Validity
 
-## 9. Limitations
+### Derived Proxy Labels
 
-- The experiment uses a 50-clip local HOT3D-Clips subset [@hot3dclips2026], not the
-  full dataset.
-- Target-object labels are derived proxy labels, not direct HOT3D ground truth.
-- The proxy is based on forecast-frame hand-object proximity and may not always
-  match semantic intent, action labels, or contact labels.
-- Some class imbalance remains in the optimized split.
-- Pose metrics are MANO/UmeTrack pose-vector MAE/MSE, not MPJPE.
-- Vision-language and PreHOI-Former variants are not yet the strongest
-  components.
-- The related-work section and citation grounding are not yet complete.
+The target-object labels are derived from forecast-frame hand-object proximity.
+They are not human-annotated action labels, not direct contact labels, and not
+official HOT3D target-object ground truth. The proxy may fail when interaction
+intent differs from closest-object geometry.
 
-[Add data/code availability note.]
+### Local 50-Clip Subset
 
-[Add author contribution statement placeholder.]
+The current result uses 50 local HOT3D-Clips shards, not the full dataset.
+Although the 50-clip subset improves over the 25-clip pilot, full-dataset or
+larger-subset evaluation is needed before broad generalization claims.
 
-[Add Research4Life/APC route note if required by submission plan.]
+### Residual Class Imbalance
 
-## 10. Conclusion
+The optimized split improves class coverage, but some imbalance remains. The
+test split is missing `food_waffles`, `potato_masher`, and `spatula_red`, and
+the train split has low counts for `bottle_ranch`, `cellphone`, and
+`mug_white`. These warnings should remain visible in the final manuscript.
 
-PreHOI-Rank presents a focused and evidence-supported formulation for
-pre-contact hand-object target forecasting: rank the visible object candidates
-using observation-window cues while preventing forecast-frame leakage and
-candidate-order bias. On the current 50-clip HOT3D-Clips local subset, the
-order-safe non-vision-language candidate ranker produces stable 5-seed
-paper-candidate diagnostics. The result supports candidate ranking as the main
-research direction, while future work should expand the dataset subset,
-strengthen class coverage, add 3D joint pose metrics, and revisit
-vision-language fusion as a controlled ablation.
+### Pose Metric Limitation
+
+Pose evaluation currently uses MANO/UmeTrack pose-vector MSE and MAE. This is
+useful for pipeline validation, but it is not equivalent to 3D joint MPJPE.
+Future work should convert pose representations to 3D joints if feasible.
+
+### Candidate Visibility Assumption
+
+The candidate-ranking task assumes that the relevant object is represented in
+the visible candidate set. If the future target is absent, occluded, incorrectly
+detected, or missing from the candidate annotations, the ranking formulation
+cannot select it correctly.
+
+### Exploratory Model Scope
+
+Vision-language and PreHOI-Former variants remain exploratory. Current evidence
+does not justify claiming that those components are the main performance driver.
+
+## 10. Data and Code Availability
+
+HOT3D-Clips is a third-party dataset distributed by its original providers. The
+authors do not redistribute raw HOT3D-Clips data, WebDataset shards, image
+streams, object models, or restricted annotations. Readers should obtain the
+dataset directly from the official provider and follow the provider's license,
+access, and citation requirements.
+
+The code can be released in a public repository after final cleanup. The
+repository should include scripts for HOT3D-Clips inspection, proxy-label
+generation, split optimization, leakage checks, candidate-order bias checks,
+training, metric collection, and figure generation. Generated sample indexes
+can be regenerated from downloaded HOT3D-Clips shards by authorized users.
+Whether derived index files can be shared directly must be confirmed against
+the dataset terms before submission.
+
+The authors did not collect new private human-subject data. Trained
+checkpoints, logs, and derived summaries may be shared only if allowed by the
+dataset terms and if they do not reveal restricted dataset content.
+
+## 11. Conclusion
+
+PreHOI-Rank frames pre-contact hand-object target forecasting as candidate
+ranking over visible objects. The formulation uses derived affordance-grounded
+proxy labels, observation-frame-only inputs, stable candidate ordering, and
+clip-level splitting to reduce common leakage paths in temporal forecasting.
+On the current 50-clip local HOT3D-Clips subset, the order-safe candidate
+ranker produces stable five-seed paper-candidate diagnostics and improves over
+the earlier 25-clip pilot. The work is not yet a final full-dataset benchmark,
+but it provides a reproducible and scientifically cautious foundation for
+pre-contact hand-object candidate ranking.
