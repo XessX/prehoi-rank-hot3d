@@ -11,6 +11,7 @@ import argparse
 import json
 import re
 import sys
+import tarfile
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -186,6 +187,26 @@ def observation_image_streams(frame_ids: list[str], image_stream_keys: list[str]
     return streams
 
 
+class ShardJsonCache:
+    """Read JSON members from one opened shard and cache repeated frame access."""
+
+    def __init__(self, shard: Path) -> None:
+        self.shard = shard
+        self.tar = tarfile.open(shard, mode="r")
+        self.cache: dict[str, Any] = {}
+
+    def close(self) -> None:
+        self.tar.close()
+
+    def read(self, member_name: str) -> Any:
+        if member_name not in self.cache:
+            file_obj = self.tar.extractfile(member_name)
+            if file_obj is None:
+                raise FileNotFoundError(f"Tar member not found or not a file: {member_name}")
+            self.cache[member_name] = json.load(file_obj)
+        return self.cache[member_name]
+
+
 def build_samples_for_shard(
     shard: Path,
     root: Path,
@@ -207,133 +228,137 @@ def build_samples_for_shard(
         return samples, skipped
 
     image_stream_keys = image_stream_keys_for_shard(shard, frame_ids[0])
+    json_reader = ShardJsonCache(shard)
 
-    for start_index in range(max_start + 1):
-        observation_ids = frame_ids[start_index : start_index + observation_frames]
-        end_frame = observation_ids[-1]
-        forecast_index = start_index + observation_frames + forecast_horizon - 1
-        forecast_frame = frame_ids[forecast_index]
-        object_input_frame = end_frame
-        forecast_members = get_frame_member_names(forecast_frame)
-        object_input_members = get_frame_member_names(object_input_frame)
+    try:
+        for start_index in range(max_start + 1):
+            observation_ids = frame_ids[start_index : start_index + observation_frames]
+            end_frame = observation_ids[-1]
+            forecast_index = start_index + observation_frames + forecast_horizon - 1
+            forecast_frame = frame_ids[forecast_index]
+            object_input_frame = end_frame
+            forecast_members = get_frame_member_names(forecast_frame)
+            object_input_members = get_frame_member_names(object_input_frame)
 
-        try:
-            hands_json = read_json_member(shard, forecast_members["hands"])
-            objects_json = read_json_member(shard, forecast_members["objects"])
-            info_json = read_json_member(shard, forecast_members["info"])
-        except (FileNotFoundError, json.JSONDecodeError) as exc:
-            skipped[f"read_error:{type(exc).__name__}"] += 1
-            continue
-
-        cameras_json: dict[str, Any] = {}
-        if assign_target_proxy:
             try:
-                cameras_json = read_json_member(shard, forecast_members["cameras"])
+                hands_json = json_reader.read(forecast_members["hands"])
+                objects_json = json_reader.read(forecast_members["objects"])
+                info_json = json_reader.read(forecast_members["info"])
             except (FileNotFoundError, json.JSONDecodeError) as exc:
-                skipped[f"proxy_camera_read_error:{type(exc).__name__}"] += 1
+                skipped[f"read_error:{type(exc).__name__}"] += 1
+                continue
 
-        future_hand_pose, available_hands, hand_missing, source_used = extract_future_hand_pose(
-            hands_json=hands_json,
-            hand_source=hand_source,
-            min_visibility=min_visibility,
-        )
-        skipped.update(hand_missing)
-        if not available_hands:
-            skipped["skipped_no_visible_future_hand"] += 1
-            continue
+            cameras_json: dict[str, Any] = {}
+            if assign_target_proxy:
+                try:
+                    cameras_json = json_reader.read(forecast_members["cameras"])
+                except (FileNotFoundError, json.JSONDecodeError) as exc:
+                    skipped[f"proxy_camera_read_error:{type(exc).__name__}"] += 1
 
-        object_candidates, object_missing = extract_object_candidates(
-            objects_json=objects_json,
-            min_visibility=min_visibility,
-        )
-        skipped.update(object_missing)
-        if not object_candidates:
-            skipped["skipped_no_visible_object"] += 1
-            continue
-
-        observation_object_candidates: list[dict[str, Any]] = []
-        observation_object_candidate_scores: list[dict[str, Any]] = []
-        try:
-            input_hands_json = read_json_member(shard, object_input_members["hands"])
-            input_objects_json = read_json_member(shard, object_input_members["objects"])
-            input_cameras_json = read_json_member(shard, object_input_members["cameras"])
-            observation_object_candidates, input_object_missing = extract_object_candidates(
-                input_objects_json,
+            future_hand_pose, available_hands, hand_missing, source_used = extract_future_hand_pose(
+                hands_json=hands_json,
+                hand_source=hand_source,
                 min_visibility=min_visibility,
             )
-            skipped.update(input_object_missing)
-            if observation_object_candidates:
-                observation_object_proxy = select_target_object_proxy(
+            skipped.update(hand_missing)
+            if not available_hands:
+                skipped["skipped_no_visible_future_hand"] += 1
+                continue
+
+            object_candidates, object_missing = extract_object_candidates(
+                objects_json=objects_json,
+                min_visibility=min_visibility,
+            )
+            skipped.update(object_missing)
+            if not object_candidates:
+                skipped["skipped_no_visible_object"] += 1
+                continue
+
+            observation_object_candidates: list[dict[str, Any]] = []
+            observation_object_candidate_scores: list[dict[str, Any]] = []
+            try:
+                input_hands_json = json_reader.read(object_input_members["hands"])
+                input_objects_json = json_reader.read(object_input_members["objects"])
+                input_cameras_json = json_reader.read(object_input_members["cameras"])
+                observation_object_candidates, input_object_missing = extract_object_candidates(
+                    input_objects_json,
+                    min_visibility=min_visibility,
+                )
+                skipped.update(input_object_missing)
+                if observation_object_candidates:
+                    observation_object_proxy = select_target_object_proxy(
+                        {
+                            "hands_json": input_hands_json,
+                            "cameras_json": input_cameras_json,
+                            "target_object_candidates": observation_object_candidates,
+                            "min_visibility": min_visibility,
+                        }
+                    )
+                    candidate_scores = observation_object_proxy.get("candidate_scores", [])
+                    if isinstance(candidate_scores, list):
+                        observation_object_candidate_scores = [
+                            score for score in candidate_scores if isinstance(score, dict)
+                        ]
+            except (FileNotFoundError, json.JSONDecodeError) as exc:
+                skipped[f"object_input_read_error:{type(exc).__name__}"] += 1
+
+            sample = {
+                "sample_id": f"{clip_id}_{observation_ids[0]}_{end_frame}_f{forecast_frame}",
+                "shard": shard_rel,
+                "clip_id": clip_id,
+                "observation_frame_ids": observation_ids,
+                "forecast_frame_id": forecast_frame,
+                "target_object_proxy_frame": forecast_frame,
+                "object_input_frame": object_input_frame,
+                "input_uses_forecast_frame": object_input_frame == forecast_frame,
+                "image_streams": observation_image_streams(observation_ids, image_stream_keys),
+                "image_stream_keys": image_stream_keys,
+                "hand_source": source_used or hand_source,
+                "available_hands": available_hands,
+                "future_hand_pose": future_hand_pose,
+                "target_object_candidates": object_candidates,
+                "observation_object_candidates": observation_object_candidates,
+                "observation_object_candidate_scores": observation_object_candidate_scores,
+                "target_object_label": None,
+                "target_object_proxy_label": None,
+                "target_object_selection_rule": "TODO: choose a documented rule; candidates only for now.",
+                "action_label": None,
+                "contact_label": None,
+                "metadata": {
+                    "sequence_id": info_json.get("sequence_id"),
+                    "participant_id": info_json.get("participant_id"),
+                    "device": info_json.get("device"),
+                    "start_frame": observation_ids[0],
+                    "end_frame": end_frame,
+                    "forecast_frame": forecast_frame,
+                    "ref_timestamp_ns": info_json.get("ref_timestamp_ns"),
+                    "image_timestamps_ns": info_json.get("image_timestamps_ns", {}),
+                },
+            }
+
+            if assign_target_proxy:
+                target_object_proxy = select_target_object_proxy(
                     {
-                        "hands_json": input_hands_json,
-                        "cameras_json": input_cameras_json,
-                        "target_object_candidates": observation_object_candidates,
+                        "hands_json": hands_json,
+                        "cameras_json": cameras_json,
+                        "target_object_candidates": object_candidates,
                         "min_visibility": min_visibility,
                     }
                 )
-                candidate_scores = observation_object_proxy.get("candidate_scores", [])
-                if isinstance(candidate_scores, list):
-                    observation_object_candidate_scores = [
-                        score for score in candidate_scores if isinstance(score, dict)
-                    ]
-        except (FileNotFoundError, json.JSONDecodeError) as exc:
-            skipped[f"object_input_read_error:{type(exc).__name__}"] += 1
+                sample["target_object_proxy"] = target_object_proxy
+                sample["target_object_selection_rule"] = TARGET_OBJECT_PROXY_V1_RULE
+                sample["target_object_proxy_label"] = (
+                    target_object_proxy.get("selected_object_name")
+                    if target_object_proxy.get("assigned", False)
+                    else None
+                )
+                if not target_object_proxy.get("assigned", False):
+                    reason = target_object_proxy.get("reason", "unknown")
+                    skipped[f"proxy_unassigned:{reason}"] += 1
 
-        sample = {
-            "sample_id": f"{clip_id}_{observation_ids[0]}_{end_frame}_f{forecast_frame}",
-            "shard": shard_rel,
-            "clip_id": clip_id,
-            "observation_frame_ids": observation_ids,
-            "forecast_frame_id": forecast_frame,
-            "target_object_proxy_frame": forecast_frame,
-            "object_input_frame": object_input_frame,
-            "input_uses_forecast_frame": object_input_frame == forecast_frame,
-            "image_streams": observation_image_streams(observation_ids, image_stream_keys),
-            "image_stream_keys": image_stream_keys,
-            "hand_source": source_used or hand_source,
-            "available_hands": available_hands,
-            "future_hand_pose": future_hand_pose,
-            "target_object_candidates": object_candidates,
-            "observation_object_candidates": observation_object_candidates,
-            "observation_object_candidate_scores": observation_object_candidate_scores,
-            "target_object_label": None,
-            "target_object_proxy_label": None,
-            "target_object_selection_rule": "TODO: choose a documented rule; candidates only for now.",
-            "action_label": None,
-            "contact_label": None,
-            "metadata": {
-                "sequence_id": info_json.get("sequence_id"),
-                "participant_id": info_json.get("participant_id"),
-                "device": info_json.get("device"),
-                "start_frame": observation_ids[0],
-                "end_frame": end_frame,
-                "forecast_frame": forecast_frame,
-                "ref_timestamp_ns": info_json.get("ref_timestamp_ns"),
-                "image_timestamps_ns": info_json.get("image_timestamps_ns", {}),
-            },
-        }
-
-        if assign_target_proxy:
-            target_object_proxy = select_target_object_proxy(
-                {
-                    "hands_json": hands_json,
-                    "cameras_json": cameras_json,
-                    "target_object_candidates": object_candidates,
-                    "min_visibility": min_visibility,
-                }
-            )
-            sample["target_object_proxy"] = target_object_proxy
-            sample["target_object_selection_rule"] = TARGET_OBJECT_PROXY_V1_RULE
-            sample["target_object_proxy_label"] = (
-                target_object_proxy.get("selected_object_name")
-                if target_object_proxy.get("assigned", False)
-                else None
-            )
-            if not target_object_proxy.get("assigned", False):
-                reason = target_object_proxy.get("reason", "unknown")
-                skipped[f"proxy_unassigned:{reason}"] += 1
-
-        samples.append(sample)
+            samples.append(sample)
+    finally:
+        json_reader.close()
 
     return samples, skipped
 
