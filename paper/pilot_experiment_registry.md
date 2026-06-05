@@ -106,6 +106,34 @@ Vision-language and PreHOI-Former runs are retained as exploratory ablations.
 They are not the current main claim because the order-safe non-VL candidate
 ranker is more stable under repeated seeds.
 
+## 50-Clip 5-Seed Candidate-Ranker Protocol
+
+The first 5-seed final-protocol run was completed for the order-safe non-VL
+candidate ranker on the 50-clip local subset.
+
+Protocol settings:
+
+- model: `candidate_ranker_non_vl`
+- candidate order: `stable_uid`
+- seeds: 42, 123, 2026, 7, 99
+- train/validation/test sample counts: 4175 / 1040 / 910
+- forecast-frame input count: 0 for all splits
+- summary: `results/tables/final_candidate_ranker_summary.csv`
+
+Mean and standard deviation:
+
+| Metric | Mean +/- Std |
+| --- | ---: |
+| Top-1 candidate accuracy | 0.7499 +/- 0.0450 |
+| Top-3 candidate accuracy | 0.9699 +/- 0.0161 |
+| MRR | 0.8605 +/- 0.0221 |
+| Pose MSE | 0.4301 +/- 0.0116 |
+| Pose MAE | 0.4102 +/- 0.0051 |
+
+This is the current strongest paper-candidate diagnostic for PreHOI-Rank, but
+it remains limited by derived proxy labels, the 50-clip local subset, residual
+class imbalance, and MANO/UmeTrack pose-vector evaluation rather than MPJPE.
+
 Generate the metric summary with:
 
 ```powershell

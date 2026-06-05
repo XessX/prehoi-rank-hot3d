@@ -607,6 +607,19 @@ The protocol runner saves candidate final-protocol logs under
 review-required and must not be treated as final paper claims until the split,
 baselines, seed statistics, and proxy-label limitations are reviewed.
 
+Current 50-clip 5-seed candidate-ranker protocol result:
+
+- top-1 candidate accuracy: `0.7499 +/- 0.0450`
+- top-3 candidate accuracy: `0.9699 +/- 0.0161`
+- MRR: `0.8605 +/- 0.0221`
+- pose MAE: `0.4102 +/- 0.0051`
+- pose MSE: `0.4301 +/- 0.0116`
+
+This is the first paper-candidate PreHOI-Rank diagnostic, but it still uses a
+50-clip local subset and derived proxy labels. See
+`paper/final_candidate_ranker_result_note.md` for limitations and the per-seed
+table.
+
 ## Pilot Visual-Object Metadata Baseline
 
 This pilot uses `mode="object_visual_metadata"` with cached `image_stats`
