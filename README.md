@@ -1,8 +1,9 @@
-# Affordance-Grounded PreHOI-Former
+# PreHOI-Rank
 
-Vision-language guided pre-contact forecasting of 3D hand-object interactions for assistive augmented reality.
+Affordance-grounded candidate ranking for pre-contact 3D hand-object
+interaction forecasting in egocentric video.
 
-This repository is the MVP research-code foundation for a manuscript targeted at **Machine Learning with Applications** with a Research4Life-aware submission route. The code starts honestly: it uses synthetic dummy tensors to prove the pipeline, model, losses, and metrics run end to end. It does **not** report or imply real HOT3D results until the real parser and experiments are implemented.
+This repository is the MVP research-code foundation for a manuscript targeted at **Machine Learning with Applications** with a Research4Life-aware submission route. The code starts honestly: it uses synthetic dummy tensors to prove the pipeline, model, losses, and metrics run end to end. Current HOT3D-Clips numbers are pilot/debug diagnostics only; the repository does **not** report or imply final paper-ready HOT3D results.
 
 ## Research Goal
 
@@ -17,6 +18,25 @@ The project investigates whether pre-contact egocentric observations can forecas
 Primary dataset target: **HOT3D**.
 
 Backup / cross-dataset target: **DexYCB**.
+
+## Current Working Title and Direction
+
+Working title:
+
+**PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting**
+
+The current strongest stable pilot model is the order-safe
+`candidate_ranker_non_vl` on the expanded 50-clip HOT3D-Clips subset. Its
+three-seed pilot stability is top-1 `0.7711 +/- 0.0455`, MRR
+`0.8713 +/- 0.0208`, and pose MAE `0.4131 +/- 0.0045`.
+
+Vision-language and PreHOI-Former components remain in the repository as
+exploratory pilot ablations and future extensions. They are not the main claim
+yet because the non-VL candidate-ranking formulation is currently more stable
+under repeated seeds.
+
+All current HOT3D-Clips metrics are pilot/debug diagnostics only. Target-object
+labels are derived proxy labels, not direct HOT3D ground truth.
 
 ## Current MVP
 
@@ -547,12 +567,15 @@ remain ignored by Git.
 
 ## Current Research Decision
 
-The current best stable pilot is the non-VL candidate ranker, with three-seed
-MRR `0.7502 +/- 0.0312` and pose MAE `0.4412 +/- 0.0042`. PreHOI-Former v1 had
-a strong single run, but seed stability does not support treating it as the
-final model yet. The next research step should be either data expansion for a
-stronger split or an architecture redesign around the stable candidate-ranking
-formulation.
+The current working title is **PreHOI-Rank**. The best stable pilot is now the
+order-safe non-VL candidate ranker on the expanded 50-clip HOT3D-Clips subset,
+with three-seed top-1 `0.7711 +/- 0.0455`, MRR `0.8713 +/- 0.0208`, and pose MAE
+`0.4131 +/- 0.0045`. This improves over the earlier 25-clip candidate-ranker
+pilot.
+
+PreHOI-Former v1 had a strong single run, but seed stability does not support
+treating it as the final model yet. Vision-language components remain useful as
+exploratory ablations and future extensions, not the main paper claim.
 
 See `paper/research_decision_note.md` for the current model-selection decision.
 
@@ -596,7 +619,7 @@ Even after switching to real mode, do not claim real results until target-object
 labels, future hand-pose conversion, action labels, contact/pre-contact windows,
 and splits are validated and documented.
 
-No real HOT3D results have been produced by this repository yet.
+No final HOT3D paper results have been produced by this repository yet.
 
 The intended real sample contract is:
 

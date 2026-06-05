@@ -7,9 +7,12 @@ HOT3D ground truth.
 ## Dataset Scope
 
 - Dataset: HOT3D-Clips local subset.
-- Local shards: 25.
-- Proxy sample index: 3250 samples before optimized filtering.
-- Optimized filtered split: 2673 samples, 16 eligible proxy classes.
+- Initial local subset: 25 shards, 3250 proxy samples before optimized
+  filtering.
+- Expanded local subset: 50 shards, 6500 proxy samples before optimized
+  filtering.
+- Current expanded optimized split: 6125 filtered samples, 23 eligible proxy
+  classes.
 - Split rule: clip-level split only, never random sample-level split.
 - Input rule: model inputs must use observation frames only.
 - Candidate rule: candidate ranking uses `candidate_order: stable_uid` unless a
@@ -67,6 +70,41 @@ The non-VL candidate ranker is currently the best stable pilot. The strong
 single-run PreHOI-Former v1 result should not be used as the main claim. All
 current results remain pilot/debug evidence only, based on derived proxy labels
 rather than direct HOT3D ground truth.
+
+## 50-Clip Expansion Update
+
+The 50-clip expanded subset is now the strongest pilot signal. It improves the
+order-safe non-VL candidate ranker over the earlier 25-clip pilot and supports
+the current PreHOI-Rank manuscript direction.
+
+Expanded split summary:
+
+| Split | Clips | Samples |
+| --- | ---: | ---: |
+| Train | 35 | 4175 |
+| Validation | 8 | 1040 |
+| Test | 7 | 910 |
+
+Current 50-clip seed stability for `candidate_ranker_non_vl`:
+
+| Model | Top-1 | MRR | Pose MAE | Status |
+| --- | --- | --- | --- | --- |
+| Non-VL candidate ranker, 50 clips | 0.7711 +/- 0.0455 | 0.8713 +/- 0.0208 | 0.4131 +/- 0.0045 | current_best_pilot |
+
+Comparison against the earlier 25-clip pilot:
+
+| Subset | Top-1 | MRR | Pose MAE |
+| --- | --- | --- | --- |
+| 25 clips | 0.5624 +/- 0.0693 | 0.7502 +/- 0.0312 | 0.4412 +/- 0.0042 |
+| 50 clips | 0.7711 +/- 0.0455 | 0.8713 +/- 0.0208 | 0.4131 +/- 0.0045 |
+
+Remaining split warnings: test is missing `food_waffles`, `potato_masher`, and
+`spatula_red`; train has low sample counts for `bottle_ranch`, `cellphone`, and
+`mug_white`. These warnings keep the result in pilot/debug status.
+
+Vision-language and PreHOI-Former runs are retained as exploratory ablations.
+They are not the current main claim because the order-safe non-VL candidate
+ranker is more stable under repeated seeds.
 
 Generate the metric summary with:
 

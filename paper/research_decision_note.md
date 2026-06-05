@@ -1,6 +1,7 @@
 # Research Decision Note
 
-Project title: Affordance-Grounded PreHOI-Former.
+Project title: PreHOI-Rank: Affordance-Grounded Candidate Ranking for
+Pre-Contact 3D Hand-Object Interaction Forecasting.
 
 This note records the current research direction after HOT3D-Clips pilot
 experiments and seed-stability checks. It is not a results section and should
@@ -52,13 +53,38 @@ The simpler non-VL candidate ranker is currently the strongest stable pilot
 model across ranking and pose metrics. PreHOI-Former v1 had a strong single run,
 but that single-run result is not stable enough to use as the main model claim.
 
+## 50-Clip Expansion Update
+
+The local HOT3D-Clips subset was expanded from 25 clips to 50 clips. The
+expanded subset contains 6500 derived proxy samples before optimized class
+filtering. The optimized split contains 4175 train samples, 1040 validation
+samples, and 910 test samples across 23 eligible proxy classes.
+
+The order-safe non-VL candidate ranker was rerun on the expanded split with
+`candidate_order: stable_uid` and observation-frame inputs only.
+
+| Subset | Top-1 | MRR | Pose MAE |
+| --- | --- | --- | --- |
+| 25 clips | 0.5624 +/- 0.0693 | 0.7502 +/- 0.0312 | 0.4412 +/- 0.0042 |
+| 50 clips | 0.7711 +/- 0.0455 | 0.8713 +/- 0.0208 | 0.4131 +/- 0.0045 |
+
+This update strengthens the evidence that affordance-grounded candidate ranking
+is the current best stable formulation. The result is still pilot/debug only:
+target-object labels are derived proxies, not direct HOT3D ground truth, and
+the 50-clip split still has class-coverage warnings.
+
 ## Decisions
 
 - Do not claim PreHOI-Former v1 as the final model yet.
 - Treat candidate-level ranking as the main stable formulation.
-- Use the non-VL candidate ranker as the current best stable pilot baseline.
+- Use the order-safe non-VL candidate ranker as the current best stable pilot
+  baseline.
 - Treat PreHOI-Former variants as architecture-development experiments until a
   redesigned version improves under repeated seeds.
+- Treat vision-language components as exploratory ablations and future
+  extensions unless they beat the stable candidate-ranking baseline under the
+  same split and repeated-seed protocol.
+- Use **PreHOI-Rank** as the recommended manuscript direction.
 - Keep all current numbers labeled as pilot/debug only.
 
 ## Next Research Needs
@@ -75,10 +101,15 @@ but that single-run result is not stable enough to use as the main model claim.
 
 ## Current Paper Direction
 
-The honest current paper direction is not "PreHOI-Former already wins." The
-defensible direction is:
+The honest current paper direction is not "vision-language guided PreHOI-Former
+already wins." The defensible direction is:
 
 Candidate-level pre-contact object ranking is a promising and stable framing for
-HOT3D-Clips proxy targets. The current PreHOI-Former family is an active model
+HOT3D-Clips proxy targets. The recommended working title is:
+
+**PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D
+Hand-Object Interaction Forecasting**
+
+The current PreHOI-Former and vision-language family remains an active model
 development path, but it needs redesign and stronger validation before becoming
 the main claimed method.
