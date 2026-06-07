@@ -6,18 +6,19 @@ Source script:
 src/visualization/create_prehoi_rank_figures.py
 ```
 
-Regenerate all first-version figures with:
+Regenerate all reviewed draft figures with:
 
 ```powershell
 python src/visualization/create_prehoi_rank_figures.py
 ```
 
 These are schematic diagrams. They do not use copyrighted HOT3D images or
-dataset frames.
+dataset frames. The script exports both 300-DPI PNG files and PDF versions.
 
 ## Figure 1
 
-- Path: `paper/figures/fig1_problem_overview.png`
+- PNG: `paper/figures/fig1_problem_overview.png`
+- PDF: `paper/figures/fig1_problem_overview.pdf`
 - Purpose: Explain the pre-contact forecasting setup.
 - Caption draft: **Figure 1. Pre-contact candidate-ranking setup.** Given an
   observation window, PreHOI-Rank ranks visible object candidates as likely
@@ -26,7 +27,8 @@ dataset frames.
 
 ## Figure 2
 
-- Path: `paper/figures/fig2_proxy_label_generation.png`
+- PNG: `paper/figures/fig2_proxy_label_generation.png`
+- PDF: `paper/figures/fig2_proxy_label_generation.pdf`
 - Purpose: Show derived proxy-label generation from forecast-frame hand-object
   proximity.
 - Caption draft: **Figure 2. Derived target-object proxy construction.** The
@@ -36,7 +38,8 @@ dataset frames.
 
 ## Figure 3
 
-- Path: `paper/figures/fig3_prehoi_rank_architecture.png`
+- PNG: `paper/figures/fig3_prehoi_rank_architecture.png`
+- PDF: `paper/figures/fig3_prehoi_rank_architecture.pdf`
 - Purpose: Show the current candidate-ranker architecture.
 - Caption draft: **Figure 3. PreHOI-Rank model overview.** The model encodes
   observation-window metadata and object candidates, ranks visible candidates
@@ -45,7 +48,8 @@ dataset frames.
 
 ## Figure 4
 
-- Path: `paper/figures/fig4_protocol_safety.png`
+- PNG: `paper/figures/fig4_protocol_safety.png`
+- PDF: `paper/figures/fig4_protocol_safety.pdf`
 - Purpose: Summarize leakage and candidate-order safety rules.
 - Caption draft: **Figure 4. Evaluation safety protocol.** Valid runs use
   clip-level splits, observation-frame inputs, stable UID candidate ordering,
@@ -54,9 +58,11 @@ dataset frames.
 
 ## Figure 5
 
-- Path: `paper/figures/fig5_25clip_vs_50clip_results.png`
+- PNG: `paper/figures/fig5_25clip_vs_50clip_results.png`
+- PDF: `paper/figures/fig5_25clip_vs_50clip_results.pdf`
 - Purpose: Compare the earlier 25-clip pilot with the 50-clip 5-seed protocol.
 - Caption draft: **Figure 5. Candidate-ranker protocol diagnostics.** Expanding
   from 25 to 50 local HOT3D-Clips shards improves top-1 candidate accuracy, MRR,
   and pose-vector MAE under the same order-safe candidate-ranking formulation.
-  Results remain limited by derived proxy labels and local-subset evaluation.
+  Bars show mean values with seed-standard-deviation error bars. Results remain
+  limited by derived proxy labels and local-subset evaluation.

@@ -6,8 +6,9 @@ ranking on a 50-clip local HOT3D-Clips subset with derived proxy labels.
 
 ## Fig. 1: Pre-Contact Forecasting Problem Overview
 
-Status: first version generated at
-`paper/figures/fig1_problem_overview.png`.
+Status: reviewed draft generated at
+`paper/figures/fig1_problem_overview.png` and
+`paper/figures/fig1_problem_overview.pdf`.
 
 Purpose:
 
@@ -37,8 +38,9 @@ not used as model input.
 
 ## Fig. 2: Proxy-Label Generation from Forecast-Frame Hand-Object Proximity
 
-Status: first version generated at
-`paper/figures/fig2_proxy_label_generation.png`.
+Status: reviewed draft generated at
+`paper/figures/fig2_proxy_label_generation.png` and
+`paper/figures/fig2_proxy_label_generation.pdf`.
 
 Purpose:
 
@@ -70,8 +72,9 @@ only and are excluded from model inputs.
 
 ## Fig. 3: PreHOI-Rank Candidate-Ranking Architecture
 
-Status: first version generated at
-`paper/figures/fig3_prehoi_rank_architecture.png`.
+Status: reviewed draft generated at
+`paper/figures/fig3_prehoi_rank_architecture.png` and
+`paper/figures/fig3_prehoi_rank_architecture.pdf`.
 
 Purpose:
 
@@ -102,8 +105,9 @@ not require vision-language features.
 
 ## Fig. 4: Leakage and Candidate-Order Bias Prevention Protocol
 
-Status: first version generated at
-`paper/figures/fig4_protocol_safety.png`.
+Status: reviewed draft generated at
+`paper/figures/fig4_protocol_safety.png` and
+`paper/figures/fig4_protocol_safety.pdf`.
 
 Purpose:
 
@@ -139,8 +143,9 @@ Runs with forecast-frame inputs or target-aware candidate ordering are excluded.
 
 ## Fig. 5: Results Summary and 25-Clip Versus 50-Clip Comparison
 
-Status: first version generated at
-`paper/figures/fig5_25clip_vs_50clip_results.png`.
+Status: reviewed draft generated at
+`paper/figures/fig5_25clip_vs_50clip_results.png` and
+`paper/figures/fig5_25clip_vs_50clip_results.pdf`.
 
 Purpose:
 
@@ -156,6 +161,7 @@ Inputs:
 Visual elements:
 
 - Bar plot or grouped table for top-1, MRR, and pose MAE.
+- Seed-standard-deviation error bars for repeated-seed runs.
 - Separate small table for 50-clip final-protocol top-1, top-3, MRR, pose MSE,
   and pose MAE.
 - Note that values are paper-candidate diagnostics on derived proxy labels.

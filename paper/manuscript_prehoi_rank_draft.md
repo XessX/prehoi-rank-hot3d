@@ -45,7 +45,8 @@ visible object candidate is most likely to become the future hand-object target,
 while also predicting a future hand-pose representation. Figure 1 summarizes
 this problem setting.
 
-[Figure 1 here: `paper/figures/fig1_problem_overview.png`.]
+[Figure 1 here: `paper/figures/fig1_problem_overview.png`; PDF version:
+`paper/figures/fig1_problem_overview.pdf`.]
 
 A direct approach would treat the task as global object classification. That
 framing is convenient, but it is not always well matched to the egocentric
@@ -194,7 +195,8 @@ using overlap with the hand union box and normalized center distance. The
 highest-scoring forecast-frame object is selected as the target-object proxy.
 Figure 2 illustrates this proxy-label construction.
 
-[Figure 2 here: `paper/figures/fig2_proxy_label_generation.png`.]
+[Figure 2 here: `paper/figures/fig2_proxy_label_generation.png`; PDF version:
+`paper/figures/fig2_proxy_label_generation.pdf`.]
 
 The proxy is intended to approximate the object most aligned with future hand
 contact or affordance use. It is not a human action label, not an official
@@ -260,7 +262,8 @@ The non-vision-language candidate ranker contains:
 The training objective combines candidate-ranking cross-entropy with pose
 regression loss. Figure 3 shows the current architecture at a high level.
 
-[Figure 3 here: `paper/figures/fig3_prehoi_rank_architecture.png`.]
+[Figure 3 here: `paper/figures/fig3_prehoi_rank_architecture.png`; PDF
+version: `paper/figures/fig3_prehoi_rank_architecture.pdf`.]
 
 ### 5.4 Candidate-Order Safety
 
@@ -282,7 +285,8 @@ The final-protocol candidate-ranker experiment uses the 50-clip local
 HOT3D-Clips subset and optimized clip-level splits. The protocol is summarized
 in Table 2 and Figure 4.
 
-[Figure 4 here: `paper/figures/fig4_protocol_safety.png`.]
+[Figure 4 here: `paper/figures/fig4_protocol_safety.png`; PDF version:
+`paper/figures/fig4_protocol_safety.pdf`.]
 
 [Table 2 here: `paper/tables/protocol_safety_table.md`.]
 
@@ -347,7 +351,8 @@ The 50-clip protocol improves over the earlier 25-clip pilot:
 
 Figure 5 visualizes this comparison.
 
-[Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`.]
+[Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`; PDF
+version: `paper/figures/fig5_25clip_vs_50clip_results.pdf`.]
 
 The improvement suggests that data expansion and split quality materially
 affect this task. It does not establish final generalization to the complete
