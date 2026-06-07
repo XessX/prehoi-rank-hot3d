@@ -43,7 +43,7 @@ not a completed journal submission.
 - [x] Generate Fig. 3 model architecture diagram.
 - [x] Generate Fig. 4 leakage/order-bias protocol diagram.
 - [x] Generate Fig. 5 results summary figure.
-- [ ] Review generated figure quality, resolution, fonts, and journal-style
+- [x] Review generated figure quality, resolution, fonts, and journal-style
       readability.
 - [ ] Add dataset license/access note.
 - [x] Add ethics and data-use note.
@@ -56,6 +56,10 @@ not a completed journal submission.
 - [ ] Verify target journal formatting requirements.
 - [ ] Verify Machine Learning with Applications article type and scope fit.
 - [ ] Verify APC, waiver, or Research4Life route.
+- [x] Create submission-readiness decision audit:
+      `paper/submission_readiness_decision_audit.md`.
+- [ ] Decide whether to strengthen first with 75-clip expansion, MPJPE-style
+      pose evaluation, or a stronger fair baseline.
 - [ ] Journal route verification pending; see
       `paper/journal_route_verification.md`.
 - [ ] Research4Life verification pending for final corresponding-author and
@@ -78,7 +82,9 @@ not a completed journal submission.
 - First manuscript draft: expanded journal-style draft created.
 - Manuscript quality audit: completed; revision log created.
 - Related work: expanded draft started, citations incomplete.
-- Figures: first versions generated; quality review pending.
+- Figures: reviewed draft versions generated with PNG and PDF exports.
+- Submission decision audit: completed; current recommendation is to strengthen
+  before submission, preferably with MPJPE if feasible or 75-clip expansion.
 - Journal route verification: started; APC/Research4Life status not final.
 - Cover letter and data/code availability drafts: started.
 - Final formatting: pending.
