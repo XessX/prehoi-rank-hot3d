@@ -19,17 +19,19 @@ TODO/UNRESOLVED must be checked before submission.
 | `[AssemblyHands]` | `@assemblyhands2023` | verified | https://assemblyhands.github.io/ | Related Work |
 | `[EPIC-KITCHENS]` | `@epickitchens2020` | verified | https://epic-kitchens.github.io/2022.html | Egocentric forecasting related work |
 | `[CLIP]` | `@clip2021` | verified | https://proceedings.mlr.press/v139/radford21a.html | Vision-language ablation discussion |
-| `[Affordance reasoning]` / `[contactposeTODO]` | `@contactposeTODO` or another verified affordance/contact paper | TODO/UNRESOLVED | Need exact source | Proxy motivation, Related Work |
-| `[ActiveObjectRanking]` / `[activeObjectRankingTODO]` | `@activeObjectRankingTODO` | TODO/UNRESOLVED | Need active-object/candidate-ranking source | Candidate-ranking related work and method framing |
-| `[CandidateRankingLoss]` / `[candidateRankingLossTODO]` | `@candidateRankingLossTODO` | TODO/UNRESOLVED | Need learning-to-rank or masked candidate-scoring source | Candidate-ranking method discussion |
-| `[Temporal leakage]` / `[temporalLeakageTODO]` | `@temporalLeakageTODO` | TODO/UNRESOLVED | Need temporal leakage/split-design source | Experimental protocol and evaluation safety |
+| `[Affordance reasoning]` / `[contactposeTODO]` | `@contactpose2020` | verified | https://contactpose.cc.gatech.edu/ | Proxy motivation, Related Work |
+| `[ActiveObjectRanking]` / `[activeObjectRankingTODO]` | optional TODO | TODO/UNRESOLVED | Domain-specific active-object prediction source still optional; current manuscript uses general learning-to-rank citation instead. | Candidate-ranking related work, if expanded |
+| `[CandidateRankingLoss]` / `[candidateRankingLossTODO]` | `@burges2005ranknet` | verified | https://doi.org/10.1145/1102351.1102363 | Candidate-ranking method discussion |
+| `[Temporal leakage]` / `[temporalLeakageTODO]` | `@kaufman2012leakage` | verified | https://doi.org/10.1145/2382577.2382579 | Experimental protocol and evaluation safety |
+| `[OpenCLIP]` / `[openclipTODO]` | optional TODO | not needed in current manuscript | OpenCLIP is not cited in the manuscript, methods draft, or data/code availability draft. Verify only if supplementary implementation notes cite it. | Optional code/supplement note |
 | `[MLWA]` | `@mlwa2026` | verified as journal info | https://www.sciencedirect.com/journal/machine-learning-with-applications | Internal target-journal notes only |
 
 ## Replacement Policy
 
 - Replace verified placeholders in manuscript prose with citation-style keys,
   e.g. `[HOT3D]` to `[@hot3d2025]`.
-- Keep TODO placeholders in square brackets until a real source is selected.
+- Keep optional TODO placeholders out of the manuscript unless a real source is
+  selected and the corresponding claim remains necessary.
 - Do not cite MLWA in the manuscript body unless the submission plan requires
   discussion of target journal scope or article type.
 - Do not cite BOP unless the text explicitly discusses HOT3D-Clips challenge

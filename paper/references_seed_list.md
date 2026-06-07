@@ -196,14 +196,15 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 
 ### ContactPose
 
-- Tentative citation key: `ContactPose`
-- Title: ContactPose
-- Authors: TBD
-- Venue/year: TBD
+- Tentative citation key: `contactpose2020`
+- Title: ContactPose: A Dataset of Grasps with Object Contact and Hand Pose
+- Authors: Samarth Brahmbhatt; Chengcheng Tang; Christopher D. Twigg; Charles
+  C. Kemp; James Hays
+- Venue/year: ECCV 2020
 - Why relevant: Commonly cited hand-object contact dataset; relevant to
   affordance/contact reasoning and proxy-label limitations.
-- Source URL: TBD
-- Status: unverified
+- Source URL: https://contactpose.cc.gatech.edu/
+- Status: verified
 
 ### ObMan
 
@@ -227,31 +228,34 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Why relevant: Need papers on active-object prediction, object proposal
   ranking, or candidate scoring in egocentric interaction tasks.
 - Source URL: TBD
-- Status: unverified
+- Status: optional/unresolved; not currently required because the manuscript now
+  uses a general learning-to-rank citation for the candidate-ranking framing.
 
-### Ranking Loss Placeholder
+### Learning to Rank / Ranking Loss
 
-- Tentative citation key: `CandidateRankingLoss`
-- Title: TBD
-- Authors: TBD
-- Venue/year: TBD
-- Why relevant: Need a methodological citation for masked candidate scoring or
-  ranking formulation if using more than standard cross-entropy.
-- Source URL: TBD
-- Status: unverified
+- Tentative citation key: `burges2005ranknet`
+- Title: Learning to Rank Using Gradient Descent
+- Authors: Chris Burges; Tal Shaked; Erin Renshaw; Ari Lazier; Matt Deeds;
+  Nicole Hamilton; Greg Hullender
+- Venue/year: ICML 2005
+- Why relevant: General methodological reference for learning-to-rank and
+  candidate scoring. It supports the paper's framing without implying that the
+  current model uses RankNet's exact pairwise loss.
+- Source URL: https://doi.org/10.1145/1102351.1102363
+- Status: verified
 
 ## Leakage-Safe Temporal Evaluation
 
-### Temporal Leakage Placeholder
+### Data Leakage
 
-- Tentative citation key: `TemporalLeakage`
-- Title: TBD
-- Authors: TBD
-- Venue/year: TBD
+- Tentative citation key: `kaufman2012leakage`
+- Title: Leakage in Data Mining: Formulation, Detection, and Avoidance
+- Authors: Shachar Kaufman; Saharon Rosset; Claudia Perlich; Ori Stitelman
+- Venue/year: ACM Transactions on Knowledge Discovery from Data, 2012
 - Why relevant: Need a citation on temporal leakage, video split leakage, or
   sequence-level split practice in forecasting/evaluation.
-- Source URL: TBD
-- Status: unverified
+- Source URL: https://doi.org/10.1145/2382577.2382579
+- Status: verified; broad data-leakage reference, not video-specific.
 
 ### Repeated Seeds / Reproducibility Placeholder
 
@@ -286,9 +290,11 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Authors: TBD
 - Venue/year: repository/tooling, TBD
 - Why relevant: The project used `open-clip-torch` for frozen CLIP feature
-  extraction. Need correct software citation if included in manuscript.
+  extraction. Need correct software citation only if implementation details are
+  included in the manuscript, supplement, or code-citation notes.
 - Source URL: https://github.com/mlfoundations/open_clip
-- Status: unverified
+- Status: optional/unneeded for the current manuscript; no OpenCLIP citation is
+  currently required because the draft cites CLIP conceptually via `@clip2021`.
 
 ## Machine Learning with Applications Target Journal Notes
 

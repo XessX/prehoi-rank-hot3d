@@ -115,22 +115,22 @@ Affordance and contact reasoning are closely related because the target proxy
 uses hand-object proximity at a future frame. However, the proxy should not be
 interpreted as an official semantic affordance annotation or human contact
 annotation.
-The final related-work section still needs verified citations for contact and
-affordance reasoning [contactposeTODO].
+ContactPose provides a relevant contact-focused reference for hand-object
+grasp/contact modeling [@contactpose2020].
 
 The candidate-ranking formulation is related to learning-to-rank and
 object-centric interaction prediction, where the model scores a set of
-candidates rather than predicting a single global class [activeObjectRankingTODO],
-[candidateRankingLossTODO]. In this paper, that formulation is also a safety
-choice: ranking visible candidates makes candidate-order leakage measurable and
-allows position-only baselines.
+candidates rather than predicting a single global class. This design is related
+to learning-to-rank methods such as RankNet [@burges2005ranknet]. In this
+paper, that formulation is also a safety choice: ranking visible candidates
+makes candidate-order leakage measurable and allows position-only baselines.
 
 Finally, temporal leakage is a major concern in forecasting. Any method that
 uses forecast-frame features as input can appear to perform well while failing
 the pre-contact premise. This paper therefore enforces observation-frame-only
-inputs and clip-level train/validation/test splitting. A verified citation for
-temporal leakage and temporal split design remains to be added
-[temporalLeakageTODO].
+inputs and clip-level train/validation/test splitting. This follows the broader
+machine-learning concern that target information must not be available through
+features or evaluation design at prediction time [@kaufman2012leakage].
 
 ## 3. Dataset and Preprocessing
 

@@ -4,18 +4,24 @@ Status: citation-cleanup checkpoint.
 Date: 2026-06-08.
 
 The core dataset/model references used in the current manuscript have been
-verified or partially verified. The items below still need manual source
-selection before submission if the associated claims remain in the manuscript.
+verified or partially verified. This file now tracks only optional or unresolved
+items that still need manual source selection before submission if the
+associated claims remain in the manuscript.
+
+## Resolved in This Pass
+
+| Former Placeholder | Resolved Key | Source |
+| --- | --- | --- |
+| `[contactposeTODO]` | `@contactpose2020` | Official ContactPose project page / ECCV 2020 metadata |
+| `[candidateRankingLossTODO]` | `@burges2005ranknet` | ACM DOI page / Microsoft Research page |
+| `[temporalLeakageTODO]` | `@kaufman2012leakage` | ACM DOI metadata / Tel Aviv University publication page |
 
 ## Still Needed
 
 | Placeholder | Proposed Key | Need | Current Action |
 | --- | --- | --- | --- |
-| `[contactposeTODO]` | `@contactposeTODO` | A verified contact/affordance reasoning reference. | Select ContactPose or another better-matched hand-object contact/affordance source. |
-| `[activeObjectRankingTODO]` | `@activeObjectRankingTODO` | A verified active-object prediction or candidate-ranking reference. | Search egocentric active-object prediction and object-candidate scoring literature. |
-| `[candidateRankingLossTODO]` | `@candidateRankingLossTODO` | A verified learning-to-rank or candidate-scoring methodological reference. | Add only if the method section needs a ranking-method citation beyond masked cross-entropy. |
-| `[temporalLeakageTODO]` | `@temporalLeakageTODO` | A verified citation for temporal leakage, subject/clip-level splits, or temporal evaluation leakage. | Search video forecasting/evaluation protocol literature. |
-| `@openclipTODO` | `@openclipTODO` | OpenCLIP/open-clip-torch software citation. | Needed only if CLIP/OpenCLIP implementation details stay in the final manuscript or supplement. |
+| `[activeObjectRankingTODO]` | `@activeObjectRankingTODO` | A domain-specific active-object prediction or egocentric object-candidate scoring reference. | Optional. Add only if the related-work section expands beyond the current general learning-to-rank framing. |
+| `@openclipTODO` | `@openclipTODO` | OpenCLIP/open-clip-torch software citation. | Optional. Not needed in the current manuscript, methods draft, or data/code availability draft; verify only if OpenCLIP implementation details appear in supplement/code-citation notes. |
 
 ## Partially Verified Dataset/Tooling Items
 
@@ -29,13 +35,6 @@ selection before submission if the associated claims remain in the manuscript.
 
 ## Manuscript Placeholders Still Present
 
-The following placeholders intentionally remain in the manuscript or expanded
-related-work draft until source selection is complete:
-
-- `[contactposeTODO]`
-- `[activeObjectRankingTODO]`
-- `[candidateRankingLossTODO]`
-- `[temporalLeakageTODO]`
-
-Do not replace these with real citation keys until the exact source is chosen
-and verified.
+No required unresolved citation placeholders should remain in the current
+manuscript or expanded related-work draft after this pass. Re-run `rg` before
+submission to confirm.

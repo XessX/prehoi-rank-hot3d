@@ -57,7 +57,7 @@ hand-object geometry is predictive of the derived future target-object proxy.
 Hand-object interaction is strongly shaped by contact, reachability, and object
 affordances. Datasets and methods that study contact or affordance reasoning
 provide useful context for interpreting hand-object proximity as a signal
-[contactposeTODO]. However, the current PreHOI-Rank labels are not
+[@contactpose2020]. However, the current PreHOI-Rank labels are not
 human-annotated contact labels. They are derived proxy labels based on
 forecast-frame hand-object proximity.
 
@@ -80,9 +80,10 @@ This framing contrasts with closed-set global classification. Candidate ranking
 allows the target space to be sample-specific and requires explicit candidate
 ordering controls. In this project, ranking is trained with a candidate-index
 target derived from the forecast-frame proxy, while all candidate features come
-from the observation window. Additional citations are still needed for active
-object prediction, proposal ranking, and object-interaction candidate scoring
-[activeObjectRankingTODO], [candidateRankingLossTODO].
+from the observation window. This framing is related to learning-to-rank work
+such as RankNet, which learns scoring functions for ordered candidates
+[@burges2005ranknet]. A more domain-specific active-object prediction reference
+can still be added later if the manuscript expands that discussion.
 
 ## Leakage-Safe Evaluation in Temporal Forecasting
 
@@ -99,8 +100,9 @@ identifiers with `candidate_order: stable_uid`. Unsafe candidate orders such as
 raw/as-is order, proxy-score order, or target-aware order are excluded. The
 paper reports candidate-0, first-3, random-candidate, and position-only MRR
 baselines to distinguish model performance from candidate-position bias.
-Dedicated citations are still needed for temporal leakage and split design in
-video forecasting [temporalLeakageTODO].
+General data-leakage work motivates this separation between information
+available at prediction time and information available only through target
+construction [@kaufman2012leakage].
 
 ## Vision-Language Models and Exploratory Ablations
 

@@ -23,8 +23,9 @@ Use this checklist before converting citation placeholders into BibTeX.
       HOT3D-Clips/WebDataset usage.
 - [ ] Verify MANO/SMPL-X license requirements if hand-model conversion is used.
 - [ ] Verify UmeTrack citation and relation to HOT3D annotations.
-- [ ] Verify OpenCLIP or `open-clip-torch` software citation if CLIP ablations
-      remain in the manuscript.
+- [ ] Verify OpenCLIP or `open-clip-torch` software citation only if
+      implementation-specific OpenCLIP details remain in the manuscript,
+      supplement, or code-citation notes.
 
 ## Related-Work Gap Checks
 
@@ -32,8 +33,9 @@ Use this checklist before converting citation placeholders into BibTeX.
       datasets.
 - [ ] Add at least one verified citation for egocentric action anticipation.
 - [ ] Add at least one verified citation for affordance/contact reasoning.
-- [ ] Add at least one verified citation for active-object prediction or
-      candidate ranking.
+- [ ] Add a domain-specific active-object prediction citation only if that
+      discussion is expanded beyond the current general learning-to-rank
+      framing.
 - [ ] Add at least one verified citation for temporal leakage or split design.
 - [ ] Add at least one verified citation for repeated-seed/reproducibility
       reporting if the journal expects methodological justification.
@@ -60,10 +62,10 @@ Use this checklist before converting citation placeholders into BibTeX.
 - [x] `[FPHA]`
 - [x] `[EPIC-KITCHENS]`
 - [x] `[CLIP]`
-- [ ] `[Temporal leakage]`
-- [ ] `[Affordance reasoning]`
+- [x] `[Temporal leakage]`
+- [x] `[Affordance reasoning]`
 - [ ] `[ActiveObjectRanking]`
-- [ ] `[CandidateRankingLoss]`
+- [x] `[CandidateRankingLoss]`
 
 ## Current Citation Key Verification Table
 
@@ -83,8 +85,8 @@ Use this checklist before converting citation placeholders into BibTeX.
 | `@epickitchens2020` | verified | Official EPIC-KITCHENS citation page and PubMed DOI record | Complete; recheck journal style before submission. |
 | `@clip2021` | verified | PMLR ICML paper page | Complete; recheck journal style before submission. |
 | `@mlwa2026` | verified | ScienceDirect journal page | Internal note only; not likely a manuscript citation. |
-| `@activeObjectRankingTODO` | unresolved | none selected | Find verified active-object/candidate-ranking paper or remove placeholder. |
-| `@candidateRankingLossTODO` | unresolved | none selected | Find verified ranking/loss reference if needed. |
-| `@temporalLeakageTODO` | unresolved | none selected | Find verified temporal leakage or split-design reference. |
-| `@contactposeTODO` | unresolved | none selected | Verify ContactPose or another affordance/contact source. |
-| `@openclipTODO` | unresolved | none selected | Verify software citation if OpenCLIP remains in paper or supplement. |
+| `@contactpose2020` | verified | Official ContactPose project page and ECCV paper metadata | Complete; recheck journal style before submission. |
+| `@burges2005ranknet` | verified | ACM DOI page and Microsoft Research page | Complete; recheck journal style before submission. |
+| `@kaufman2012leakage` | verified | ACM DOI metadata and Tel Aviv University publication page | Complete; recheck journal style before submission. |
+| `@activeObjectRankingTODO` | optional/unresolved | none selected | Add only if a domain-specific active-object prediction discussion remains necessary. |
+| `@openclipTODO` | optional/not needed | Local manuscript/methods/data-availability search | Not needed in the current manuscript; verify if OpenCLIP appears in supplement or code-citation notes. |
