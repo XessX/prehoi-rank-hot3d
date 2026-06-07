@@ -35,6 +35,7 @@ not a completed journal submission.
 ## Writing and Figures
 
 - [x] Create expanded journal-style manuscript draft.
+- [x] Complete manuscript quality audit.
 - [ ] Complete related-work citations.
 - [ ] Replace all `[Citation needed]` and `[REF-*]` placeholders.
 - [x] Generate Fig. 1 problem overview.
@@ -75,6 +76,7 @@ not a completed journal submission.
 - Candidate-ranking method framing: done.
 - 50-clip final-protocol candidate-ranker run: done.
 - First manuscript draft: expanded journal-style draft created.
+- Manuscript quality audit: completed; revision log created.
 - Related work: expanded draft started, citations incomplete.
 - Figures: first versions generated; quality review pending.
 - Journal route verification: started; APC/Research4Life status not final.

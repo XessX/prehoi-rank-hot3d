@@ -69,8 +69,8 @@ The paper makes four contributions:
 1. We formulate pre-contact target-object forecasting as ranking visible object
    candidates rather than closed-set global classification.
 2. We define a reproducible derived target-object proxy from forecast-frame
-   hand-object proximity and clearly distinguish it from human ground-truth
-   contact or action labels.
+   hand-object proximity and clearly distinguish it from human contact or
+   action annotations.
 3. We introduce a leakage- and order-bias-safe evaluation protocol with
    observation-frame-only inputs, clip-level splitting, stable candidate
    ordering, and position-only baselines.
@@ -79,8 +79,8 @@ The paper makes four contributions:
    than candidate-position baselines and improves over the earlier 25-clip
    pilot.
 
-The manuscript is not framed as a state-of-the-art claim. It is framed as a
-reproducible method and protocol for pre-contact candidate ranking using
+The manuscript is not framed as a benchmark-superiority claim. It is framed as
+a reproducible method and protocol for pre-contact candidate ranking using
 derived affordance-grounded proxy labels.
 
 ## 2. Related Work
@@ -108,11 +108,13 @@ such as FPHA [@fpha2018], EPIC-KITCHENS [@epickitchens2020], and AssemblyHands
 [@assemblyhands2023] show the importance of modeling hands, objects, and
 temporal context in first-person video. This work differs by focusing on a
 candidate-ranking formulation over visible object candidates before contact,
-using derived proxy labels when direct target-contact labels are unavailable.
+using derived proxy labels when direct target-object/contact annotations are
+unavailable.
 
 Affordance and contact reasoning are closely related because the target proxy
 uses hand-object proximity at a future frame. However, the proxy should not be
-interpreted as semantic affordance ground truth or human contact annotation.
+interpreted as an official semantic affordance annotation or human contact
+annotation.
 The final related-work section still needs verified citations for contact and
 affordance reasoning [contactposeTODO].
 
@@ -138,7 +140,7 @@ We use HOT3D-Clips as the current data source [@hot3d2025],
 [@hot3dclips2026]. HOT3D-Clips provides curated HOT3D subsequences in
 WebDataset shard format, including image streams and per-frame annotations for
 hands, objects, cameras, and metadata. The current experiments use a local
-subset of 50 downloaded shards, not the full HOT3D or HOT3D-Clips dataset.
+subset of 50 downloaded shards, not the complete HOT3D or HOT3D-Clips release.
 
 The local subset contains 6500 proxy-labeled samples before optimized
 class-based filtering. After filtering and optimized clip-level splitting, the
@@ -184,7 +186,7 @@ code and regeneration scripts, not downloaded dataset files.
 ## 4. Derived Target-Object Proxy Label
 
 The current target-object labels are derived proxy labels, not direct HOT3D
-ground truth. This distinction is central to the paper.
+official annotations. This distinction is central to the paper.
 
 For each forecast frame, the proxy generator collects visible hand boxes and
 visible object boxes. It forms a hand union box and scores each candidate object
@@ -292,7 +294,7 @@ The required safety rules are:
 - use `candidate_order: stable_uid`;
 - exclude raw/as-is, proxy-sorted, and target-aware candidate orderings;
 - split train/validation/test by clip ID, not random sample ID;
-- call labels derived proxy labels, not ground truth.
+- call labels derived proxy labels, not official annotations.
 
 The final candidate-ranker protocol uses five seeds: 42, 123, 2026, 7, and 99.
 Metrics are reported as mean +/- standard deviation over seeds.
@@ -348,8 +350,8 @@ Figure 5 visualizes this comparison.
 [Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`.]
 
 The improvement suggests that data expansion and split quality materially
-affect this task. It does not prove final generalization to the full HOT3D
-dataset.
+affect this task. It does not establish final generalization to the complete
+HOT3D release.
 
 ### 7.3 Exploratory Ablations
 
@@ -390,9 +392,9 @@ the central contribution.
 ### Derived Proxy Labels
 
 The target-object labels are derived from forecast-frame hand-object proximity.
-They are not human-annotated action labels, not direct contact labels, and not
-official HOT3D target-object ground truth. The proxy may fail when interaction
-intent differs from closest-object geometry.
+They are not human-annotated action labels, not direct contact annotations, and
+not official HOT3D target-object annotations. The proxy may fail when
+interaction intent differs from closest-object geometry.
 
 ### Local 50-Clip Subset
 
