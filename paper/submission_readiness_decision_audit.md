@@ -12,7 +12,8 @@ claims. Target-object labels remain derived proxy labels, not ground truth.
 - Working title: **PreHOI-Rank: Affordance-Grounded Candidate Ranking for
   Pre-Contact 3D Hand-Object Interaction Forecasting**.
 - Dataset scope: local 50-shard HOT3D-Clips subset, not full HOT3D-Clips or
-  full HOT3D.
+  full HOT3D. A 75-clip expansion was also completed and is treated as a
+  robustness/scalability check.
 - Main formulation: leakage-safe candidate-level ranking over visible object
   candidates.
 - Main safety controls:
@@ -39,6 +40,24 @@ Current paper-candidate result on the 50-clip local HOT3D-Clips subset:
 This result is promising and reproducible within the current local subset, but
 it should remain tied to the limitations of derived proxy labels and local
 subset evaluation.
+
+## 75-Clip Expansion Update
+
+The 75-clip expansion has now been completed. It increased the local subset to
+9750 proxy samples, 32 raw proxy classes, and 30 optimized eligible classes.
+However, the optimized split became broader and harder, with fewer shared
+train/validation/test classes than the 50-clip protocol and remaining
+validation/test class-coverage warnings.
+
+| Metric | 50-clip primary | 75-clip robustness |
+| --- | ---: | ---: |
+| Top-1 candidate accuracy | 0.7499 +/- 0.0450 | 0.7115 +/- 0.0571 |
+| Top-3 candidate accuracy | 0.9699 +/- 0.0161 | 0.9789 +/- 0.0009 |
+| MRR | 0.8605 +/- 0.0221 | 0.8340 +/- 0.0343 |
+| Pose MAE | 0.4102 +/- 0.0051 | 0.4676 +/- 0.0096 |
+
+Decision: the 75-clip run supports robustness/scalability analysis, but it does
+not replace the 50-clip protocol as the primary controlled evaluation.
 
 ## Current Strengths
 
@@ -119,15 +138,15 @@ Likely reviewer pressure:
 
 ### Option B: Expand to 75 Clips Before Submission
 
-- Benefit: Improves dataset coverage, class diversity, and reviewer confidence
-  that the 50-clip result is not subset-specific.
-- Time/complexity: Medium. Requires selecting/downloading additional shards,
-  rebuilding proxy indexes, optimizing split, checking candidate-order bias, and
-  rerunning the final protocol.
-- Risk reduction: Medium to high.
-- Recommendation: **Recommended if download/storage/time budget allows**. This
-  is the best data-strengthening step and directly addresses the local-subset
-  weakness.
+- Status: Completed.
+- Benefit: Improved dataset scale and class diversity, and showed the protocol
+  remains leakage-safe and order-safe on a larger local subset.
+- Outcome: Top-3 improved, but Top-1, MRR, and pose-vector MAE were weaker than
+  the 50-clip protocol because the split is broader and less balanced.
+- Risk reduction: Medium. It helps address scalability concerns, but it does
+  not remove local-subset or class-coverage limitations.
+- Recommendation: **Report as robustness/scalability analysis**, not as the
+  replacement primary result.
 
 ### Option C: Add MANO/UmeTrack to 3D-Joint Conversion and Report MPJPE
 
@@ -162,17 +181,19 @@ Minimum acceptable path:
 
 Preferred path before Machine Learning with Applications submission:
 
-1. Add either 75-clip expansion or MPJPE-style pose evaluation.
-2. Rerun the final candidate-ranker protocol after the chosen strengthening
-   step.
-3. Update the manuscript result table and limitations.
+1. Use the 50-clip protocol as the primary controlled result.
+2. Report the 75-clip protocol as robustness/scalability analysis.
+3. Add MPJPE-style pose evaluation only if the official conversion dependency
+   path can be solved cleanly.
+4. Complete manuscript polishing, final formatting, and license/citation checks.
 
 Best path if time allows:
 
-1. Expand to 75 clips.
-2. Add MPJPE if official conversion is feasible.
-3. Add one fair external/simple comparative baseline under the same safety
+1. Add MPJPE if official conversion is feasible.
+2. Add one fair external/simple comparative baseline under the same safety
    protocol.
+3. Otherwise, focus on manuscript polish and transparent limitations rather
+   than further data expansion.
 
 ## Current Decision State
 
@@ -181,9 +202,9 @@ Recommendation: **strengthen before submission**.
 Priority order:
 
 1. MANO/UmeTrack-to-3D-joint conversion and MPJPE, if feasible.
-2. 75-clip expansion and final protocol rerun.
-3. Stronger fair baseline.
+2. Manuscript polishing and final formatting with both 50-clip and 75-clip
+   results reported correctly.
+3. Stronger fair baseline, if it can be implemented without leakage.
 
-If time is constrained, Option B is likely the most straightforward next
-experiment. If technical feasibility is good, Option C is the most valuable for
-pose-metric credibility.
+Further data expansion is not recommended unless reviewers request it or a new
+split strategy is designed to improve shared class coverage.

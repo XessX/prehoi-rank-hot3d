@@ -141,7 +141,7 @@ Caption draft:
 observation-frame inputs, stable UID candidate ordering, and position baselines.
 Runs with forecast-frame inputs or target-aware candidate ordering are excluded.
 
-## Fig. 5: Results Summary and 25-Clip Versus 50-Clip Comparison
+## Fig. 5: Results Summary and 25/50/75-Clip Comparison
 
 Status: reviewed draft generated at
 `paper/figures/fig5_25clip_vs_50clip_results.png` and
@@ -149,13 +149,15 @@ Status: reviewed draft generated at
 
 Purpose:
 
-Summarize the key empirical finding: the 50-clip 5-seed protocol improves the
-candidate-ranker diagnostics compared with the earlier 25-clip pilot.
+Summarize the key empirical finding: the 50-clip 5-seed protocol is the primary
+controlled result, while the 75-clip 5-seed protocol is a harder
+robustness/scalability check.
 
 Inputs:
 
 - 25-clip pilot metrics.
 - 50-clip protocol metrics.
+- 75-clip robustness protocol metrics.
 - Candidate-order baseline metrics.
 
 Visual elements:
@@ -170,5 +172,8 @@ Caption draft:
 
 **Figure 5. Candidate-ranker protocol diagnostics.** Expanding from 25 to 50
 local HOT3D-Clips shards improves top-1 candidate accuracy, MRR, and pose-vector
-MAE under the same order-safe candidate-ranking formulation. Results remain
-limited by derived proxy labels and local-subset evaluation.
+MAE under the same order-safe candidate-ranking formulation. The 75-clip
+robustness split increases data scale and class diversity but is harder and less
+balanced; it maintains high top-3 performance while top-1, MRR, and pose-vector
+MAE are weaker than the 50-clip primary protocol. Results remain limited by
+derived proxy labels and local-subset evaluation.

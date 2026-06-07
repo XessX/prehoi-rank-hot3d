@@ -96,3 +96,17 @@ affordance-grounded candidate ranking is the strongest evidence-backed
 formulation in the project so far. It should be treated as a paper-candidate
 result that still requires manuscript-level limitations and, ideally, stronger
 split coverage or a larger local subset before submission.
+
+## 75-Clip Robustness Update
+
+A 75-clip final-protocol candidate-ranker run was completed after this 50-clip
+result. The 75-clip protocol is documented separately in
+`paper/final_candidate_ranker_result_note_75clip.md` and compared in
+`paper/compare_50clip_vs_75clip_results.md`.
+
+The 75-clip run increased proxy samples and eligible classes, but it produced a
+harder, less balanced split. It maintained high Top-3 accuracy while Top-1,
+MRR, and pose-vector MAE were weaker than the 50-clip protocol. The current
+recommendation is to keep this 50-clip result as the primary controlled
+paper-candidate result and report the 75-clip run as robustness/scalability
+analysis.

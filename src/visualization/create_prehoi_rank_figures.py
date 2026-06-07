@@ -250,41 +250,44 @@ def figure_4_protocol_safety():
 
 
 def figure_5_results():
-    fig, ax = plt.subplots(figsize=(10.5, 6.2), dpi=220)
+    fig, ax = plt.subplots(figsize=(11.2, 6.4), dpi=220)
     metrics = ["Top-1", "MRR", "Pose MAE\n(lower better)"]
     vals_25 = [0.5624, 0.7502, 0.4412]
     vals_50 = [0.7499, 0.8605, 0.4102]
+    vals_75 = [0.7115, 0.8340, 0.4676]
     err_25 = [0.0693, 0.0312, 0.0042]
     err_50 = [0.0450, 0.0221, 0.0051]
+    err_75 = [0.0571, 0.0343, 0.0096]
     x = range(len(metrics))
-    width = 0.34
+    width = 0.24
 
-    ax.bar(
-        [i - width / 2 for i in x],
-        vals_25,
-        width=width,
-        yerr=err_25,
-        capsize=4,
-        label="25 clips pilot",
-        color=COLORS["gray"],
-        edgecolor=COLORS["muted"],
-        linewidth=1.2,
-    )
-    ax.bar(
-        [i + width / 2 for i in x],
-        vals_50,
-        width=width,
-        yerr=err_50,
-        capsize=4,
-        label="50 clips protocol",
-        color=COLORS["green_light"],
-        edgecolor=COLORS["green"],
-        linewidth=1.2,
-    )
-
-    for i, (a, b) in enumerate(zip(vals_25, vals_50)):
-        ax.text(i - width / 2, a + 0.018, f"{a:.3f}", ha="center", fontsize=9, color=COLORS["ink"])
-        ax.text(i + width / 2, b + 0.018, f"{b:.3f}", ha="center", fontsize=9, color=COLORS["ink"])
+    series = [
+        ("25 clips pilot", vals_25, err_25, -width, COLORS["gray"], COLORS["muted"]),
+        ("50 clips primary", vals_50, err_50, 0.0, COLORS["green_light"], COLORS["green"]),
+        ("75 clips robustness", vals_75, err_75, width, COLORS["orange_light"], COLORS["orange"]),
+    ]
+    for label, values, errors, offset, face, edge in series:
+        positions = [i + offset for i in x]
+        ax.bar(
+            positions,
+            values,
+            width=width,
+            yerr=errors,
+            capsize=4,
+            label=label,
+            color=face,
+            edgecolor=edge,
+            linewidth=1.2,
+        )
+        for position, value, error in zip(positions, values, errors):
+            ax.text(
+                position,
+                value + error + 0.018,
+                f"{value:.3f}",
+                ha="center",
+                fontsize=8,
+                color=COLORS["ink"],
+            )
 
     ax.set_title("PreHOI-Rank candidate-ranker diagnostics", fontsize=15, weight="bold")
     ax.set_ylabel("Metric value")
@@ -296,7 +299,7 @@ def figure_5_results():
     ax.text(
         0.5,
         -0.16,
-        "Mean +/- std over repeated seeds. Derived proxy labels; local HOT3D-Clips subset.",
+        "Mean +/- std over repeated seeds. 50 clips is primary; 75 clips is a harder robustness split.",
         ha="center",
         va="top",
         transform=ax.transAxes,

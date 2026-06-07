@@ -5,9 +5,11 @@ Date: 2026-06-08.
 
 ## Short Answer
 
-Do **not** submit immediately. The current 50-clip five-seed result is strong
-enough to support the PreHOI-Rank direction, but the paper should be
-strengthened before submission to Machine Learning with Applications.
+Do **not** submit immediately. The current 50-clip five-seed result remains the
+primary controlled result, and the completed 75-clip run should be reported as a
+robustness/scalability check. The paper now needs manuscript polishing, final
+formatting, and final citation/license verification more than another round of
+data expansion.
 
 ## Minimum Next Action
 
@@ -17,49 +19,49 @@ Complete a final manuscript hygiene pass:
 - confirm all citation placeholders are resolved or intentionally removed,
 - ensure every figure/table is referenced,
 - keep proxy labels described as derived proxy labels,
-- keep all results tied to the 50-clip local subset,
+- keep the primary result tied to the 50-clip local subset,
+- report the 75-clip result only as robustness/scalability analysis,
 - update the checklist after the decision audit.
 
-This minimum path is enough to keep the project defensible, but it does not
-fully reduce the major reviewer risks.
+This minimum path is enough to keep the project defensible, but MPJPE and a
+stronger fair baseline remain possible reviewer asks.
 
 ## Best Next Action
 
-Attempt MANO/UmeTrack-to-3D-joint conversion and report MPJPE-style metrics.
+Polish the manuscript and final submission package around the current evidence,
+while attempting MANO/UmeTrack-to-3D-joint conversion only if the official
+dependency/assets path can be solved cleanly.
 
 Reason:
 
-- MPJPE is more recognizable than MANO/UmeTrack pose-vector MAE.
-- It strengthens the pose-forecasting side of the paper.
-- It addresses one of the clearest technical weaknesses without changing the
-  main candidate-ranking claim.
+- The 75-clip expansion is already complete and did not replace the 50-clip
+  primary result.
+- MPJPE would strengthen the pose-forecasting side, but it should not be faked
+  or rushed.
+- The biggest practical need is now to present the 50-clip primary and 75-clip
+  robustness results clearly and conservatively.
 
-If MPJPE conversion becomes too slow or blocked by tooling/license details,
-switch to the 75-clip expansion path.
+If MPJPE conversion remains blocked by tooling/license details, keep pose
+evaluation as MANO pose-parameter vector MAE/MSE and document that limitation.
 
 ## Strong Practical Alternative
 
-Expand from 50 to about 75 HOT3D-Clips shards and rerun the final candidate
-ranker protocol.
+Add one stronger comparative baseline under the exact same safety protocol.
 
 Reason:
 
-- It directly addresses local-subset concerns.
-- It improves class/split coverage.
-- It uses infrastructure that already works.
+- It would reduce concern that the method only beats position baselines and
+  internal pilots.
+- It must use observation-window inputs only, `candidate_order: stable_uid`,
+  clip-level splits, and derived proxy labels.
 
 ## Optional Later Action
 
-Add one stronger comparative baseline under the exact same safety protocol:
+Further data expansion beyond 75 clips:
 
-- observation-window inputs only,
-- `candidate_order: stable_uid`,
-- clip-level split,
-- no forecast-frame input,
-- derived proxy labels only.
-
-This is valuable, but it should not be rushed if the baseline would be unfair,
-weakly implemented, or leakage-prone.
+- should not be pursued now unless reviewers request it,
+- should only be done with a split strategy that improves shared class coverage,
+- should not distract from final manuscript quality.
 
 ## What Not To Do
 
@@ -69,21 +71,21 @@ weakly implemented, or leakage-prone.
   repeated-seed results improve.
 - Do not add an external baseline that violates the same leakage/order-safety
   protocol.
-- Do not expand figures or prose into claims that the current 50-clip subset
-  cannot support.
+- Do not claim the 75-clip run improves the main metric; it is a harder
+  robustness check.
 
 ## Recommendation
 
 Best route:
 
-1. Try MPJPE conversion.
-2. If feasible, report MPJPE and update Methods/Results.
-3. If blocked, expand to 75 clips and rerun the final protocol.
-4. After one of those strengthening steps, perform final formatting and journal
-   route verification.
+1. Use the 50-clip result as the primary controlled result.
+2. Include the 75-clip result as robustness/scalability analysis.
+3. Try MPJPE conversion only if the official dependency path is clean.
+4. Perform final manuscript polishing, formatting, and journal route
+   verification.
 
 Fallback route:
 
-1. Submit with the 50-clip result only if time is constrained.
-2. Make the local-subset/proxy-label limitations explicit in the abstract,
-   results, discussion, and cover letter.
+1. Submit with 50-clip primary plus 75-clip robustness if time is constrained.
+2. Make the local-subset/proxy-label/class-imbalance limitations explicit in
+   the abstract, results, discussion, and cover letter.

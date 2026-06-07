@@ -60,9 +60,13 @@ dataset frames. The script exports both 300-DPI PNG files and PDF versions.
 
 - PNG: `paper/figures/fig5_25clip_vs_50clip_results.png`
 - PDF: `paper/figures/fig5_25clip_vs_50clip_results.pdf`
-- Purpose: Compare the earlier 25-clip pilot with the 50-clip 5-seed protocol.
+- Purpose: Compare the earlier 25-clip pilot, the 50-clip primary protocol, and
+  the 75-clip robustness protocol.
 - Caption draft: **Figure 5. Candidate-ranker protocol diagnostics.** Expanding
   from 25 to 50 local HOT3D-Clips shards improves top-1 candidate accuracy, MRR,
   and pose-vector MAE under the same order-safe candidate-ranking formulation.
-  Bars show mean values with seed-standard-deviation error bars. Results remain
+  The 75-clip robustness split increases data scale and class diversity but is
+  harder and less balanced; it maintains high top-3 performance while top-1,
+  MRR, and pose-vector MAE are weaker than the 50-clip primary protocol. Bars
+  show mean values with seed-standard-deviation error bars. Results remain
   limited by derived proxy labels and local-subset evaluation.

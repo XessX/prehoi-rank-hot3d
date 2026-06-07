@@ -140,8 +140,10 @@ features or evaluation design at prediction time [@kaufman2012leakage].
 We use HOT3D-Clips as the current data source [@hot3d2025],
 [@hot3dclips2026]. HOT3D-Clips provides curated HOT3D subsequences in
 WebDataset shard format, including image streams and per-frame annotations for
-hands, objects, cameras, and metadata. The current experiments use a local
-subset of 50 downloaded shards, not the complete HOT3D or HOT3D-Clips release.
+hands, objects, cameras, and metadata. The primary controlled experiment uses a
+local subset of 50 downloaded shards, not the complete HOT3D or HOT3D-Clips
+release. A later 75-clip expansion is reported as a robustness/scalability
+analysis rather than as the main result.
 
 The local subset contains 6500 proxy-labeled samples before optimized
 class-based filtering. After filtering and optimized clip-level splitting, the
@@ -344,12 +346,13 @@ metrics.
 
 The 50-clip protocol improves over the earlier 25-clip pilot:
 
-| Setting | Top-1 | MRR | Pose MAE |
-| --- | ---: | ---: | ---: |
-| 25-clip, 3-seed pilot | 0.5624 | 0.7502 | 0.4412 |
-| 50-clip, 5-seed protocol | 0.7499 | 0.8605 | 0.4102 |
+| Setting | Top-1 | Top-3 | MRR | Pose MAE |
+| --- | ---: | ---: | ---: | ---: |
+| 25-clip, 3-seed pilot | 0.5624 | not reported | 0.7502 | 0.4412 |
+| 50-clip, 5-seed primary protocol | 0.7499 +/- 0.0450 | 0.9699 +/- 0.0161 | 0.8605 +/- 0.0221 | 0.4102 +/- 0.0051 |
 
-Figure 5 visualizes this comparison.
+Figure 5 visualizes this comparison together with the 75-clip robustness
+analysis described below.
 
 [Figure 5 here: `paper/figures/fig5_25clip_vs_50clip_results.png`; PDF
 version: `paper/figures/fig5_25clip_vs_50clip_results.pdf`.]
@@ -358,7 +361,29 @@ The improvement suggests that data expansion and split quality materially
 affect this task. It does not establish final generalization to the complete
 HOT3D release.
 
-### 7.3 Exploratory Ablations
+### 7.3 Robustness Analysis on a 75-Clip Expansion
+
+We also expanded the local HOT3D-Clips subset to 75 shards and reran the same
+five-seed candidate-ranker protocol. The expansion increased the proxy sample
+count from 6500 to 9750 and increased the optimized eligible proxy classes from
+23 to 30. However, the resulting split was broader and harder: validation and
+test still missed some eligible classes, and the number of classes shared across
+train, validation, and test decreased from 20 in the 50-clip protocol to 17 in
+the 75-clip protocol.
+
+| Setting | Top-1 | Top-3 | MRR | Pose MAE |
+| --- | ---: | ---: | ---: | ---: |
+| 50-clip, primary protocol | 0.7499 +/- 0.0450 | 0.9699 +/- 0.0161 | 0.8605 +/- 0.0221 | 0.4102 +/- 0.0051 |
+| 75-clip, robustness protocol | 0.7115 +/- 0.0571 | 0.9789 +/- 0.0009 | 0.8340 +/- 0.0343 | 0.4676 +/- 0.0096 |
+
+The 75-clip protocol maintained high Top-3 performance and had a lower
+candidate-0 position baseline on the test split. At the same time, Top-1, MRR,
+and pose-vector MAE were weaker than the cleaner 50-clip protocol. We therefore
+use the 50-clip protocol as the primary controlled evaluation and report the
+75-clip protocol as a robustness/scalability analysis showing behavior under a
+larger but less balanced local subset.
+
+### 7.4 Exploratory Ablations
 
 During development, metadata-only, object-aware, image-statistics, frozen-CLIP,
 candidate-ranker, vision-language candidate-ranker, PreHOI-Former v1, and
@@ -403,9 +428,11 @@ interaction intent differs from closest-object geometry.
 
 ### Local 50-Clip Subset
 
-The current result uses 50 local HOT3D-Clips shards, not the full dataset.
-Although the 50-clip subset improves over the 25-clip pilot, full-dataset or
-larger-subset evaluation is needed before broad generalization claims.
+The primary result uses 50 local HOT3D-Clips shards, not the full dataset. A
+75-clip robustness run was also completed, but it introduced a harder and less
+balanced split and did not replace the 50-clip result as the primary controlled
+evaluation. Full-dataset or larger-subset evaluation is still needed before
+broad generalization claims.
 
 ### Residual Class Imbalance
 
