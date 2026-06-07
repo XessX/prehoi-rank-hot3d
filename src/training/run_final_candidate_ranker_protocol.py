@@ -31,6 +31,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=Path("configs/hot3d_candidate_ranker.yaml"))
     parser.add_argument("--model", default="candidate_ranker_non_vl", choices=["candidate_ranker_non_vl"])
     parser.add_argument("--seeds", type=int, nargs="+", default=[42, 123, 2026, 7, 99])
+    parser.add_argument(
+        "--run-tag",
+        default="",
+        help=(
+            "Optional output tag, for example '75clip'. When set, outputs are written "
+            "to results/logs/final_protocol_<tag>/ and "
+            "results/tables/final_candidate_ranker_summary_<tag>.csv."
+        ),
+    )
     parser.add_argument("--logs-dir", type=Path, default=Path("results/logs/final_protocol"))
     parser.add_argument(
         "--summary-csv",
@@ -39,6 +48,20 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--dry-run", action="store_true", help="Print the planned workflow without training.")
     return parser.parse_args()
+
+
+def sanitize_run_tag(tag: str) -> str:
+    cleaned = "".join(char if char.isalnum() or char in ("-", "_") else "_" for char in tag.strip())
+    return cleaned.strip("_")
+
+
+def apply_run_tag_defaults(args: argparse.Namespace) -> argparse.Namespace:
+    tag = sanitize_run_tag(str(args.run_tag))
+    args.run_tag = tag
+    if tag:
+        args.logs_dir = Path(f"results/logs/final_protocol_{tag}")
+        args.summary_csv = Path(f"results/tables/final_candidate_ranker_summary_{tag}.csv")
+    return args
 
 
 def require_path(path: Path, label: str) -> None:
@@ -99,6 +122,7 @@ def build_plan(args: argparse.Namespace, config: dict[str, Any]) -> dict[str, An
         "candidate_order": config.get("candidate_order"),
         "input_safety_required": "input_uses_forecast_frame=false",
         "seeds": args.seeds,
+        "run_tag": args.run_tag or None,
         "logs_dir": str(args.logs_dir),
         "summary_csv": str(args.summary_csv),
         "split_summaries": split_summaries,
@@ -111,7 +135,9 @@ def build_plan(args: argparse.Namespace, config: dict[str, Any]) -> dict[str, An
             "python src/datasets/check_hot3d_candidate_order_bias.py "
             "--index data/processed/hot3d_clips_test_optimized.json --candidate-order stable_uid",
             "python src/training/run_final_candidate_ranker_protocol.py "
-            "--seeds " + " ".join(str(seed) for seed in args.seeds),
+            "--seeds "
+            + " ".join(str(seed) for seed in args.seeds)
+            + (f" --run-tag {args.run_tag}" if args.run_tag else ""),
         ],
     }
 
@@ -151,7 +177,7 @@ def run_protocol(args: argparse.Namespace) -> list[dict[str, Any]]:
 
 
 def main() -> None:
-    args = parse_args()
+    args = apply_run_tag_defaults(parse_args())
     config = load_and_validate_config(args.config)
     plan = build_plan(args, config)
     assert_split_safety(plan)

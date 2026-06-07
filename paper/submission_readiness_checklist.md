@@ -6,10 +6,12 @@ not a completed journal submission.
 
 ## Data and Experimental Scope
 
-- [ ] Decide whether the 50-clip local HOT3D-Clips subset is acceptable for the
-      first submission or whether to expand to 75 clips.
-- [ ] If expanding, rerun proxy indexing, split optimization, split-quality
-      checks, candidate-order diagnostics, and final-protocol training.
+- [ ] Decide whether the 50-clip local HOT3D-Clips subset remains the primary
+      result or whether to report both 50-clip and 75-clip protocols.
+- [x] Expanded to 75 clips and reran proxy indexing, split optimization,
+      split-quality checks, candidate-order diagnostics, image-stat feature
+      refresh, and final-protocol candidate-ranker training.
+- [ ] Final 50-vs-75 manuscript decision pending.
 - [ ] Resolve or explicitly discuss remaining class-coverage warnings.
 - [ ] Verify HOT3D-Clips license/access terms and add a dataset access note.
 - [ ] Confirm downloaded data remains ignored by Git.
@@ -82,6 +84,9 @@ not a completed journal submission.
 - Working title: done.
 - Candidate-ranking method framing: done.
 - 50-clip final-protocol candidate-ranker run: done.
+- 75-clip final-protocol candidate-ranker run: completed; comparison note
+  created, with recommendation to treat it as a harder robustness check rather
+  than an automatic replacement for the 50-clip result.
 - First manuscript draft: expanded journal-style draft created.
 - Manuscript quality audit: completed; revision log created.
 - Related work: expanded draft started, citations incomplete.
