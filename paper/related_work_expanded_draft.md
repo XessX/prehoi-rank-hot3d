@@ -41,9 +41,9 @@ before making stronger pose-estimation claims.
 
 Egocentric video datasets such as FPHA and EPIC-KITCHENS have helped frame hand
 action recognition and action anticipation from first-person observations
-[@fpha2018], [EPIC-KITCHENS]. AssemblyHands focuses on egocentric 3D hand pose for
+[@fpha2018], [@epickitchens2020]. AssemblyHands focuses on egocentric 3D hand pose for
 activity understanding, showing the value of accurate hand pose annotations in
-challenging hand-object settings [AssemblyHands]. These works motivate
+challenging hand-object settings [@assemblyhands2023]. These works motivate
 pre-contact forecasting, where the system must reason about what the wearer is
 likely to do before the action is fully observed.
 
@@ -57,7 +57,7 @@ hand-object geometry is predictive of the derived future target-object proxy.
 Hand-object interaction is strongly shaped by contact, reachability, and object
 affordances. Datasets and methods that study contact or affordance reasoning
 provide useful context for interpreting hand-object proximity as a signal
-[Affordance reasoning]. However, the current PreHOI-Rank labels are not
+[contactposeTODO]. However, the current PreHOI-Rank labels are not
 human-annotated contact labels. They are derived proxy labels based on
 forecast-frame hand-object proximity.
 
@@ -82,7 +82,7 @@ ordering controls. In this project, ranking is trained with a candidate-index
 target derived from the forecast-frame proxy, while all candidate features come
 from the observation window. Additional citations are still needed for active
 object prediction, proposal ranking, and object-interaction candidate scoring
-[ActiveObjectRanking], [CandidateRankingLoss].
+[activeObjectRankingTODO], [candidateRankingLossTODO].
 
 ## Leakage-Safe Evaluation in Temporal Forecasting
 
@@ -100,7 +100,7 @@ raw/as-is order, proxy-score order, or target-aware order are excluded. The
 paper reports candidate-0, first-3, random-candidate, and position-only MRR
 baselines to distinguish model performance from candidate-position bias.
 Dedicated citations are still needed for temporal leakage and split design in
-video forecasting [Temporal leakage].
+video forecasting [temporalLeakageTODO].
 
 ## Vision-Language Models and Exploratory Ablations
 

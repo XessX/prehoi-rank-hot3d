@@ -12,12 +12,13 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Tentative citation key: `HOT3D`
 - Title: HOT3D: Hand and Object Tracking in 3D from Egocentric Multi-View Videos
 - Authors: Prithviraj Banerjee; Sindi Shkodrani; Pierre Moulon; Shreyas
-  Hampali; Fan Zhang; Jade Fountain; Edward Miller; Selen Basol; Richard
-  Newcombe; Robert Wang; Jakob Julian Engel; Tomas Hodan
-- Venue/year: CVPR 2025
+  Hampali; Shangchen Han; Fan Zhang; Linguang Zhang; Jade Fountain; Edward
+  Miller; Selen Basol; Richard Newcombe; Robert Wang; Jakob Julian Engel;
+  Tomas Hodan
+- Venue/year: CVPR 2025, pages 7061--7071
 - Why relevant: Primary dataset paper for HOT3D, the source dataset behind
   HOT3D-Clips and the annotations used by PreHOI-Rank.
-- Source URL: https://openaccess.thecvf.com/content/CVPR2025/papers/Banerjee_HOT3D_Hand_and_Object_Tracking_in_3D_from_Egocentric_Multi-View_CVPR_2025_paper.pdf
+- Source URL: https://openaccess.thecvf.com/content/CVPR2025/html/Banerjee_HOT3D_Hand_and_Object_Tracking_in_3D_from_Egocentric_Multi-View_CVPR_2025_paper.html
 - Status: verified
 
 ### HOT3D Toolkit
@@ -39,14 +40,13 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Tentative citation key: `HOT3DClips`
 - Title: HOT3D-Clips
 - Authors: HOT3D toolkit maintainers
-- Venue/year: Official HOT3D toolkit documentation, accessed 2026-06-06
+- Venue/year: Official HOT3D toolkit documentation, accessed 2026-06-08
 - Why relevant: Defines the WebDataset/HOT3D-Clips format used in this
   repository. The official docs describe HOT3D-Clips as curated HOT3D
   sub-sequences, 150 frames per clip, hosted on Hugging Face, and used in BOP
   Challenge 2024 and the Multiview Egocentric Hand Tracking Challenge.
 - Source URL: https://github.com/facebookresearch/hot3d/blob/main/hot3d/clips/README.md
-- Status: verified as documentation; formal standalone citation needs
-  verification.
+- Status: verified as documentation; no formal standalone citation found yet.
 
 ### BOP Challenge 2024
 
@@ -75,7 +75,7 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Venue/year: CVPR 2021
 - Why relevant: Major hand-object dataset for grasping, 6D object pose, and 3D
   hand pose benchmarks; useful comparison/backup dataset context.
-- Source URL: https://dex-ycb.github.io/
+- Source URL: https://openaccess.thecvf.com/content/CVPR2021/html/Chao_DexYCB_A_Benchmark_for_Capturing_Hand_Grasping_of_Objects_CVPR_2021_paper.html
 - Status: verified
 
 ### HO-3D / HOnnotate
@@ -86,7 +86,7 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Venue/year: CVPR 2020
 - Why relevant: Introduces HO-3D, a canonical hand-object 3D pose dataset used
   for comparison in HOT3D and related work.
-- Source URL: https://arxiv.org/abs/1907.01481
+- Source URL: https://openaccess.thecvf.com/content_CVPR_2020/html/Hampali_HOnnotate_A_Method_for_3D_Annotation_of_Hand_and_Object_CVPR_2020_paper.html
 - Status: verified
 
 ### HO-3D v3
@@ -119,12 +119,13 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Tentative citation key: `AssemblyHands`
 - Title: AssemblyHands: Towards Egocentric Activity Understanding via 3D Hand
   Pose Estimation
-- Authors: TBD
-- Venue/year: arXiv/project page, 2023
+- Authors: Takehiko Ohkawa; Kun He; Fadime Sener; Tomas Hodan; Luan Tran;
+  Cem Keskin
+- Venue/year: CVPR 2023
 - Why relevant: Large egocentric 3D hand pose dataset connected to activity
   understanding and challenging hand-object interactions.
 - Source URL: https://assemblyhands.github.io/
-- Status: partially verified; authors/venue need verification.
+- Status: verified
 
 ### HOI4D
 
@@ -148,13 +149,13 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Venue/year: ACM Transactions on Graphics / SIGGRAPH Asia 2017
 - Why relevant: Introduces MANO, the hand model used by HOT3D annotations and
   future pose-vector targets.
-- Source URL: https://arxiv.org/abs/2201.02610
-- Status: verified
+- Source URL: https://is.mpg.de/ps/publications/embodiedhands
+- Status: verified from MPI/MANO publication page and DOI.
 
 ### UmeTrack
 
 - Tentative citation key: `UmeTrack`
-- Title: UmeTrack: Unified multi-view end-to-end hand tracking for VR
+- Title: UmeTrack: Unified Multi-view End-to-end Hand Tracking for VR
 - Authors: Shangchen Han; Po-chen Wu; Yubo Zhang; Beibei Liu; Linguang Zhang;
   Zheng Wang; Weiguang Si; Peizhao Zhang; Yujun Cai; Tomas Hodan; Randi
   Cabezas; Luan Tran; Muzaffer Akbay; Tsz-Ho Yu; Cem Keskin; Robert Wang
@@ -162,7 +163,7 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 - Why relevant: HOT3D includes UmeTrack hand representation; relevant for pose
   target interpretation and future 3D joint conversion.
 - Source URL: https://arxiv.org/abs/2211.00099
-- Status: verified
+- Status: verified from arXiv and DOI metadata.
 
 ## Egocentric Hand-Object Interaction Understanding
 
@@ -170,13 +171,15 @@ project page, publisher page, arXiv page, or repository page. Entries marked
 
 - Tentative citation key: `EPICKitchens`
 - Title: The EPIC-KITCHENS Dataset: Collection, Challenges and Baselines
-- Authors: Dima Damen et al.
-- Venue/year: TPAMI preprint / arXiv, 2020
+- Authors: Dima Damen; Hazel Doughty; Giovanni Maria Farinella; Sanja Fidler;
+  Antonino Furnari; Evangelos Kazakos; Davide Moltisanti; Jonathan Munro;
+  Toby Perrett; Will Price; Michael Wray
+- Venue/year: IEEE Transactions on Pattern Analysis and Machine Intelligence,
+  2021
 - Why relevant: Major egocentric video dataset with action recognition,
   detection, and anticipation tasks; useful context for egocentric forecasting.
-- Source URL: https://arxiv.org/abs/2005.00343
-- Status: partially verified; complete author list and final venue should be
-  verified.
+- Source URL: https://epic-kitchens.github.io/2022.html
+- Status: verified
 
 ### EPIC-KITCHENS VISOR
 

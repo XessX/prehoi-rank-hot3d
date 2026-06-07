@@ -50,16 +50,16 @@ Use this checklist before converting citation placeholders into BibTeX.
 
 ## Current Placeholder Keys to Resolve
 
-- [ ] `[HOT3D]`
-- [ ] `[HOT3D-Clips]`
-- [ ] `[MANO]`
-- [ ] `[UmeTrack]`
-- [ ] `[DexYCB]`
-- [ ] `[HO3D]`
-- [ ] `[AssemblyHands]`
-- [ ] `[FPHA]`
-- [ ] `[EPIC-KITCHENS]`
-- [ ] `[CLIP]`
+- [x] `[HOT3D]`
+- [ ] `[HOT3D-Clips]` formal standalone citation, if one exists.
+- [x] `[MANO]`
+- [x] `[UmeTrack]`
+- [x] `[DexYCB]`
+- [x] `[HO3D]`
+- [x] `[AssemblyHands]`
+- [x] `[FPHA]`
+- [x] `[EPIC-KITCHENS]`
+- [x] `[CLIP]`
 - [ ] `[Temporal leakage]`
 - [ ] `[Affordance reasoning]`
 - [ ] `[ActiveObjectRanking]`
@@ -69,22 +69,22 @@ Use this checklist before converting citation placeholders into BibTeX.
 
 | Citation Key | Verified | Source Checked | Remaining Action |
 | --- | --- | --- | --- |
-| `@hot3d2025` | yes | CVF Open Access HOT3D paper | Recheck final BibTeX formatting before submission. |
-| `@hot3dtoolkit2026` | partial | Official GitHub toolkit | Verify formal software citation recommendation. |
-| `@hot3dclips2026` | partial | Official HOT3D-Clips README | Verify formal standalone citation recommendation. |
-| `@bop2024` | yes | arXiv page | Cite only if BOP/HOT3D-Clips challenge context remains. |
-| `@dexycb2021` | yes | Official DexYCB project page | Recheck final BibTeX formatting. |
-| `@ho3d2020` | yes | arXiv page and HO-3D repository citation | Recheck final BibTeX formatting. |
-| `@ho3dv32021` | yes | arXiv page | Use only if discussing HO-3D v3/contact-region accuracy. |
-| `@fpha2018` | yes | Official FPHA project page | Recheck final BibTeX formatting. |
-| `@assemblyhands2023` | no | Project page title checked | Verify authors, venue, and BibTeX. |
-| `@mano2017` | yes | arXiv metadata with journal DOI | Recheck final journal formatting. |
-| `@umetrack2022` | yes | arXiv and citation page | Recheck exact author capitalization. |
-| `@epickitchens2020` | partial | arXiv page | Verify complete author list and final venue. |
-| `@clip2021` | yes | arXiv/Hugging Face paper metadata | Recheck ICML proceedings formatting. |
-| `@mlwa2026` | yes | ScienceDirect journal page | Internal note only; not likely a manuscript citation. |
-| `@activeObjectRankingTODO` | no | none | Find verified active-object/candidate-ranking paper. |
-| `@candidateRankingLossTODO` | no | none | Find verified ranking/loss reference if needed. |
-| `@temporalLeakageTODO` | no | none | Find verified temporal leakage or split-design reference. |
-| `@contactposeTODO` | no | none | Verify ContactPose or another affordance/contact source. |
-| `@openclipTODO` | no | none | Verify software citation if OpenCLIP remains in paper. |
+| `@hot3d2025` | verified | CVF Open Access HOT3D paper | Complete; recheck journal style before submission. |
+| `@hot3dtoolkit2026` | partially verified | Official GitHub toolkit | No formal software citation found; cite with HOT3D paper unless toolkit citation is later provided. |
+| `@hot3dclips2026` | partially verified | Official HOT3D-Clips README and Hugging Face dataset README | No formal standalone citation found; cite with HOT3D paper unless standalone citation is later provided. |
+| `@bop2024` | verified | arXiv page | Cite only if BOP/HOT3D-Clips challenge context remains. |
+| `@dexycb2021` | verified | CVF Open Access paper page | Complete; recheck journal style before submission. |
+| `@ho3d2020` | verified | CVF Open Access paper page | Complete; recheck journal style before submission. |
+| `@ho3dv32021` | verified | arXiv page | Use only if discussing HO-3D v3/contact-region accuracy. |
+| `@fpha2018` | verified | CVF Open Access paper page and author project page | Complete; recheck journal style before submission. |
+| `@assemblyhands2023` | verified | Official AssemblyHands project page and arXiv | Complete; recheck journal style before submission. |
+| `@mano2017` | verified | MPI/MANO publication page with DOI and BibTeX | Complete; recheck journal style before submission. |
+| `@umetrack2022` | verified | arXiv and DOI metadata | Complete; recheck journal style before submission. |
+| `@epickitchens2020` | verified | Official EPIC-KITCHENS citation page and PubMed DOI record | Complete; recheck journal style before submission. |
+| `@clip2021` | verified | PMLR ICML paper page | Complete; recheck journal style before submission. |
+| `@mlwa2026` | verified | ScienceDirect journal page | Internal note only; not likely a manuscript citation. |
+| `@activeObjectRankingTODO` | unresolved | none selected | Find verified active-object/candidate-ranking paper or remove placeholder. |
+| `@candidateRankingLossTODO` | unresolved | none selected | Find verified ranking/loss reference if needed. |
+| `@temporalLeakageTODO` | unresolved | none selected | Find verified temporal leakage or split-design reference. |
+| `@contactposeTODO` | unresolved | none selected | Verify ContactPose or another affordance/contact source. |
+| `@openclipTODO` | unresolved | none selected | Verify software citation if OpenCLIP remains in paper or supplement. |
