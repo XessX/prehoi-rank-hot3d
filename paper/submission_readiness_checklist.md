@@ -18,8 +18,11 @@ not a completed journal submission.
 
 - [ ] Keep target-object labels described as derived proxy labels, not ground
       truth.
-- [ ] Decide whether to convert MANO/UmeTrack pose parameters to 3D joints.
-- [ ] Add MPJPE-style pose metrics if conversion is feasible.
+- [x] Check MANO/UmeTrack-to-3D-joint conversion feasibility:
+      `paper/hand_pose_conversion_feasibility.md`.
+- [ ] Decide whether to install official hand-conversion dependencies and
+      licensed MANO/UmeTrack assets.
+- [ ] Add MPJPE-style pose metrics if conversion is validated.
 - [ ] Report proxy confidence statistics in the manuscript.
 - [ ] Include candidate-position baselines next to ranking metrics.
 
@@ -85,6 +88,8 @@ not a completed journal submission.
 - Figures: reviewed draft versions generated with PNG and PDF exports.
 - Submission decision audit: completed; current recommendation is to strengthen
   before submission, preferably with MPJPE if feasible or 75-clip expansion.
+- Hand pose conversion feasibility: checked. MPJPE is feasible with official
+  dependencies/assets but blocked locally until that path is validated.
 - Journal route verification: started; APC/Research4Life status not final.
 - Cover letter and data/code availability drafts: started.
 - Final formatting: pending.
