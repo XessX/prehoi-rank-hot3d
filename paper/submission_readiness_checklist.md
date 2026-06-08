@@ -42,6 +42,8 @@ not a completed journal submission.
 - [x] Create expanded journal-style manuscript draft.
 - [x] Complete manuscript quality audit.
 - [x] Complete full consistency audit after the 75-clip robustness update.
+- [x] Assemble pre-submission package:
+      `paper/submission_package/`.
 - [ ] Complete related-work citations.
 - [ ] Replace all `[Citation needed]` and `[REF-*]` placeholders.
 - [x] Generate Fig. 1 problem overview.
@@ -54,7 +56,7 @@ not a completed journal submission.
 - [ ] Add dataset license/access note.
 - [x] Add ethics and data-use note.
 - [x] Add threats-to-validity section or expand limitations.
-- [ ] Add author contribution statement.
+- [x] Add author contribution statement.
 - [x] Add data/code availability statement.
 
 ## Journal and Submission Logistics
@@ -76,7 +78,12 @@ not a completed journal submission.
       `paper/cover_letter_draft_prehoi_rank.md`.
 - [x] Prepare data/code availability draft:
       `paper/data_code_availability_draft.md`.
-- [ ] Prepare highlights if required.
+- [x] Prepare highlights draft:
+      `paper/submission_package/highlights.md`.
+- [x] Prepare conflict of interest, funding, and ethics/data-use statement
+      drafts in `paper/submission_package/`.
+- [ ] Confirm author names, affiliations, author contributions, conflict of
+      interest statement, and funding statement.
 - [ ] Prepare graphical abstract if required.
 - [ ] Confirm all tables and figures are cited in text.
 - [ ] Confirm generated logs/checkpoints are not committed.
@@ -94,12 +101,16 @@ not a completed journal submission.
 - Manuscript quality audit: completed; revision log created.
 - Related work: expanded draft started, citations incomplete.
 - Figures: reviewed draft versions generated with PNG and PDF exports.
+- Pre-submission package: assembled under `paper/submission_package/`; not yet
+  submission-ready.
 - Submission decision audit: completed; current recommendation is to keep the
   50-clip result primary, report the 75-clip result as robustness analysis, and
   strengthen further only with validated MPJPE or a fair baseline if feasible.
 - Hand pose conversion feasibility: checked. MPJPE is feasible with official
   dependencies/assets but blocked locally until that path is validated.
 - Journal route verification: started; APC/Research4Life status not final.
-- Cover letter and data/code availability drafts: started.
+- Cover letter, highlights, contribution, ethics/data-use, conflict of
+  interest, funding, and data/code availability drafts: started.
+- Author information and author confirmations: pending.
 - Final formatting: pending.
 - Submission-ready status: not yet.
