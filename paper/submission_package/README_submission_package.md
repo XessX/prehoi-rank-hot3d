@@ -30,10 +30,34 @@ Backup journal: PLOS ONE.
 - Pose metrics: MANO/UmeTrack pose-parameter vector MAE/MSE; MPJPE is not reported.
 - Vision-language and PreHOI-Former variants: exploratory only.
 
+## Official Verification Snapshot
+
+Checked on 2026-06-09 from official/authoritative pages:
+
+- Machine Learning with Applications is an Elsevier open-access journal focused
+  on machine learning research and applications.
+- The ScienceDirect journal page listed an APC of USD 2,460 excluding taxes at
+  the time of checking.
+- Elsevier Research4Life/waiver handling depends on the final author-group
+  countries, institutional agreements, and exact author affiliations.
+- HOT3D-Clips is documented by the official HOT3D Toolkit as a curated HOT3D
+  WebDataset subset.
+- The HOT3D-Clips README points to the full HOT3D license. The license agreement
+  identifies sequence/non-hand annotations as CC BY-SA, hand annotations as
+  CC BY-NC-SA, and object model data as CC BY-SA with an added no-sale/product
+  incorporation restriction.
+
+These checks do not replace final author-side verification immediately before
+submission.
+
 ## Not Submission-Ready Until
 
 - Author names, affiliations, and contributions are finalized.
 - Conflict of interest and funding statements are confirmed by all authors.
-- HOT3D-Clips license/access wording is rechecked against official sources.
-- Machine Learning with Applications formatting/APC/Research4Life route is verified.
-- Citation placeholders and optional unresolved citations are reviewed one final time.
+- HOT3D-Clips license/access wording is rechecked against official sources for
+  the exact submitted manuscript and release artifacts.
+- Machine Learning with Applications formatting, APC/tax status, institutional
+  agreement coverage, and Research4Life route are verified using the final
+  author list.
+- Citation placeholders and optional unresolved citations are reviewed one final
+  time after formatting and author details are inserted.
