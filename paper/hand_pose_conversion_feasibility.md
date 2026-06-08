@@ -217,4 +217,6 @@ Fallback if conversion takes too long:
 
 - Keep the current pose-vector MAE/MSE as an auxiliary diagnostic.
 - State clearly in the manuscript that MPJPE is future work.
-- Switch to the 75-clip expansion path for submission strengthening.
+- The 75-clip expansion path has been completed and should be treated as a
+  robustness/scalability analysis. Do not use it to hide the unresolved MPJPE
+  limitation.

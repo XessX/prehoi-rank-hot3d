@@ -10,11 +10,12 @@ WebDataset shards, object models, annotations, or any restricted dataset files.
 Readers should obtain HOT3D-Clips directly from the official dataset provider
 and follow the provider's license, access, and usage terms.
 
-The local experiments reported in the current draft use a 50-clip HOT3D-Clips
-subset. The selected clip IDs, split-generation procedure, derived proxy-label
-procedure, and inspection commands should be documented so that authorized
-users can regenerate the sample indexes from their own downloaded copy of the
-dataset.
+The primary local experiments reported in the current draft use a 50-clip
+HOT3D-Clips subset. A 75-clip local expansion is reported as
+robustness/scalability analysis. The selected clip IDs, split-generation
+procedure, derived proxy-label procedure, and inspection commands should be
+documented so that authorized users can regenerate the sample indexes from their
+own downloaded copy of the dataset.
 
 ## Derived Sample Indexes and Proxy Labels
 
@@ -52,8 +53,8 @@ explicitly allowed and useful.
 
 Trained checkpoints, metrics logs, and summary tables may be shared if allowed
 by the dataset terms and if they do not reveal restricted dataset content. If
-shared, they should be clearly marked as produced from the 50-clip local subset
-and derived proxy-label protocol.
+shared, they should be clearly marked as produced from the documented local
+subsets and derived proxy-label protocol.
 
 ## Human-Subject and Private Data Statement
 
@@ -67,5 +68,6 @@ official HOT3D-Clips data-use terms and ethics statements.
 - Verify the official HOT3D-Clips license and citation requirements.
 - Confirm whether selected clip IDs and derived sample indexes may be shared.
 - Create a clean public repository without ignored data artifacts.
-- Add exact commands for regenerating the 50-clip split and proxy labels.
+- Add exact commands for regenerating the 50-clip primary split, the 75-clip
+  robustness split, and proxy labels.
 - Add a permanent archive link or release tag if required by the journal.

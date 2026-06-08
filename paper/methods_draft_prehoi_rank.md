@@ -3,9 +3,11 @@
 ## Dataset Preprocessing
 
 We use HOT3D-Clips as the current experimental source for egocentric
-hand-object interaction forecasting. The local pilot subset contains 50 clips
-stored as HOT3D-Clips tar shards. Each clip contains synchronized image streams
-and per-frame JSON annotations for hands, objects, cameras, and metadata.
+hand-object interaction forecasting. The primary controlled protocol uses a
+50-clip local subset stored as HOT3D-Clips tar shards. A 75-clip local expansion
+is reported separately as a robustness/scalability analysis. Each clip contains
+synchronized image streams and per-frame JSON annotations for hands, objects,
+cameras, and metadata.
 
 For each clip, we construct fixed-length pre-contact forecasting windows. A
 sample contains an observation window of 16 frames and a forecast frame 5 frames
@@ -13,11 +15,13 @@ after the end of the observation window. The observation window provides model
 inputs. The forecast frame provides the supervised derived target and future
 hand-pose target.
 
-The current expanded index contains 6500 derived proxy samples before optimized
+The primary 50-clip index contains 6500 derived proxy samples before optimized
 class filtering. The optimized clip-level split contains 4175 train samples,
-1040 validation samples, and 910 test samples. This split is still treated as a
-pilot/debug split because some proxy classes remain underrepresented or absent
-from the test split.
+1040 validation samples, and 910 test samples. The 75-clip robustness index
+contains 9750 derived proxy samples before optimized filtering and uses 6714
+train samples, 1430 validation samples, and 1430 test samples. The 75-clip split
+is broader but harder and less balanced, so it does not replace the 50-clip
+primary result.
 
 ## Proxy Target-Object Definition
 
@@ -113,7 +117,8 @@ Pose metrics:
 
 - pose MSE,
 - pose MAE,
-- MPJPE-style metric after MANO/UmeTrack-to-3D-joint conversion, if feasible.
+- MPJPE-style 3D-joint error is not reported in the current results because the
+  MANO/UmeTrack-to-joint conversion path has not yet been validated.
 
 Data and safety diagnostics:
 
@@ -124,6 +129,7 @@ Data and safety diagnostics:
 - classes missing from train/validation/test,
 - seed mean and standard deviation.
 
-All current numbers are pilot/debug diagnostics. Final paper-ready results
-require a locked split, repeated-seed protocol, safety audits, and a clear
-limitations statement for derived proxy labels.
+The current 50-clip and 75-clip numbers are paper-candidate diagnostics, not
+unqualified final benchmark claims. Final manuscript reporting must preserve the
+locked splits, repeated-seed protocol, safety audits, and limitations for
+derived proxy labels.

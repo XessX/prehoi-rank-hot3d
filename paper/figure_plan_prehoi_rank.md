@@ -2,7 +2,8 @@
 
 This plan lists figures needed for the PreHOI-Rank manuscript. Figures should
 support the honest paper framing: leakage-safe, affordance-grounded candidate
-ranking on a 50-clip local HOT3D-Clips subset with derived proxy labels.
+ranking with a 50-clip primary local HOT3D-Clips result, a 75-clip robustness
+analysis, and derived proxy labels.
 
 ## Fig. 1: Pre-Contact Forecasting Problem Overview
 

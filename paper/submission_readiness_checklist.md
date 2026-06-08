@@ -6,12 +6,12 @@ not a completed journal submission.
 
 ## Data and Experimental Scope
 
-- [ ] Decide whether the 50-clip local HOT3D-Clips subset remains the primary
-      result or whether to report both 50-clip and 75-clip protocols.
+- [x] Decide result framing: use the 50-clip protocol as the primary controlled
+      result and report the 75-clip protocol as robustness/scalability analysis.
 - [x] Expanded to 75 clips and reran proxy indexing, split optimization,
       split-quality checks, candidate-order diagnostics, image-stat feature
       refresh, and final-protocol candidate-ranker training.
-- [ ] Final 50-vs-75 manuscript decision pending.
+- [x] Final 50-vs-75 manuscript decision completed.
 - [ ] Resolve or explicitly discuss remaining class-coverage warnings.
 - [ ] Verify HOT3D-Clips license/access terms and add a dataset access note.
 - [ ] Confirm downloaded data remains ignored by Git.
@@ -41,6 +41,7 @@ not a completed journal submission.
 
 - [x] Create expanded journal-style manuscript draft.
 - [x] Complete manuscript quality audit.
+- [x] Complete full consistency audit after the 75-clip robustness update.
 - [ ] Complete related-work citations.
 - [ ] Replace all `[Citation needed]` and `[REF-*]` placeholders.
 - [x] Generate Fig. 1 problem overview.
@@ -63,8 +64,10 @@ not a completed journal submission.
 - [ ] Verify APC, waiver, or Research4Life route.
 - [x] Create submission-readiness decision audit:
       `paper/submission_readiness_decision_audit.md`.
-- [ ] Decide whether to strengthen first with 75-clip expansion, MPJPE-style
-      pose evaluation, or a stronger fair baseline.
+- [x] Complete 75-clip expansion and decide it is a robustness/scalability
+      analysis, not the primary result.
+- [ ] Decide whether to strengthen further with MPJPE-style pose evaluation or
+      a stronger fair baseline.
 - [ ] Journal route verification pending; see
       `paper/journal_route_verification.md`.
 - [ ] Research4Life verification pending for final corresponding-author and
@@ -91,8 +94,9 @@ not a completed journal submission.
 - Manuscript quality audit: completed; revision log created.
 - Related work: expanded draft started, citations incomplete.
 - Figures: reviewed draft versions generated with PNG and PDF exports.
-- Submission decision audit: completed; current recommendation is to strengthen
-  before submission, preferably with MPJPE if feasible or 75-clip expansion.
+- Submission decision audit: completed; current recommendation is to keep the
+  50-clip result primary, report the 75-clip result as robustness analysis, and
+  strengthen further only with validated MPJPE or a fair baseline if feasible.
 - Hand pose conversion feasibility: checked. MPJPE is feasible with official
   dependencies/assets but blocked locally until that path is validated.
 - Journal route verification: started; APC/Research4Life status not final.

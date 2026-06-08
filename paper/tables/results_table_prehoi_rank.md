@@ -52,5 +52,6 @@ result.
 | Expected random top-3 | 0.5947 |
 
 These values are paper-candidate diagnostics only. The manuscript must state
-that the labels are derived proxies and that the experiment uses a 50-clip local
-subset.
+that the labels are derived proxies, that the 50-clip protocol is the primary
+controlled result, and that the 75-clip protocol is a robustness/scalability
+analysis on a larger but harder local subset.

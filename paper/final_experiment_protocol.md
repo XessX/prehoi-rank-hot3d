@@ -23,9 +23,10 @@ protocol is satisfied and reviewed.
 - Label policy: target-object labels are derived proxy labels, not direct HOT3D
   ground truth.
 
-The 50-clip subset is the current experimental base, but it is still a local
-subset. A final manuscript should either justify this subset clearly or expand
-to a larger subset, such as 75 clips, before final claims.
+The 50-clip subset is the primary experimental base, but it is still a local
+subset. A 75-clip local expansion has also been completed and should be reported
+as robustness/scalability analysis rather than as a replacement for the cleaner
+50-clip primary result.
 
 ## Derived Target-Object Proxy Definition
 
@@ -183,7 +184,7 @@ Exclude any run that uses:
 ## Next-Step Checklist Before Manuscript Claims
 
 - Run the repeatable 50-clip final protocol with 5 seeds.
-- Decide whether to expand to 75 clips before final results.
+- Report the completed 75-clip protocol as robustness/scalability analysis.
 - Resolve or document remaining split warnings.
 - Add MANO/UmeTrack-to-3D-joint conversion if feasible.
 - Rerun all required baselines on the locked split.

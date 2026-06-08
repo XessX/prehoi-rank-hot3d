@@ -10,10 +10,11 @@ not be treated as final paper evidence.
 ## Dataset State
 
 - Dataset: HOT3D-Clips local subset.
-- Local data: 25 shards.
-- Proxy index: 3250 derived target-object proxy samples before optimized
-  filtering.
-- Optimized filtered split: 2673 samples across 16 eligible proxy classes.
+- Local data: 75 downloaded shards available locally.
+- Primary controlled protocol: 50 clips, 6500 derived target-object proxy
+  samples before optimized filtering.
+- Robustness/scalability protocol: 75 clips, 9750 derived target-object proxy
+  samples before optimized filtering.
 - Split policy: clip-level split only.
 - Input policy: observation frames only.
 - Label policy: target-object labels are derived proxy labels, not direct HOT3D
@@ -53,7 +54,7 @@ The simpler non-VL candidate ranker is currently the strongest stable pilot
 model across ranking and pose metrics. PreHOI-Former v1 had a strong single run,
 but that single-run result is not stable enough to use as the main model claim.
 
-## 50-Clip Expansion Update
+## 50-Clip Final-Protocol Update
 
 The local HOT3D-Clips subset was expanded from 25 clips to 50 clips. The
 expanded subset contains 6500 derived proxy samples before optimized class
@@ -66,12 +67,25 @@ The order-safe non-VL candidate ranker was rerun on the expanded split with
 | Subset | Top-1 | MRR | Pose MAE |
 | --- | --- | --- | --- |
 | 25 clips | 0.5624 +/- 0.0693 | 0.7502 +/- 0.0312 | 0.4412 +/- 0.0042 |
-| 50 clips | 0.7711 +/- 0.0455 | 0.8713 +/- 0.0208 | 0.4131 +/- 0.0045 |
+| 50 clips | 0.7499 +/- 0.0450 | 0.8605 +/- 0.0221 | 0.4102 +/- 0.0051 |
 
 This update strengthens the evidence that affordance-grounded candidate ranking
-is the current best stable formulation. The result is still pilot/debug only:
-target-object labels are derived proxies, not direct HOT3D ground truth, and
-the 50-clip split still has class-coverage warnings.
+is the current best stable formulation. The result is a paper-candidate
+diagnostic, not an unconditional final benchmark claim: target-object labels are
+derived proxies, not direct HOT3D ground truth, and the 50-clip split still has
+class-coverage warnings.
+
+## 75-Clip Robustness Update
+
+The local subset was later expanded to 75 clips. This increased the proxy sample
+count to 9750, but the optimized split became broader and less balanced. The
+75-clip run is therefore treated as robustness/scalability analysis, not as a
+replacement for the 50-clip primary result.
+
+| Subset | Role | Top-1 | MRR | Pose MAE |
+| --- | --- | ---: | ---: | ---: |
+| 50 clips | Primary result | 0.7499 +/- 0.0450 | 0.8605 +/- 0.0221 | 0.4102 +/- 0.0051 |
+| 75 clips | Robustness check | 0.7115 +/- 0.0571 | 0.8340 +/- 0.0343 | 0.4676 +/- 0.0096 |
 
 ## Decisions
 
@@ -85,19 +99,20 @@ the 50-clip split still has class-coverage warnings.
   extensions unless they beat the stable candidate-ranking baseline under the
   same split and repeated-seed protocol.
 - Use **PreHOI-Rank** as the recommended manuscript direction.
-- Keep all current numbers labeled as pilot/debug only.
+- Keep current numbers labeled as paper-candidate diagnostics tied to local
+  subsets and derived proxy labels.
 
 ## Next Research Needs
 
-- Download or select more HOT3D-Clips shards to improve split diversity and
-  reduce proxy-class fragility.
+- Do not pursue further data expansion unless reviewers request it or a new
+  split strategy improves shared class coverage.
 - Redesign PreHOI-Former around the stable candidate-ranking formulation instead
   of forcing the current v1 attention design.
 - Add MANO/UmeTrack-to-3D-joint conversion for MPJPE-style pose evaluation.
 - Improve text and vision-language fusion with stronger controls against
   overfitting and order bias.
-- Repeat final evaluation over multiple seeds after data expansion and model
-  redesign.
+- Keep final evaluations repeated over multiple seeds under the locked
+  leakage-safe protocol.
 
 ## Current Paper Direction
 

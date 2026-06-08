@@ -66,17 +66,18 @@ still receive a final journal-format review before submission.
 - Remaining improvement: A final journal version could add icons, but the
   current schematic is already clear without them.
 
-### Figure 5: 25-Clip vs 50-Clip Results
+### Figure 5: 25/50/75-Clip Results
 
-- Clarity: Shows top-1, MRR, and pose MAE for the 25-clip pilot and 50-clip
-  protocol.
+- Clarity: Shows top-1, MRR, and pose MAE for the 25-clip pilot, 50-clip
+  primary protocol, and 75-clip robustness protocol.
 - Readability: Bar labels, legend, and uncertainty bars are readable.
-- Caption match: Matches the result table and current manuscript wording.
-- Overclaim risk: Moderate because it compares a pilot subset with a larger
-  protocol subset. The note now says mean +/- std, derived proxy labels, and
-  local HOT3D-Clips subset.
+- Caption match: Matches the result table, manuscript robustness subsection,
+  and figure README wording.
+- Overclaim risk: Low to moderate. The figure identifies the 50-clip result as
+  primary and the 75-clip result as robustness analysis while keeping the
+  derived-proxy/local-subset limitation visible.
 - Remaining improvement: If reviewers ask for final-only results, move the
-  25-vs-50 comparison to supplementary material.
+  25-clip pilot comparison to supplementary material.
 
 ## Export Quality
 

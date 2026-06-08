@@ -19,7 +19,7 @@ Status: working checklist, not final submission package.
 - [ ] Fig. 2 proxy-label generation.
 - [ ] Fig. 3 PreHOI-Rank architecture.
 - [ ] Fig. 4 leakage/order-bias safety protocol.
-- [ ] Fig. 5 25-clip vs 50-clip result comparison.
+- [ ] Fig. 5 25/50/75-clip result and robustness comparison.
 - [ ] Result table: `paper/tables/results_table_prehoi_rank.md`.
 - [ ] Protocol safety table: `paper/tables/protocol_safety_table.md`.
 - [ ] Confirm every figure and table is cited in the manuscript text.
