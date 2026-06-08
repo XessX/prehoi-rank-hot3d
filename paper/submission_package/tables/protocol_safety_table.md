@@ -9,7 +9,7 @@
 | Candidate order | Must use `stable_uid` | Satisfied |
 | Unsafe candidate order | `as_is`, proxy-sorted, or target-aware order excluded | Satisfied |
 | Split policy | Clip-level train/validation/test split | Satisfied |
-| Label wording | Derived proxy labels, not HOT3D ground truth | Required in all paper text |
+| Label wording | Derived proxy labels, not direct HOT3D annotations | Required in all paper text |
 | Generated artifacts | Logs/checkpoints/results ignored by Git | Satisfied |
 
 ## Current Split Summary

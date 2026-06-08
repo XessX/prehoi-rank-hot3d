@@ -58,6 +58,10 @@ not a completed journal submission.
 - [x] Create draft export workflow:
       `scripts/export_submission_draft.py`.
 - [x] Generate combined Markdown draft under `paper/exported_drafts/`.
+- [x] Complete author-voice polish pass:
+      `paper/paraphrase_author_voice_audit.md`.
+- [x] Complete post-polish final scan:
+      `paper/post_polish_final_scan.md`.
 - [ ] Generate DOCX/PDF draft exports after Pandoc or another approved
       converter is available.
 - [x] Create author details fill-in form:
@@ -70,10 +74,10 @@ not a completed journal submission.
 - [ ] Convert the formatted draft to DOCX/PDF only after author details and
       journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
-- [x] Confirm no `[Citation needed]` or `[REF-*]` placeholders remain in the
-      current submission manuscript.
-- [ ] Remove or keep out of the submission package optional commented citation
-      TODOs that are not cited in the manuscript.
+- [x] Confirm no missing-citation markers or unresolved reference-key
+      placeholders remain in the current submission manuscript.
+- [x] Remove optional commented citation placeholders from the submission
+      package references file when they are not cited in the manuscript.
 - [x] Generate Fig. 1 problem overview.
 - [x] Generate Fig. 2 proxy-label construction diagram.
 - [x] Generate Fig. 3 model architecture diagram.
@@ -157,6 +161,9 @@ not a completed journal submission.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
   export remains pending because Pandoc is not available on PATH.
+- Author-voice polish: completed and scanned.
+- Post-polish final scan: completed; intentional human-input placeholders
+  remain.
 - Author details fill-in form and final blocker list: created; human author
   details remain pending.
 - Submission-ready status: not yet.

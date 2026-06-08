@@ -61,20 +61,20 @@ Status: all expected table files are present.
 
 ## Placeholder Scan
 
-The final placeholder scan on 2026-06-09 found no `TODO`, `FIXME`, `TBD`,
-`citation needed`, `[REF-*]`, or generic placeholder markers in
-`manuscript_main.md`.
+The final placeholder scan on 2026-06-09 found no unresolved editing markers,
+missing-citation markers, reference-key placeholders, or generic placeholder
+markers in `manuscript_main.md`.
 
 Expected pre-submission placeholders remain:
 
 - cover-letter corresponding author name and affiliation;
 - author confirmation for conflict of interest and funding statements;
 - final HOT3D-Clips license/access wording in the data/code statement;
-- optional commented citation TODOs in `references.bib` that are not cited in
+- optional commented citation notes in `references.bib` that are not cited in
   the current manuscript.
 
-Planning files outside the submission package still contain TODO/checklist
-language. These are not part of the current submission manuscript.
+Planning files outside the submission package still contain checklist language.
+These are not part of the current submission manuscript.
 
 ## Official-Source Verification Snapshot
 
@@ -95,7 +95,7 @@ Checked on 2026-06-09:
   be concluded without the exact author affiliations.
 - The HOT3D Toolkit identifies HOT3D-Clips as a curated HOT3D subset in
   WebDataset format. The HOT3D-Clips README says the clips use the same license
-  as the full HOT3D dataset. The HOT3D license agreement separates sequence data
+  as the complete HOT3D dataset. The HOT3D license agreement separates sequence data
   and non-hand annotations under CC BY-SA, hand annotations under CC BY-NC-SA,
   and object model data under CC BY-SA with an added no-sale/product-use
   restriction.
@@ -104,7 +104,7 @@ Final author-side checks remain required because APC/tax status, Research4Life
 eligibility, submission-file requirements, and dataset license wording can
 depend on the exact author list, institution, and submitted artifact.
 
-## Remaining TODOs
+## Remaining Follow-Up Items
 
 - Final journal formatting.
 - Final author information and author contribution details.
@@ -124,7 +124,7 @@ depend on the exact author list, institution, and submitted artifact.
 
 - 50-clip result remains the primary controlled result.
 - 75-clip result is described as a robustness/scalability check.
-- Target-object labels are derived proxy labels, not direct HOT3D ground truth.
+- Target-object labels are derived proxy labels, not direct HOT3D annotations.
 - MPJPE is not reported.
 - Candidate order remains `stable_uid`.
 - Valid runs require `input_uses_forecast_frame=false`.

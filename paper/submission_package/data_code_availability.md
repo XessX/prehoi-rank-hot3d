@@ -6,25 +6,24 @@ Status: draft. Confirm dataset license/access wording before submission.
 
 This study uses HOT3D-Clips, a third-party dataset distributed by its original
 providers. The authors do not redistribute HOT3D-Clips data, video frames,
-WebDataset shards, object models, annotations, or any restricted dataset files.
-Readers should obtain HOT3D-Clips directly from the official dataset provider
-and follow the provider's license, access, and usage terms.
+WebDataset shards, object models, annotations, or restricted dataset files.
+Readers should obtain HOT3D-Clips directly from the official provider and
+follow the applicable license, access, and usage terms.
 
-The primary local experiments reported in the current draft use a 50-clip
-HOT3D-Clips subset. A 75-clip local expansion is reported as
-robustness/scalability analysis. The selected clip IDs, split-generation
-procedure, derived proxy-label procedure, and inspection commands should be
-documented so that authorized users can regenerate the sample indexes from their
-own downloaded copy of the dataset.
+The primary local experiments in the current draft use a 50-clip HOT3D-Clips
+subset. A 75-clip local expansion is reported as robustness/scalability
+analysis. The selected clip IDs, split-generation procedure, derived
+proxy-label procedure, and inspection commands should be documented so
+authorized users can regenerate the sample indexes from their own downloaded
+copy of the dataset.
 
 ## Derived Sample Indexes and Proxy Labels
 
-The target-object labels used in this work are derived proxy labels, not human
-ground-truth contact or action annotations. The proxy-label protocol is based
-on future-frame hand-object proximity and is documented in the manuscript and
+The target-object labels used in this work are derived proxy labels, not
+human-annotated contact or action labels. The proxy-label protocol is based on
+future-frame hand-object proximity and is documented in the manuscript and
 repository scripts. Generated sample-index files can be regenerated from the
-official HOT3D-Clips shards and should not require redistribution of restricted
-dataset content.
+official HOT3D-Clips shards without redistributing restricted dataset content.
 
 Before submission, decide whether derived index JSON files can be shared
 directly. If they contain only metadata and no restricted content, they may be
@@ -51,19 +50,19 @@ explicitly allowed and useful.
 
 ## Trained Checkpoints and Logs
 
-Trained checkpoints, metrics logs, and summary tables may be shared if allowed
-by the dataset terms and if they do not reveal restricted dataset content. If
-shared, they should be clearly marked as produced from the documented local
-subsets and derived proxy-label protocol.
+Trained checkpoints, metrics logs, and summary tables should be shared only if
+allowed by the dataset terms and only if they do not reveal restricted dataset
+content. If shared, they should be clearly marked as outputs from the
+documented local subsets and derived proxy-label protocol.
 
 ## Human-Subject and Private Data Statement
 
 The authors did not collect new human-subject data for this study. Experiments
-are based on an existing third-party dataset. No private participant data is
-redistributed by the authors. The final manuscript should cite and follow the
+are based on an existing third-party dataset. The authors do not redistribute
+private participant data. The final manuscript should cite and follow the
 official HOT3D-Clips data-use terms and ethics statements.
 
-## Submission TODOs
+## Submission Follow-Up Items
 
 - Verify the official HOT3D-Clips license and citation requirements.
 - Confirm whether selected clip IDs and derived sample indexes may be shared.

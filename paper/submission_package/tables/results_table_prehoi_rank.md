@@ -8,7 +8,7 @@ Dataset: 50-clip local HOT3D-Clips subset
 
 Candidate order: `stable_uid`
 
-Target labels: derived proxy labels, not direct HOT3D ground truth
+Target labels: derived proxy labels, not direct HOT3D annotations
 
 | Metric | Mean +/- Std |
 | --- | ---: |

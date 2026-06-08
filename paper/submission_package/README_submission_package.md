@@ -20,13 +20,13 @@ Backup journal: PLOS ONE.
 - `highlights.md`: draft journal-style highlights.
 - `figures/`: PNG and PDF exports for Figures 1-5.
 - `tables/`: manuscript table Markdown files.
-- `package_audit.md`: package completeness and remaining-TODO audit.
+- `package_audit.md`: package completeness and remaining follow-up audit.
 
 ## Result Framing
 
 - 50-clip protocol: primary controlled paper-candidate result.
 - 75-clip protocol: robustness/scalability check on a broader but harder local subset.
-- Target-object labels: derived proxy labels, not direct HOT3D ground truth.
+- Target-object labels: derived proxy labels, not direct HOT3D annotations.
 - Pose metrics: MANO/UmeTrack pose-parameter vector MAE/MSE; MPJPE is not reported.
 - Vision-language and PreHOI-Former variants: exploratory only.
 
@@ -42,7 +42,7 @@ Checked on 2026-06-09 from official/authoritative pages:
   countries, institutional agreements, and exact author affiliations.
 - HOT3D-Clips is documented by the official HOT3D Toolkit as a curated HOT3D
   WebDataset subset.
-- The HOT3D-Clips README points to the full HOT3D license. The license agreement
+- The HOT3D-Clips README points to the complete HOT3D license. The license agreement
   identifies sequence/non-hand annotations as CC BY-SA, hand annotations as
   CC BY-NC-SA, and object model data as CC BY-SA with an added no-sale/product
   incorporation restriction.

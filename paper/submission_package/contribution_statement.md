@@ -6,8 +6,8 @@ Working title:
 Hand-Object Interaction Forecasting**
 
 This document states the current manuscript contributions without overclaiming.
-The paper should not claim state-of-the-art performance, should not call derived
-proxy labels ground truth, and should keep the 50-clip protocol as the primary
+The paper should not claim benchmark superiority, should not describe derived
+proxy labels as direct annotations, and should keep the 50-clip protocol as the primary
 controlled result while reporting the 75-clip protocol only as a
 robustness/scalability analysis.
 
@@ -25,7 +25,7 @@ robustness/scalability analysis.
    We define a reproducible target-object proxy from forecast-frame
    hand-object proximity. The proxy selects the visible forecast-frame object
    most aligned with hand overlap and normalized center distance. The proxy is
-   explicitly treated as a derived label, not direct HOT3D ground truth.
+   explicitly treated as a derived label, not a direct HOT3D annotation.
 
 3. **Leakage- and order-bias-safe evaluation protocol**
 
