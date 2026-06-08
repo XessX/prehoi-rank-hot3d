@@ -55,6 +55,11 @@ not a completed journal submission.
       `paper/author_metadata_remaining_items.md`.
 - [x] Assemble formatted Markdown submission draft:
       `paper/formatted_submission_draft/`.
+- [x] Create draft export workflow:
+      `scripts/export_submission_draft.py`.
+- [x] Generate combined Markdown draft under `paper/exported_drafts/`.
+- [ ] Generate DOCX/PDF draft exports after Pandoc or another approved
+      converter is available.
 - [ ] Complete author metadata template with final author-provided details.
 - [ ] Complete final submission metadata against the live journal submission
       form.
@@ -146,4 +151,6 @@ not a completed journal submission.
 - Author information and author confirmations: pending.
 - Final formatting: pending.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
+- Draft export workflow: created; combined Markdown export available. DOCX/PDF
+  export remains pending because Pandoc is not available on PATH.
 - Submission-ready status: not yet.
