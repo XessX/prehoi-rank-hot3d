@@ -60,6 +60,10 @@ not a completed journal submission.
 - [x] Generate combined Markdown draft under `paper/exported_drafts/`.
 - [ ] Generate DOCX/PDF draft exports after Pandoc or another approved
       converter is available.
+- [x] Create author details fill-in form:
+      `paper/fill_author_details_form.md`.
+- [x] Create final submission blockers list:
+      `paper/final_submission_blockers.md`.
 - [ ] Complete author metadata template with final author-provided details.
 - [ ] Complete final submission metadata against the live journal submission
       form.
@@ -153,4 +157,6 @@ not a completed journal submission.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
   export remains pending because Pandoc is not available on PATH.
+- Author details fill-in form and final blocker list: created; human author
+  details remain pending.
 - Submission-ready status: not yet.
