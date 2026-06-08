@@ -53,9 +53,13 @@ not a completed journal submission.
       `paper/submission_metadata_template.md`.
 - [x] Create author metadata remaining-items list:
       `paper/author_metadata_remaining_items.md`.
+- [x] Assemble formatted Markdown submission draft:
+      `paper/formatted_submission_draft/`.
 - [ ] Complete author metadata template with final author-provided details.
 - [ ] Complete final submission metadata against the live journal submission
       form.
+- [ ] Convert the formatted draft to DOCX/PDF only after author details and
+      journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
 - [x] Confirm no `[Citation needed]` or `[REF-*]` placeholders remain in the
       current submission manuscript.
@@ -141,4 +145,5 @@ not a completed journal submission.
   interest, funding, and data/code availability drafts: started.
 - Author information and author confirmations: pending.
 - Final formatting: pending.
+- Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Submission-ready status: not yet.
