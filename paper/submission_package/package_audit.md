@@ -21,6 +21,9 @@ completed.
 | `ethics_data_use_statement.md` | present |
 | `highlights.md` | present |
 | `README_submission_package.md` | present |
+| `paper/author_information_template.md` | present outside package, author metadata pending |
+| `paper/submission_metadata_template.md` | present outside package, final submission metadata pending |
+| `paper/author_metadata_remaining_items.md` | present outside package, human-input checklist |
 
 ## Figures
 
@@ -105,6 +108,8 @@ depend on the exact author list, institution, and submitted artifact.
 
 - Final journal formatting.
 - Final author information and author contribution details.
+- Completion of `paper/author_information_template.md`.
+- Completion of `paper/submission_metadata_template.md`.
 - Author confirmation of conflict of interest and funding statements.
 - Final author-side Machine Learning with Applications APC/tax/institutional
   agreement/Research4Life route verification.

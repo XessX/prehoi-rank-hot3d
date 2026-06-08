@@ -47,6 +47,15 @@ not a completed journal submission.
 - [x] Complete full consistency audit after the 75-clip robustness update.
 - [x] Assemble pre-submission package:
       `paper/submission_package/`.
+- [x] Create author information template:
+      `paper/author_information_template.md`.
+- [x] Create submission metadata template:
+      `paper/submission_metadata_template.md`.
+- [x] Create author metadata remaining-items list:
+      `paper/author_metadata_remaining_items.md`.
+- [ ] Complete author metadata template with final author-provided details.
+- [ ] Complete final submission metadata against the live journal submission
+      form.
 - [x] Complete core related-work citation verification.
 - [x] Confirm no `[Citation needed]` or `[REF-*]` placeholders remain in the
       current submission manuscript.
@@ -96,6 +105,7 @@ not a completed journal submission.
       drafts in `paper/submission_package/`.
 - [ ] Confirm author names, affiliations, author contributions, conflict of
       interest statement, and funding statement.
+- [ ] Confirm ORCID IDs and corresponding author details if used.
 - [x] Run final placeholder scan for the current paper folder and submission
       package:
       `paper/final_placeholder_scan.md`.

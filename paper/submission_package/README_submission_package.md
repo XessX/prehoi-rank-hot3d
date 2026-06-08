@@ -53,6 +53,10 @@ submission.
 ## Not Submission-Ready Until
 
 - Author names, affiliations, and contributions are finalized.
+- `paper/author_information_template.md` is completed and confirmed by all
+  authors.
+- `paper/submission_metadata_template.md` is completed against the live
+  submission form.
 - Conflict of interest and funding statements are confirmed by all authors.
 - HOT3D-Clips license/access wording is rechecked against official sources for
   the exact submitted manuscript and release artifacts.
@@ -61,3 +65,15 @@ submission.
   author list.
 - Citation placeholders and optional unresolved citations are reviewed one final
   time after formatting and author details are inserted.
+
+## Metadata Templates
+
+Author information and submission metadata templates now live outside the
+package root:
+
+- `paper/author_information_template.md`
+- `paper/submission_metadata_template.md`
+- `paper/author_metadata_remaining_items.md`
+
+These files are intentionally not final. They collect the human-provided
+metadata needed before DOCX/PDF formatting or online submission.
