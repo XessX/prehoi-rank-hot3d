@@ -1,27 +1,24 @@
 # PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting
 
-## Author Placeholder Block
-
-Author names, affiliations, emails, ORCID IDs, and contribution roles require
-human confirmation before submission.
+## Author Information
 
 | Order | Author | Affiliation(s) | Email | ORCID |
 | --- | --- | --- | --- | --- |
-| 1 | [Author 1 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
-| 2 | [Author 2 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
-| 3 | [Author 3 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
+| 1 | Al Jubair Hossain | 1 | jubair.hossain@aiub.edu | 0009-0005-3498-5826 |
+| 2 | ASIF SHAHRIAR SIAM | 1 | Pending final author confirmation | Not provided |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | Pending final author confirmation | Not provided |
+| 4 | Maria Sultana Alif | 1 | Pending final author confirmation | Not provided |
+| 5 | Siam Rahman Nayem | 1 | Pending final author confirmation | Not provided |
 
 Affiliations:
 
-- [1] [Department/unit, institution, city, country]
-- [2] [Department/unit, institution, city, country]
-- [3] [Department/unit, institution, city, country]
+- [1] American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh
 
-## Corresponding Author Placeholder
+## Corresponding Author
 
-- Name: [Corresponding author full name]
-- Email: [Corresponding author email]
-- Affiliation: [Affiliation number and institution]
+- Name: Al Jubair Hossain
+- Email: jubair.hossain@aiub.edu
+- Affiliation: American International University-Bangladesh (AIUB)
 
 ## Abstract
 
@@ -524,19 +521,17 @@ of the dataset.
 
 ## 10. Conflict of Interest
 
-[Author confirmation required.] Draft statement: The authors declare that they
-have no known competing financial interests or personal relationships that
-could have appeared to influence the work reported in this paper.
+The authors declare no competing interests.
 
 ## 11. Funding
 
-[Author confirmation required.] Draft statement: This research did not receive
-any specific grant from funding agencies in the public, commercial, or
-not-for-profit sectors.
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
 
 ## 12. Acknowledgments
 
-[Add acknowledgments after author confirmation, or state "None" if appropriate.]
+No specific funding was received for this work. No additional acknowledgments
+were provided.
 
 ## 13. Conclusion
 

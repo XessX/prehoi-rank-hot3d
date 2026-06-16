@@ -1,9 +1,10 @@
-# Submission Metadata Template
+# Submission Metadata
 
-Status: author-side completion required before submission.
+Status: five-author metadata filled where provided. PreHOI-specific
+repository/archive and final journal-system checks remain pending.
 
-This file collects metadata likely needed during journal submission. It does not
-replace the target journal's online submission form or Guide for Authors.
+This file collects metadata likely needed during journal submission. It does
+not replace the target journal's online submission form or Guide for Authors.
 
 ## Title
 
@@ -23,7 +24,26 @@ PLOS ONE
 
 ## Article Type
 
-[Regular research article / research paper - confirm in the live submission system]
+Regular research article / research paper, pending confirmation in the live
+submission system.
+
+## Authors and Corresponding Author
+
+| Order | Author | Affiliation | Email | ORCID |
+| --- | --- | --- | --- | --- |
+| 1 | Al Jubair Hossain | American International University-Bangladesh (AIUB) | jubair.hossain@aiub.edu | 0009-0005-3498-5826 |
+| 2 | ASIF SHAHRIAR SIAM | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
+| 4 | Maria Sultana Alif | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
+| 5 | Siam Rahman Nayem | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
+
+Shared affiliation: American International University-Bangladesh (AIUB),
+Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
+
+Corresponding author: Al Jubair Hossain, jubair.hossain@aiub.edu.
+
+Final author consent, author-order confirmation, and student CRediT role
+confirmation remain pending before submission.
 
 ## Abstract
 
@@ -71,53 +91,32 @@ MPJPE-style evaluation.
 
 ## Suggested Reviewers
 
-Optional. Complete only if the journal asks for suggested reviewers.
-
-| Name | Institution | Email | Area of expertise | Reason |
-| --- | --- | --- | --- | --- |
-| [Reviewer name] | [Institution] | [Email] | [Expertise] | [Reason] |
+No suggested reviewers were provided. This remains optional unless requested by
+the journal.
 
 ## Opposed Reviewers
 
-Optional. Complete only if there is a legitimate conflict to disclose.
-
-| Name | Institution | Reason |
-| --- | --- | --- |
-| [Reviewer name] | [Institution] | [Conflict/reason] |
+No opposed reviewers were provided. This remains optional unless there is a
+legitimate conflict to disclose.
 
 ## Cover Letter Status
 
 - Draft file: `paper/submission_package/cover_letter.md`
-- Status: needs final corresponding author name and affiliation.
-- Action: revise after author list is final.
-
-## Figure Checklist
-
-| Figure | File status | Caption status |
-| --- | --- | --- |
-| Fig. 1 problem overview | PNG/PDF present | Draft caption in figure README/manuscript |
-| Fig. 2 proxy-label generation | PNG/PDF present | Draft caption in figure README/manuscript |
-| Fig. 3 architecture | PNG/PDF present | Draft caption in figure README/manuscript |
-| Fig. 4 protocol safety | PNG/PDF present | Draft caption in figure README/manuscript |
-| Fig. 5 results summary | PNG/PDF present | Draft caption in figure README/manuscript |
-
-## Table Checklist
-
-| Table | File status | Manuscript status |
-| --- | --- | --- |
-| Results table | present under `paper/submission_package/tables/` | cited in draft |
-| Protocol safety table | present under `paper/submission_package/tables/` | cited in draft |
+- Status: corresponding author details filled; final article type and date still require submission-time review.
 
 ## Data and Code Availability Statement
 
 Draft file: `paper/submission_package/data_code_availability.md`
 
-Required author-side decisions:
+Required PreHOI-specific decisions:
 
-- final public repository/archive URL;
+- final public PreHOI-Rank repository/archive URL;
 - whether derived sample indexes can be shared;
 - exact wording for HOT3D-Clips license/access requirements;
 - whether checkpoints/logs will be shared.
+
+Do not use Scientific Reports sparse 3D Gaussian Splatting GitHub or Zenodo
+links for this PreHOI-Rank paper.
 
 ## Ethics and Data-Use Statement
 

@@ -1,6 +1,9 @@
 # PreHOI-Rank Pre-Submission Package
 
-Status: pre-submission assembly draft, not submission-ready.
+Status: pre-submission assembly draft, not submission-ready. Five-author
+metadata has been filled, but final author consent, student contribution
+confirmation, repository/archive, journal, APC/Research4Life, and HOT3D-Clips
+license checks remain pending.
 
 Target journal: Machine Learning with Applications.
 
@@ -50,21 +53,31 @@ Checked on 2026-06-09 from official/authoritative pages:
 These checks do not replace final author-side verification immediately before
 submission.
 
+## Author Metadata Status
+
+- Authors: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Siam Rahman Nayem.
+- Shared affiliation: American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
+- Corresponding author: Al Jubair Hossain, jubair.hossain@aiub.edu.
+- Corresponding author ORCID: 0009-0005-3498-5826.
+- Student co-author ORCID IDs: not provided.
+- Funding: no specific funding.
+- Competing interests: no competing interests.
+- Student CRediT role confirmation: pending.
+- Final author consent: pending.
+- PreHOI-Rank repository/archive: pending.
+
 ## Not Submission-Ready Until
 
-- Author names, affiliations, and contributions are finalized.
-- `paper/author_information_template.md` is completed and confirmed by all
-  authors.
-- `paper/submission_metadata_template.md` is completed against the live
+- `paper/submission_metadata_template.md` is checked against the live
   submission form.
-- Conflict of interest and funding statements are confirmed by all authors.
 - HOT3D-Clips license/access wording is rechecked against official sources for
   the exact submitted manuscript and release artifacts.
 - Machine Learning with Applications formatting, APC/tax status, institutional
   agreement coverage, and Research4Life route are verified using the final
-  author list.
+  AIUB/Bangladesh affiliation and live submission context.
 - Citation placeholders and optional unresolved citations are reviewed one final
   time after formatting and author details are inserted.
+- The PreHOI-Rank repository URL and archive DOI are finalized, if required.
 
 ## Metadata Templates
 
@@ -75,5 +88,8 @@ package root:
 - `paper/submission_metadata_template.md`
 - `paper/author_metadata_remaining_items.md`
 
-These files are intentionally not final. They collect the human-provided
-metadata needed before DOCX/PDF formatting or online submission.
+These files are no longer blank author fields, but they are still not final
+submission files. They retain pending fields for author consent, student
+contribution confirmation, the live submission system, PreHOI-Rank
+repository/archive, APC/Research4Life route, and HOT3D-Clips license/access
+checks.

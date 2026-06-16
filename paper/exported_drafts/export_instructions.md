@@ -1,8 +1,8 @@
 # Export Instructions
 
-Date: 2026-06-09
+Date: 2026-06-16
 
-Status: draft export workflow. Do not submit exported files until author metadata, journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.
+Status: draft export workflow. Do not submit exported files until author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D-Clips license/access checks are complete.
 
 ## Converter Status
 
@@ -28,7 +28,7 @@ If Pandoc PDF export fails because a LaTeX engine is missing, open the DOCX in W
 If using Word manually:
 
 1. Open `paper/exported_drafts/prehoi_rank_combined_draft.md` or copy its content into Word.
-2. Preserve author placeholders until final metadata is confirmed.
+2. Preserve pending author-consent, contribution-confirmation, PreHOI repository/archive, and journal-system fields until they are confirmed.
 3. Insert figures from `paper/formatted_submission_draft/figures/` if needed.
 4. Insert tables from `paper/formatted_submission_draft/tables/` if needed.
-5. Export DOCX/PDF only after final author and journal checks.
+5. Export DOCX/PDF only after final author-consent, contribution-confirmation, journal, APC/waiver, and HOT3D license/access checks.

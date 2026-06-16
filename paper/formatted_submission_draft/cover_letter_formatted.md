@@ -1,6 +1,8 @@
 # Cover Letter Draft: PreHOI-Rank
 
-Status: formatted draft. Replace bracketed placeholders before submission.
+Status: formatted draft. Five-author metadata has been filled; final date,
+author consent, student contribution confirmation, and live submission-system
+checks remain pending.
 
 [Date]
 
@@ -48,18 +50,19 @@ and evaluation protocol for pre-contact hand-object forecasting under realistic
 annotation constraints.
 
 The manuscript is original, has not been published previously, and is not under
-consideration elsewhere. All authors have approved the submission. The authors
-declare [insert conflict of interest statement]. Funding information is [insert
-funding statement]. Data and code availability are described in the manuscript:
-HOT3D-Clips is a third-party dataset and is not redistributed, while the code
-and regeneration protocol can be released through a public repository.
+consideration elsewhere. The authors declare no competing interests. This
+research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors. Data and code availability are
+described in the manuscript: HOT3D-Clips is a third-party dataset and is not
+redistributed, while the PreHOI-Rank code repository and archive DOI remain
+pending.
 
 Thank you for considering our manuscript. We would be grateful for the
 opportunity to have it reviewed by Machine Learning with Applications.
 
 Sincerely,
 
-[Corresponding author name]  
-[Affiliation]  
-[Email]  
-On behalf of all authors
+Al Jubair Hossain  
+Corresponding author, on behalf of all authors  
+American International University-Bangladesh (AIUB)  
+jubair.hossain@aiub.edu

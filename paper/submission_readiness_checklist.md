@@ -53,6 +53,15 @@ not a completed journal submission.
       `paper/submission_metadata_template.md`.
 - [x] Create author metadata remaining-items list:
       `paper/author_metadata_remaining_items.md`.
+- [x] Fill five-author metadata from provided author details:
+      `paper/scirep_metadata_transfer_note.md` and
+      `paper/multi_author_metadata_update_note.md`.
+- [x] Confirm funding statement: no specific funding.
+- [x] Confirm competing interests statement: no competing interests.
+- [x] Add student author metadata in internal files only.
+- [ ] Confirm final consent from all listed authors.
+- [ ] Confirm student co-author contribution roles before submission.
+- [ ] Confirm student co-author ORCID IDs or keep them as not provided.
 - [x] Assemble formatted Markdown submission draft:
       `paper/formatted_submission_draft/`.
 - [x] Create draft export workflow:
@@ -68,9 +77,8 @@ not a completed journal submission.
       `paper/fill_author_details_form.md`.
 - [x] Create final submission blockers list:
       `paper/final_submission_blockers.md`.
-- [ ] Complete author metadata template with final author-provided details.
-- [ ] Complete final submission metadata against the live journal submission
-      form.
+- [ ] Complete final live submission-system metadata checks.
+- [ ] Add final PreHOI-Rank repository URL and archive DOI if required.
 - [ ] Convert the formatted draft to DOCX/PDF only after author details and
       journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
@@ -100,7 +108,7 @@ not a completed journal submission.
 - [ ] Finalize Machine Learning with Applications formatting requirements
       against the live Guide for Authors before upload.
 - [ ] Verify final APC, taxes, institutional agreement coverage, waiver, or
-      Research4Life route using the exact author list and affiliations.
+      Research4Life route using the filled AIUB/Bangladesh affiliation.
 - [x] Create submission-readiness decision audit:
       `paper/submission_readiness_decision_audit.md`.
 - [x] Complete 75-clip expansion and decide it is a robustness/scalability
@@ -110,8 +118,8 @@ not a completed journal submission.
 - [x] Complete official-source journal route verification pass; see
       `paper/final_placeholder_scan.md` and
       `paper/journal_route_verification.md`.
-- [ ] Research4Life verification pending for final corresponding-author and
-      co-author affiliations.
+- [ ] Research4Life verification pending for filled AIUB/Bangladesh affiliation
+      and live submission context.
 - [x] Prepare cover letter draft:
       `paper/cover_letter_draft_prehoi_rank.md`.
 - [x] Prepare data/code availability draft:
@@ -120,9 +128,10 @@ not a completed journal submission.
       `paper/submission_package/highlights.md`.
 - [x] Prepare conflict of interest, funding, and ethics/data-use statement
       drafts in `paper/submission_package/`.
-- [ ] Confirm author names, affiliations, author contributions, conflict of
-      interest statement, and funding statement.
-- [ ] Confirm ORCID IDs and corresponding author details if used.
+- [x] Add multi-author names, shared affiliation, corresponding author, funding
+      statement, and competing interests statement from provided metadata.
+- [ ] Confirm final author consent and CRediT roles for all listed authors.
+- [ ] Add final phone/contact field only if required by the submission system.
 - [x] Run final placeholder scan for the current paper folder and submission
       package:
       `paper/final_placeholder_scan.md`.
@@ -156,7 +165,11 @@ not a completed journal submission.
 - Final placeholder scan: completed for the current submission package.
 - Cover letter, highlights, contribution, ethics/data-use, conflict of
   interest, funding, and data/code availability drafts: started.
-- Author information and author confirmations: pending.
+- Author information and declarations: five-author metadata added.
+- Student co-author metadata: added; contribution roles and final consent
+  remain pending.
+- PreHOI-Rank repository/archive URL: pending; do not reuse prior Scientific
+  Reports sparse 3D Gaussian Splatting links.
 - Final formatting: pending.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
@@ -164,6 +177,7 @@ not a completed journal submission.
 - Author-voice polish: completed and scanned.
 - Post-polish final scan: completed; intentional human-input placeholders
   remain.
-- Author details fill-in form and final blocker list: created; human author
-  details remain pending.
+- Author details fill-in form and final blocker list: updated for the
+  five-author metadata; author consent and contribution confirmation remain
+  pending.
 - Submission-ready status: not yet.

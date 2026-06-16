@@ -1,10 +1,11 @@
 # Submission Package Audit
 
-Date: 2026-06-09
+Date: 2026-06-16
 
-Status: assembled pre-submission package. This package is not submission-ready
-until final author, journal, formatting, license/access, and APC checks are
-completed.
+Status: assembled pre-submission package. Five-author metadata has been filled.
+This package is not submission-ready until final author consent, student
+contribution confirmation, repository/archive, journal formatting,
+license/access, APC, and Research4Life checks are completed.
 
 ## Expected Files
 
@@ -16,14 +17,14 @@ completed.
 | `data_code_availability.md` | present |
 | `submission_checklist.md` | present |
 | `contribution_statement.md` | present |
-| `conflict_of_interest_statement.md` | present, author confirmation needed |
-| `funding_statement.md` | present, author confirmation needed |
+| `conflict_of_interest_statement.md` | present, no competing interests |
+| `funding_statement.md` | present, no specific funding |
 | `ethics_data_use_statement.md` | present |
 | `highlights.md` | present |
 | `README_submission_package.md` | present |
-| `paper/author_information_template.md` | present outside package, author metadata pending |
-| `paper/submission_metadata_template.md` | present outside package, final submission metadata pending |
-| `paper/author_metadata_remaining_items.md` | present outside package, human-input checklist |
+| `paper/author_information_template.md` | present outside package, five-author metadata filled |
+| `paper/submission_metadata_template.md` | present outside package, final submission-system checks pending |
+| `paper/author_metadata_remaining_items.md` | present outside package, PreHOI-specific pending checklist |
 
 ## Figures
 
@@ -65,10 +66,11 @@ The final placeholder scan on 2026-06-09 found no unresolved editing markers,
 missing-citation markers, reference-key placeholders, or generic placeholder
 markers in `manuscript_main.md`.
 
-Expected pre-submission placeholders remain:
+Expected pre-submission pending fields remain:
 
-- cover-letter corresponding author name and affiliation;
-- author confirmation for conflict of interest and funding statements;
+- PreHOI-Rank repository URL and archive DOI;
+- final author consent;
+- final student co-author CRediT role confirmation;
 - final HOT3D-Clips license/access wording in the data/code statement;
 - optional commented citation notes in `references.bib` that are not cited in
   the current manuscript.
@@ -107,10 +109,10 @@ depend on the exact author list, institution, and submitted artifact.
 ## Remaining Follow-Up Items
 
 - Final journal formatting.
-- Final author information and author contribution details.
-- Completion of `paper/author_information_template.md`.
-- Completion of `paper/submission_metadata_template.md`.
-- Author confirmation of conflict of interest and funding statements.
+- Final author consent from all listed authors.
+- Final student co-author CRediT role confirmation.
+- Final PreHOI-Rank repository URL and archive DOI, if required.
+- Live submission-system check of `paper/submission_metadata_template.md`.
 - Final author-side Machine Learning with Applications APC/tax/institutional
   agreement/Research4Life route verification.
 - Final HOT3D-Clips license/access wording for the exact manuscript and release

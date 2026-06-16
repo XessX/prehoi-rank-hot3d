@@ -1,13 +1,14 @@
-<!-- DRAFT EXPORT: author metadata, journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->
+<!-- DRAFT EXPORT: five-author metadata is filled; author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D license/access checks remain pending. -->
 # PreHOI-Rank Manuscript Draft Export
 
-**Status:** DRAFT. Not submission-ready until author metadata and final journal checks are complete.
+**Status:** DRAFT. Not submission-ready until final author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.
 
 ## Title Page
 
 # Title Page Draft
 
-Status: draft. Human author details are required before submission.
+Status: five-author metadata filled. Final author consent, student CRediT
+confirmation, and journal-system checks remain pending.
 
 ## Full Title
 
@@ -17,51 +18,59 @@ PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Objec
 
 PreHOI-Rank for Pre-Contact Hand-Object Forecasting
 
-## Author Placeholder Table
+## Authors
 
-| Order | Full author name | Affiliation number(s) | Email | ORCID |
+| Order | Full author name | Affiliation number | Email | ORCID |
 | --- | --- | --- | --- | --- |
-| 1 | [Author 1 full name] | [1] | [email] | [ORCID if used] |
-| 2 | [Author 2 full name] | [2] | [email] | [ORCID if used] |
-| 3 | [Author 3 full name] | [3] | [email] | [ORCID if used] |
+| 1 | Al Jubair Hossain | 1 | jubair.hossain@aiub.edu | 0009-0005-3498-5826 |
+| 2 | ASIF SHAHRIAR SIAM | 1 | Pending final author confirmation | Not provided |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | Pending final author confirmation | Not provided |
+| 4 | Maria Sultana Alif | 1 | Pending final author confirmation | Not provided |
+| 5 | Siam Rahman Nayem | 1 | Pending final author confirmation | Not provided |
 
-Add or remove rows after the final author list is confirmed.
+## Affiliation
 
-## Affiliations Placeholder
+| Number | Institution | Address |
+| --- | --- | --- |
+| 1 | American International University-Bangladesh (AIUB) | Kuratoli, Khilkhet, Dhaka 1229, Bangladesh |
 
-| Number | Institution | Department/unit | City | Country |
-| --- | --- | --- | --- | --- |
-| 1 | [Institution] | [Department/unit] | [City] | [Country] |
-| 2 | [Institution] | [Department/unit] | [City] | [Country] |
-| 3 | [Institution] | [Department/unit] | [City] | [Country] |
+## Corresponding Author
 
-## Corresponding Author Placeholder
+- Name: Al Jubair Hossain
+- Email: jubair.hossain@aiub.edu
+- Affiliation: American International University-Bangladesh (AIUB)
+- Address: Kuratoli, Khilkhet, Dhaka 1229, Bangladesh
 
-- Name: [Corresponding author full name]
-- Email: [Corresponding author email]
-- Affiliation: [Affiliation number and institution]
-- Postal address: [Postal address if required]
-- Phone number: [Phone number if required]
+## CRediT Author Contributions
 
-## CRediT Author Contribution Placeholder
+All student co-author contribution roles are proposed and require final author
+confirmation before submission.
 
-Confirm roles with all authors before submission.
-
-| Author | Conceptualization | Methodology | Software | Validation | Formal analysis | Investigation | Data curation | Writing - original draft | Writing - review and editing | Visualization | Supervision | Funding acquisition |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Author 1] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
-| [Author 2] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
+- Al Jubair Hossain: Conceptualization, Methodology, Software, Validation,
+  Formal analysis, Investigation, Data curation, Writing - original draft,
+  Writing - review and editing, Visualization, Project administration,
+  Supervision.
+- ASIF SHAHRIAR SIAM: Investigation, Data curation, Validation, Visualization,
+  Writing - review and editing.
+- MD. ABUBOKOR SIDDIK ROJAN: Software support, Validation, Formal analysis
+  support, Data curation, Writing - review and editing.
+- Maria Sultana Alif: Literature review support, Data curation, Investigation,
+  Visualization support, Writing - review and editing.
+- Siam Rahman Nayem: Dataset preparation support, Reproducibility checks,
+  Validation, Documentation support, Writing - review and editing.
 
 ## Declarations Checklist
 
-- [ ] Conflict of interest statement confirmed by all authors.
-- [ ] Funding statement confirmed by all authors.
-- [ ] Acknowledgments confirmed by all authors.
-- [ ] Data/code availability statement confirmed.
-- [ ] HOT3D-Clips license/access wording confirmed.
+- [x] Conflict of interest statement filled: no competing interests.
+- [x] Funding statement filled: no specific funding.
+- [x] Acknowledgments filled: no additional acknowledgments provided.
+- [ ] Final author consent from all listed authors pending.
+- [ ] Final student co-author CRediT role confirmation pending.
+- [ ] Data/code availability statement final repository/archive URL pending.
+- [ ] HOT3D-Clips license/access wording final confirmation pending.
 - [ ] Machine Learning with Applications APC/waiver/Research4Life route checked
-      using final author affiliations.
-- [ ] Corresponding author details match the submission system.
+      using filled AIUB/Bangladesh affiliation.
+- [x] Corresponding author details added.
 
 \newpage
 
@@ -69,28 +78,25 @@ Confirm roles with all authors before submission.
 
 # PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting
 
-## Author Placeholder Block
-
-Author names, affiliations, emails, ORCID IDs, and contribution roles require
-human confirmation before submission.
+## Author Information
 
 | Order | Author | Affiliation(s) | Email | ORCID |
 | --- | --- | --- | --- | --- |
-| 1 | [Author 1 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
-| 2 | [Author 2 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
-| 3 | [Author 3 full name] | [Affiliation number(s)] | [Email] | [ORCID if used] |
+| 1 | Al Jubair Hossain | 1 | jubair.hossain@aiub.edu | 0009-0005-3498-5826 |
+| 2 | ASIF SHAHRIAR SIAM | 1 | Pending final author confirmation | Not provided |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | Pending final author confirmation | Not provided |
+| 4 | Maria Sultana Alif | 1 | Pending final author confirmation | Not provided |
+| 5 | Siam Rahman Nayem | 1 | Pending final author confirmation | Not provided |
 
 Affiliations:
 
-- [1] [Department/unit, institution, city, country]
-- [2] [Department/unit, institution, city, country]
-- [3] [Department/unit, institution, city, country]
+- [1] American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh
 
-## Corresponding Author Placeholder
+## Corresponding Author
 
-- Name: [Corresponding author full name]
-- Email: [Corresponding author email]
-- Affiliation: [Affiliation number and institution]
+- Name: Al Jubair Hossain
+- Email: jubair.hossain@aiub.edu
+- Affiliation: American International University-Bangladesh (AIUB)
 
 ## Abstract
 
@@ -593,19 +599,17 @@ of the dataset.
 
 ## 10. Conflict of Interest
 
-[Author confirmation required.] Draft statement: The authors declare that they
-have no known competing financial interests or personal relationships that
-could have appeared to influence the work reported in this paper.
+The authors declare no competing interests.
 
 ## 11. Funding
 
-[Author confirmation required.] Draft statement: This research did not receive
-any specific grant from funding agencies in the public, commercial, or
-not-for-profit sectors.
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
 
 ## 12. Acknowledgments
 
-[Add acknowledgments after author confirmation, or state "None" if appropriate.]
+No specific funding was received for this work. No additional acknowledgments
+were provided.
 
 ## 13. Conclusion
 

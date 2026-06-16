@@ -1,106 +1,97 @@
 # Fill Author Details Form
 
-Status: human author input required. Do not submit this file as-is.
+Status: multi-author metadata filled from the provided author details.
+PreHOI-specific repository/archive fields remain pending.
 
-This form is the single place to collect the human-provided information needed
-before final DOCX/PDF conversion and journal submission. Do not guess or invent
-any field.
+This form records human-provided information needed before final DOCX/PDF
+conversion and journal submission. Student IDs are retained here for internal
+tracking only and must not be copied into the manuscript, title page, cover
+letter, declarations, or submission package. No Scientific Reports sparse 3D
+Gaussian Splatting repository or Zenodo link is used for this PreHOI-Rank
+paper.
 
 ## 1. Author Order and Full Names
 
-| Order | Full name exactly as it should appear | Notes |
-| --- | --- | --- |
-| 1 | [Author 1 full name] | [notes] |
-| 2 | [Author 2 full name] | [notes] |
-| 3 | [Author 3 full name] | [notes] |
-
-Add or remove rows as needed.
+| Order | Full name exactly as it should appear | Internal student ID | Notes |
+| --- | --- | --- | --- |
+| 1 | Al Jubair Hossain | Not applicable | Corresponding author |
+| 2 | ASIF SHAHRIAR SIAM | 23-50073-1 | Student author; final consent pending |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2 | Student author; final consent pending |
+| 4 | Maria Sultana Alif | 24-57836-2 | Student author; final consent pending |
+| 5 | Siam Rahman Nayem | 24-57857-2 | Student author; final consent pending |
 
 ## 2. Affiliations
 
 | Affiliation number | Institution | Department/unit | City | Country | Postal address if required |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
-| 2 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
-| 3 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
+| 1 | American International University-Bangladesh (AIUB) | Not specified | Dhaka | Bangladesh | Kuratoli, Khilkhet, Dhaka 1229, Bangladesh |
 
 ## 3. Author Contact and ORCID Details
 
-| Author | Email | ORCID ID if used | Affiliation number(s) |
+| Author | Email | ORCID ID | Affiliation number(s) |
 | --- | --- | --- | --- |
-| [Author 1] | [email] | [ORCID or none] | [number(s)] |
-| [Author 2] | [email] | [ORCID or none] | [number(s)] |
-| [Author 3] | [email] | [ORCID or none] | [number(s)] |
+| Al Jubair Hossain | jubair.hossain@aiub.edu | 0009-0005-3498-5826 | 1 |
+| ASIF SHAHRIAR SIAM | 23-50073-1@student.aiub.edu | Not provided | 1 |
+| MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2@student.aiub.edu | Not provided | 1 |
+| Maria Sultana Alif | 24-57836-2@student.aiub.edu | Not provided | 1 |
+| Siam Rahman Nayem | 24-57857-2@student.aiub.edu | Not provided | 1 |
 
 ## 4. Corresponding Author
 
-- Name: [Corresponding author full name]
-- Email: [Corresponding author email]
-- Affiliation number and institution: [affiliation]
-- Postal address if required: [address]
-- Phone number if required: [phone]
+- Name: Al Jubair Hossain
+- Email: jubair.hossain@aiub.edu
+- Affiliation number and institution: 1, American International University-Bangladesh (AIUB)
+- Postal address if required: Kuratoli, Khilkhet, Dhaka 1229, Bangladesh
+- Phone number if required: Pending
 
 ## 5. CRediT Roles
 
-Confirm contribution roles with all authors before submission.
+All student CRediT roles are proposed and require final author confirmation
+before submission.
 
-| Author | Conceptualization | Methodology | Software | Validation | Formal analysis | Investigation | Data curation | Writing - original draft | Writing - review and editing | Visualization | Supervision | Project administration | Funding acquisition |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Author 1] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
-| [Author 2] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
+| Author | Proposed CRediT roles | Confirmation status |
+| --- | --- | --- |
+| Al Jubair Hossain | Conceptualization; Methodology; Software; Validation; Formal analysis; Investigation; Data curation; Writing - original draft; Writing - review and editing; Visualization; Project administration; Supervision | Pending final author confirmation |
+| ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Pending final author confirmation |
+| MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Pending final author confirmation |
+| Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Pending final author confirmation |
+| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Pending final author confirmation |
 
 ## 6. Acknowledgments
 
-Choose one:
-
-- [ ] No acknowledgments.
-- [ ] Add acknowledgments below.
-
-Acknowledgments text:
-
-[Acknowledgments]
+No specific funding was received for this work. No additional acknowledgments
+were provided.
 
 ## 7. Conflict of Interest Confirmation
 
-Choose one:
-
-- [ ] Confirm no known competing financial interests or personal relationships.
-- [ ] Provide disclosure below.
-
 Final conflict of interest statement:
 
-[Conflict of interest statement]
+The authors declare no competing interests.
 
-## 8. Funding Confirmation
+## 8. Funding Statement
 
-Choose one:
+Final funding statement:
 
-- [ ] Confirm no specific grant from funding agencies in the public,
-      commercial, or not-for-profit sectors.
-- [ ] Provide exact funding information below.
-
-Funding source, grant number, and funder role:
-
-[Funding details]
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
 
 ## 9. Data and Code Repository
 
-- Public repository URL: [URL or pending]
-- Archive/DOI URL if required: [URL or pending]
-- Will code be released before review, after acceptance, or on request? [answer]
-- Can derived sample indexes be shared under HOT3D-Clips terms? [yes/no/pending]
-- Can logs/checkpoints be shared without exposing restricted dataset content? [yes/no/pending]
+- Public repository URL: Pending
+- Suggested future repository name: `https://github.com/XessX/prehoi-rank-hot3d`
+- Archive/DOI URL if required: Pending
+- Will code be released before review, after acceptance, or on request? Pending
+- Can derived sample indexes be shared under HOT3D-Clips terms? Pending
+- Can logs/checkpoints be shared without exposing restricted dataset content? Pending
 
 ## 10. Final Article Type
 
-Confirm in the live Machine Learning with Applications submission system:
-
-- [ ] Regular research article / research paper.
-- [ ] Another article type: [specify]
+- Current working article type: Regular research article / research paper.
+- Live submission-system confirmation: Pending.
 
 ## 11. Keywords
 
-Current draft keywords:
+Current keywords:
 
 - Egocentric video
 - Hand-object interaction
@@ -111,50 +102,41 @@ Current draft keywords:
 - Leakage prevention
 - 3D hand pose
 
-Final keyword edits:
-
-[Add/remove/reorder keywords]
+No keyword edits were provided.
 
 ## 12. Suggested Reviewers
 
-Optional. Complete only if the journal asks for suggested reviewers.
-
-| Name | Institution | Email | Expertise | Reason |
-| --- | --- | --- | --- | --- |
-| [Reviewer name] | [Institution] | [Email] | [Expertise] | [Reason] |
+No suggested reviewers were provided. This remains optional unless requested by
+the journal.
 
 ## 13. Opposed Reviewers
 
-Optional. Complete only if there is a legitimate conflict to disclose.
-
-| Name | Institution | Reason |
-| --- | --- | --- |
-| [Reviewer name] | [Institution] | [Conflict/reason] |
+No opposed reviewers were provided. This remains optional unless there is a
+legitimate conflict to disclose.
 
 ## 14. MLWA APC and Research4Life Responsibility Confirmation
 
-Confirm using the final author list and affiliations:
+Confirm using the final author affiliations and live submission context:
 
-- [ ] Current MLWA APC checked.
-- [ ] Taxes checked.
-- [ ] Institutional agreement coverage checked.
-- [ ] Research4Life eligibility checked.
-- [ ] Responsible payer or waiver route identified.
-
-Notes:
-
-[APC/waiver notes]
+- Current MLWA APC: Pending final check.
+- Taxes: Pending final check.
+- Institutional agreement coverage: Pending final check.
+- Research4Life eligibility for AIUB/Bangladesh: Pending final check.
+- Responsible payer or waiver route: Pending final check.
 
 ## 15. HOT3D-Clips License and Access Confirmation
 
 Confirm before submission:
 
-- [ ] HOT3D-Clips access route checked.
-- [ ] License wording checked against official sources.
-- [ ] Raw dataset will not be redistributed.
-- [ ] Derived sample indexes/logs/checkpoints sharing decision made.
-- [ ] Required HOT3D/HOT3D-Clips citations checked.
+- HOT3D-Clips access route: Pending final check.
+- License wording: Pending final check.
+- Raw dataset redistribution: Not allowed in this package.
+- Derived sample indexes/logs/checkpoints sharing decision: Pending.
+- Required HOT3D/HOT3D-Clips citations: Core citations added; final check pending.
 
-Final data-use wording notes:
+## 16. Final Author Consent
 
-[HOT3D-Clips license/access notes]
+- All listed authors have reviewed the manuscript: Pending.
+- All listed authors consent to submission: Pending.
+- All listed authors confirm the author order: Pending.
+- All listed authors confirm CRediT roles: Pending.

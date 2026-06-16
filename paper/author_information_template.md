@@ -1,10 +1,13 @@
-# Author Information Template
+# Author Information
 
-Status: author-side completion required before submission.
+Status: multi-author metadata filled from the provided author details. Student
+IDs are retained here for internal tracking only and must not be included in
+the manuscript, title page, cover letter, declarations, or submission package.
+PreHOI-specific repository/archive fields remain pending.
 
-Do not submit this file as-is. Replace the bracketed fields only after the
-author list, affiliations, contributions, funding, and declarations are
-confirmed by all authors.
+Do not submit this file as-is until all authors confirm order, consent,
+contributions, the live journal form, APC/waiver route, and PreHOI-specific
+repository/archive details.
 
 ## Manuscript
 
@@ -16,81 +19,69 @@ Backup journal: PLOS ONE
 
 ## Author List
 
-| Order | Full author name | Affiliation number(s) | Email | ORCID | Notes |
-| --- | --- | --- | --- | --- | --- |
-| 1 | [Author 1 full name] | [1] | [email] | [ORCID if used] | [role/notes] |
-| 2 | [Author 2 full name] | [2] | [email] | [ORCID if used] | [role/notes] |
-| 3 | [Author 3 full name] | [3] | [email] | [ORCID if used] | [role/notes] |
-
-Add or remove rows as needed.
+| Order | Full author name | Affiliation number(s) | Email | ORCID | Internal student ID | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Al Jubair Hossain | 1 | jubair.hossain@aiub.edu | 0009-0005-3498-5826 | Not applicable | Corresponding author |
+| 2 | ASIF SHAHRIAR SIAM | 1 | 23-50073-1@student.aiub.edu | Not provided | 23-50073-1 | Student author; final consent and contribution confirmation pending |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | 22-47890-2@student.aiub.edu | Not provided | 22-47890-2 | Student author; final consent and contribution confirmation pending |
+| 4 | Maria Sultana Alif | 1 | 24-57836-2@student.aiub.edu | Not provided | 24-57836-2 | Student author; final consent and contribution confirmation pending |
+| 5 | Siam Rahman Nayem | 1 | 24-57857-2@student.aiub.edu | Not provided | 24-57857-2 | Student author; final consent and contribution confirmation pending |
 
 ## Affiliations
 
 | Number | Institution | Department/unit | City | Country | Postal address if required |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
-| 2 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
-| 3 | [Institution] | [Department/unit] | [City] | [Country] | [Postal address] |
+| 1 | American International University-Bangladesh (AIUB) | Not specified | Dhaka | Bangladesh | Kuratoli, Khilkhet, Dhaka 1229, Bangladesh |
 
 ## Corresponding Author
 
-- Name: [Corresponding author full name]
-- Email: [Corresponding author email]
-- Affiliation: [Affiliation number and institution]
-- Postal address: [Postal address if required]
-- Phone number: [Phone number if required by submission system]
+- Name: Al Jubair Hossain
+- Email: jubair.hossain@aiub.edu
+- Affiliation: 1, American International University-Bangladesh (AIUB)
+- Postal address: Kuratoli, Khilkhet, Dhaka 1229, Bangladesh
+- Phone number: Pending if required by submission system
 
 ## Contribution Roles
 
-Use a CRediT-style author contribution statement if the journal requests it.
-Confirm roles with all authors before submission.
+All student CRediT roles are proposed and require final author confirmation
+before submission.
 
-| Author | Conceptualization | Methodology | Software | Validation | Formal analysis | Investigation | Data curation | Writing - original draft | Writing - review and editing | Visualization | Supervision | Project administration | Funding acquisition |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Author 1] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
-| [Author 2] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] | [yes/no] |
+| Author | Proposed CRediT roles | Confirmation status |
+| --- | --- | --- |
+| Al Jubair Hossain | Conceptualization; Methodology; Software; Validation; Formal analysis; Investigation; Data curation; Writing - original draft; Writing - review and editing; Visualization; Project administration; Supervision | Pending final author confirmation |
+| ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Pending final author confirmation |
+| MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Pending final author confirmation |
+| Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Pending final author confirmation |
+| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Pending final author confirmation |
 
 ## Acknowledgments
 
-[Add acknowledgments, or state "None" if appropriate.]
+No specific funding was received for this work. No additional acknowledgments
+were provided.
 
 ## Conflict of Interest Confirmation
 
-Draft statement currently in `paper/submission_package/conflict_of_interest_statement.md`.
+Final text:
 
-Author decision:
+The authors declare no competing interests.
 
-- [ ] Confirm the current no-competing-interests statement.
-- [ ] Replace with a specific disclosure.
+## Funding Statement
 
 Final text:
 
-[Final conflict of interest statement]
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
 
-## Funding Confirmation
+## Author Consent Confirmation
 
-Draft statement currently in `paper/submission_package/funding_statement.md`.
-
-Author decision:
-
-- [ ] Confirm that no specific funding supported this work.
-- [ ] Replace with exact funding source, grant number, and funder role.
-
-Final text:
-
-[Final funding statement]
+- Final consent from all listed authors: Pending.
+- Final author order confirmation from all listed authors: Pending.
+- Final contribution confirmation from all listed authors: Pending.
 
 ## Data and Code Availability Confirmation
 
-Draft statement currently in `paper/submission_package/data_code_availability.md`.
-
-Author decision:
-
-- [ ] Confirm public code-release plan.
-- [ ] Confirm whether derived indexes or logs can be shared under HOT3D-Clips terms.
-- [ ] Confirm no raw HOT3D-Clips data will be redistributed.
-- [ ] Add final repository/archive URL if available.
-
-Final repository/archive URL:
-
-[URL or "To be added after acceptance/review"]
+- PreHOI-Rank repository URL: Pending
+- Suggested future repository name: `https://github.com/XessX/prehoi-rank-hot3d`
+- Archive DOI: Pending
+- Derived index/log/checkpoint sharing decision under HOT3D-Clips terms: Pending
+- Raw HOT3D-Clips data redistribution: not included and not planned

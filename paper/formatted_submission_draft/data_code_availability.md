@@ -34,7 +34,11 @@ instructions instead.
 ## Code Availability
 
 The implementation can be released in a public GitHub repository after final
-cleanup. The code should include:
+cleanup. The PreHOI-Rank repository URL is currently pending. A suggested
+future repository name is `https://github.com/XessX/prehoi-rank-hot3d`, but no
+repository or archive DOI is claimed in this manuscript package yet.
+
+The code should include:
 
 - HOT3D-Clips inspection scripts;
 - proxy-label generation scripts;
@@ -70,3 +74,5 @@ official HOT3D-Clips data-use terms and ethics statements.
 - Add exact commands for regenerating the 50-clip primary split, the 75-clip
   robustness split, and proxy labels.
 - Add a permanent archive link or release tag if required by the journal.
+- Do not reuse the Scientific Reports sparse 3D Gaussian Splatting GitHub or
+  Zenodo links for this PreHOI-Rank paper.

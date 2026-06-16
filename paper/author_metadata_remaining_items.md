@@ -1,45 +1,42 @@
 # Author Metadata Remaining Items
 
-Date: 2026-06-09
+Date: 2026-06-16
 
-This file lists only items that require human author input before submission.
-It is based on the metadata-focused scan of `paper/submission_package/`,
-`paper/author_information_template.md`, and
-`paper/submission_metadata_template.md`.
+Status: five-author metadata has been added from the provided author details.
+This file lists items that still require human or submission-time input.
 
-## Required Author Information
+## Filled Author Information
 
-- Final author names and ordering.
-- Final institutional affiliations for every author.
-- Author email addresses.
-- ORCID IDs, if the authors want or need to include them.
-- Final corresponding author name, email, institution, and postal/contact
-  details required by the submission system.
+- Author order: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Siam Rahman Nayem.
+- Shared affiliation: American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
+- Corresponding author: Al Jubair Hossain.
+- Corresponding author email: jubair.hossain@aiub.edu.
+- Corresponding author ORCID: 0009-0005-3498-5826.
+- Student co-author ORCIDs: not provided.
+- Funding: no specific funding.
+- Competing interests: no competing interests.
 
-## Required Author Decisions
+## Remaining Author-Side Items
 
-- Confirm CRediT-style contribution roles for each author.
-- Confirm acknowledgments text, or confirm that no acknowledgments are needed.
-- Confirm the conflict of interest statement.
-- Confirm the funding statement or provide exact grant/funder information.
+- Final consent from all five authors is pending.
+- Final author order confirmation from all five authors is pending.
+- Final CRediT role confirmation from all five authors is pending.
+- Student co-author ORCID IDs remain not provided unless authors supply them.
+- Phone number remains pending only if the submission system requires it.
 - Confirm whether a graphical abstract is needed or intentionally omitted.
-
-## Required Submission Metadata
-
-- Confirm article type in the live Machine Learning with Applications submission
-  system.
-- Confirm short title if the system requests one.
-- Confirm final keywords.
+- Confirm final article type in the live Machine Learning with Applications
+  submission system.
 - Confirm whether suggested reviewers should be provided.
 - Confirm whether opposed reviewers should be listed because of a legitimate
   conflict.
 - Confirm whether figures and tables should be uploaded separately or embedded
-  only in the manuscript source file.
+  in the manuscript source file.
 
-## Required Data/Code Decisions
+## Required PreHOI-Specific Data/Code Decisions
 
-- Final public repository or archive URL, if available before submission.
-- Whether derived sample indexes can be shared under the HOT3D-Clips terms.
+- Final public PreHOI-Rank repository URL.
+- Final archive DOI, if required.
+- Whether derived sample indexes can be shared under HOT3D-Clips terms.
 - Whether logs/checkpoints can be shared without exposing restricted dataset
   content.
 - Final HOT3D-Clips license/access wording for the manuscript and release
@@ -50,8 +47,8 @@ It is based on the metadata-focused scan of `paper/submission_package/`,
 ## Required Journal and Payment Checks
 
 - Confirm current MLWA APC, taxes, institutional agreement coverage, and any
-  waiver route using the exact final author list.
-- Confirm Research4Life eligibility only after final author affiliations and
-  corresponding-author details are known.
+  waiver route using the filled AIUB/Bangladesh affiliation.
+- Confirm Research4Life eligibility using the filled AIUB/Bangladesh
+  affiliation and live submission context.
 - Confirm final formatting requirements from the live Guide for Authors before
   upload.
