@@ -109,3 +109,5 @@ Outputs are written under `paper/figures/`.
 - Residual class imbalance remains in the optimized splits.
 - The public repository is available at
   `https://github.com/XessX/prehoi-rank-hot3d`; the archive DOI is pending.
+- `CITATION.cff` and `.zenodo.json` are prepared for a future `v0.1.0`
+  GitHub/Zenodo release.

@@ -15,10 +15,16 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] `REPRODUCIBILITY.md` exists.
 - [x] `DATA_USAGE.md` exists.
 - [x] `MODEL_CARD.md` exists.
+- [x] `CITATION.cff` exists.
+- [x] `.zenodo.json` exists.
 - [x] Paper protocol notes exist under `paper/`.
 - [x] Figure-generation code exists under `src/visualization/`.
 - [x] Pre-GitHub push audit exists:
       `paper/pre_github_push_audit.md`.
+- [x] Zenodo release plan exists:
+      `paper/zenodo_release_plan.md`.
+- [x] Draft v0.1.0 release notes exist:
+      `paper/release_v0_1_0_notes.md`.
 
 ## Ignored Data and Generated Artifacts
 
@@ -39,6 +45,8 @@ Pre-push audit: completed on 2026-06-17 in
 
 - [x] Final repository URL available:
       `https://github.com/XessX/prehoi-rank-hot3d`.
+- [x] Zenodo metadata prepared.
+- [ ] GitHub release `v0.1.0` pending.
 - [ ] Zenodo/archive DOI pending.
 - [ ] Final author consent pending.
 - [ ] Student co-author CRediT role confirmation pending.

@@ -11,6 +11,9 @@ Repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
 
 Archive DOI status: pending.
 
+Release metadata status: `CITATION.cff` and `.zenodo.json` are prepared for a
+future `v0.1.0` GitHub/Zenodo release. No Zenodo DOI has been created yet.
+
 ## What This Repository Contains
 
 - HOT3D-Clips inspection and safe sample-index generation scripts.
@@ -157,8 +160,9 @@ archive DOI are confirmed.
 
 ## Citation
 
-Citation metadata is pending until the manuscript and archive are finalized.
-For now, cite this repository as:
+Citation metadata is available in `CITATION.cff`. The archive DOI remains
+pending until a GitHub release is archived by Zenodo. For now, cite this
+repository as:
 
 ```text
 PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.

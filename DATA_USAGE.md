@@ -37,3 +37,6 @@ provide regeneration scripts and clip-selection instructions instead.
 For a public GitHub release, include code, configuration files, paper notes, and
 reproducibility instructions. Exclude raw data, generated large artifacts,
 checkpoints, and local caches.
+
+Release metadata files are prepared in `CITATION.cff` and `.zenodo.json`.
+Zenodo/archive DOI remains pending until a GitHub release is archived.

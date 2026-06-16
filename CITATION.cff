@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file."
+type: software
+title: "PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting"
+version: "v0.1.0-draft"
+repository-code: "https://github.com/XessX/prehoi-rank-hot3d"
+license: "MIT"
+abstract: >-
+  PreHOI-Rank is a research-code package for leakage-safe, affordance-grounded
+  candidate ranking in pre-contact 3D hand-object interaction forecasting on
+  HOT3D-Clips. The repository includes dataset inspection, derived proxy-label
+  generation, split optimization, candidate-order and leakage checks, training
+  scripts, reproducibility notes, and manuscript-support materials. Raw
+  HOT3D-Clips data is not redistributed.
+authors:
+  - family-names: Hossain
+    given-names: Al Jubair
+    orcid: "https://orcid.org/0009-0005-3498-5826"
+    affiliation: "American International University-Bangladesh (AIUB), Dhaka, Bangladesh"
+  - family-names: SIAM
+    given-names: ASIF SHAHRIAR
+    affiliation: "American International University-Bangladesh (AIUB), Dhaka, Bangladesh"
+  - family-names: ROJAN
+    given-names: "MD. ABUBOKOR SIDDIK"
+    affiliation: "American International University-Bangladesh (AIUB), Dhaka, Bangladesh"
+  - family-names: Alif
+    given-names: Maria Sultana
+    affiliation: "American International University-Bangladesh (AIUB), Dhaka, Bangladesh"
+  - family-names: Nayem
+    given-names: Siam Rahman
+    affiliation: "American International University-Bangladesh (AIUB), Dhaka, Bangladesh"
+keywords:
+  - hand-object interaction
+  - egocentric vision
+  - HOT3D
+  - candidate ranking
+  - pre-contact forecasting
+  - affordance

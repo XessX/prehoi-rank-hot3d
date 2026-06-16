@@ -54,6 +54,12 @@ MPJPE is not reported.
 Research on pre-contact hand-object interaction forecasting and leakage-safe
 candidate-ranking protocols.
 
+## Release Status
+
+The GitHub repository is available at
+`https://github.com/XessX/prehoi-rank-hot3d`. Release metadata is prepared for
+`v0.1.0-draft`; the Zenodo/archive DOI remains pending.
+
 ## Not Suitable For
 
 - Safety-critical assistive systems without additional validation.

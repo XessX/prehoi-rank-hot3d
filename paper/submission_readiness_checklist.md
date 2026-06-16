@@ -147,6 +147,11 @@ not a completed journal submission.
       `paper/repository_release_checklist.md`.
 - [x] Complete pre-GitHub push safety audit:
       `paper/pre_github_push_audit.md`.
+- [x] Prepare Zenodo/GitHub release metadata:
+      `CITATION.cff`, `.zenodo.json`, and
+      `paper/zenodo_release_plan.md`.
+- [ ] Create GitHub release `v0.1.0`.
+- [ ] Archive release with Zenodo and add generated DOI.
 
 ## Current Readiness Summary
 
