@@ -40,11 +40,11 @@ journal upload.
    produced because Pandoc is not available locally. Install/enable a converter
    or convert manually after metadata is finalized.
 
-6. **Final post-fill placeholder scan pending**
+6. **Final post-confirmation placeholder scan pending**
 
-   After repository, APC, license, journal metadata, or author confirmations are
-   filled, rerun the placeholder scan over the formatted submission draft and
-   exported files before upload.
+   The post-DOI release audit is complete. After APC, license, journal
+   metadata, or author confirmations are filled, rerun the placeholder scan over
+   the formatted submission draft and exported files before upload.
 
 ## Not Current Blockers
 

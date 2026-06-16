@@ -152,6 +152,8 @@ not a completed journal submission.
       `paper/zenodo_release_plan.md`.
 - [x] Archive corrected GitHub release `v0.1.1` with Zenodo.
 - [x] Add generated Zenodo DOI: `10.5281/zenodo.20722666`.
+- [x] Complete final post-DOI release audit:
+      `paper/final_post_doi_release_audit.md`.
 
 ## Current Readiness Summary
 

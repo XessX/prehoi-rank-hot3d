@@ -22,6 +22,8 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] Figure-generation code exists under `src/visualization/`.
 - [x] Pre-GitHub push audit exists:
       `paper/pre_github_push_audit.md`.
+- [x] Final post-DOI release audit exists:
+      `paper/final_post_doi_release_audit.md`.
 - [x] Zenodo release plan exists:
       `paper/zenodo_release_plan.md`.
 - [x] Corrected v0.1.1 release notes exist:
