@@ -59,7 +59,7 @@ confirmation before submission.
 - [x] Acknowledgments filled: no additional acknowledgments provided.
 - [ ] Final author consent from all listed authors pending.
 - [ ] Final student co-author CRediT role confirmation pending.
-- [ ] Data/code availability statement final repository/archive URL pending.
+- [x] Data/code availability statement includes repository URL and Zenodo DOI.
 - [ ] HOT3D-Clips license/access wording final confirmation pending.
 - [ ] Machine Learning with Applications APC/waiver/Research4Life route checked
       using filled AIUB/Bangladesh affiliation.

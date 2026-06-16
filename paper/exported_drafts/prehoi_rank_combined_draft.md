@@ -1,7 +1,7 @@
-<!-- DRAFT EXPORT: five-author metadata is filled; author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D license/access checks remain pending. -->
+<!-- DRAFT EXPORT: five-author metadata, repository URL, and Zenodo DOI are filled; author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->
 # PreHOI-Rank Manuscript Draft Export
 
-**Status:** DRAFT. Not submission-ready until final author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.
+**Status:** DRAFT. Not submission-ready until final author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks are complete.
 
 ## Title Page
 
@@ -66,7 +66,7 @@ confirmation before submission.
 - [x] Acknowledgments filled: no additional acknowledgments provided.
 - [ ] Final author consent from all listed authors pending.
 - [ ] Final student co-author CRediT role confirmation pending.
-- [ ] Data/code availability statement final repository/archive URL pending.
+- [x] Data/code availability statement includes repository URL and Zenodo DOI.
 - [ ] HOT3D-Clips license/access wording final confirmation pending.
 - [ ] Machine Learning with Applications APC/waiver/Research4Life route checked
       using filled AIUB/Bangladesh affiliation.
@@ -573,8 +573,9 @@ dataset directly from the official provider and follow the provider's license,
 access, and citation requirements.
 
 The code is available in the PreHOI-Rank repository at
-`https://github.com/XessX/prehoi-rank-hot3d`; the archive DOI is pending. The
-repository should include scripts for HOT3D-Clips inspection, proxy-label
+`https://github.com/XessX/prehoi-rank-hot3d`; the corrected `v0.1.1` Zenodo
+archive DOI is `10.5281/zenodo.20722666`. The repository should include
+scripts for HOT3D-Clips inspection, proxy-label
 generation, split optimization, leakage checks, candidate-order bias checks,
 training, metric collection, and figure generation. Generated sample indexes
 can be regenerated from downloaded HOT3D-Clips shards by authorized users.

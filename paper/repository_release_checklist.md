@@ -4,7 +4,8 @@ Target future repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
 Status: release preparation draft. The GitHub repository is available at
-`https://github.com/XessX/prehoi-rank-hot3d`. The archive DOI is pending.
+`https://github.com/XessX/prehoi-rank-hot3d`. The corrected `v0.1.1` Zenodo
+archive DOI is `10.5281/zenodo.20722666`.
 
 Pre-push audit: completed on 2026-06-17 in
 `paper/pre_github_push_audit.md`.
@@ -23,7 +24,7 @@ Pre-push audit: completed on 2026-06-17 in
       `paper/pre_github_push_audit.md`.
 - [x] Zenodo release plan exists:
       `paper/zenodo_release_plan.md`.
-- [x] Draft v0.1.0 release notes exist:
+- [x] Corrected v0.1.1 release notes exist:
       `paper/release_v0_1_0_notes.md`.
 
 ## Ignored Data and Generated Artifacts
@@ -46,8 +47,9 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] Final repository URL available:
       `https://github.com/XessX/prehoi-rank-hot3d`.
 - [x] Zenodo metadata prepared.
-- [ ] GitHub release `v0.1.0` pending.
-- [ ] Zenodo/archive DOI pending.
+- [x] GitHub release `v0.1.1` archived.
+- [x] Zenodo/archive DOI added: `10.5281/zenodo.20722666`.
+- [x] Older `v0.1.0` DOI is not used for manuscript citation.
 - [ ] Final author consent pending.
 - [ ] Student co-author CRediT role confirmation pending.
 - [ ] HOT3D-Clips license/access wording pending final official check.

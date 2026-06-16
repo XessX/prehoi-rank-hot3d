@@ -39,4 +39,4 @@ reproducibility instructions. Exclude raw data, generated large artifacts,
 checkpoints, and local caches.
 
 Release metadata files are prepared in `CITATION.cff` and `.zenodo.json`.
-Zenodo/archive DOI remains pending until a GitHub release is archived.
+The corrected `v0.1.1` Zenodo archive DOI is `10.5281/zenodo.20722666`.

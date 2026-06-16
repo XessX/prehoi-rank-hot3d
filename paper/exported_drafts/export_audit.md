@@ -2,7 +2,7 @@
 
 Date: 2026-06-17
 
-Status: draft export audit. Exported artifacts are not submission-ready until author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.
+Status: draft export audit. Exported artifacts are not submission-ready until author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks are complete.
 
 ## Output Files
 
@@ -19,8 +19,8 @@ Status: draft export audit. Exported artifacts are not submission-ready until au
 
 - final author consent from all listed authors;
 - final student co-author contribution confirmation;
-- final PreHOI-Rank repository URL;
-- final archive DOI, if required;
+- final co-author consent confirmation;
+- final student CRediT confirmation;
 - final decision on derived index/log/checkpoint sharing;
 - final MLWA APC/tax/waiver/Research4Life checks;
 - final HOT3D-Clips license/access wording.
@@ -41,4 +41,4 @@ No PDF conversion attempted or no converter output.
 
 ## Final Warning
 
-These files are draft exports only. They must not be submitted until final author consent, contribution confirmation, journal formatting, PreHOI repository/archive details, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.
+These files are draft exports only. They must not be submitted until final author consent, contribution confirmation, journal formatting, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.

@@ -1,13 +1,13 @@
 # Zenodo Release Plan
 
-Status: prepared for a future GitHub/Zenodo software archive. No DOI has been
-created or inserted yet.
+Status: completed for the corrected `v0.1.1` GitHub/Zenodo software archive.
+The generated DOI is `10.5281/zenodo.20722666`.
 
 Target repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
-Planned release tag:
-`v0.1.0`
+Archived release tag:
+`v0.1.1`
 
 Current citation/release metadata files:
 
@@ -25,13 +25,14 @@ Current citation/release metadata files:
 5. Confirm the repository contains no raw HOT3D-Clips data, processed outputs,
    logs, checkpoints, caches, or model weights.
 6. Confirm the repository contains `CITATION.cff` and `.zenodo.json`.
-7. Create a GitHub release, recommended tag `v0.1.0`.
-8. Use the release notes from `paper/release_v0_1_0_notes.md`.
+7. Create a GitHub release. Corrected release tag used: `v0.1.1`.
+8. Use the release notes from `paper/release_v0_1_0_notes.md`, updated to
+   document the corrected `v0.1.1` archive.
 9. Wait for Zenodo to archive the GitHub release.
-10. Copy the generated Zenodo DOI.
+10. Copy the generated Zenodo DOI: `10.5281/zenodo.20722666`.
 11. Update `README.md`, manuscript data/code availability, submission package,
-    exported draft, `CITATION.cff` if needed, and repository checklist with the
-    generated DOI.
+    exported draft, `CITATION.cff`, `.zenodo.json`, and repository checklist
+    with the generated DOI.
 12. Commit and push the DOI update.
 
 ## Release Safety Requirements
@@ -47,9 +48,9 @@ Current citation/release metadata files:
 - Keep the 50-clip result primary and the 75-clip result as
   robustness/scalability analysis.
 
-## After Zenodo DOI Creation
+## DOI Update Targets
 
-Update these files with the generated DOI:
+Updated or to be checked with the generated DOI:
 
 - `README.md`
 - `paper/formatted_submission_draft/data_code_availability.md`
@@ -60,4 +61,5 @@ Update these files with the generated DOI:
 - `paper/repository_release_checklist.md`
 - `paper/submission_readiness_checklist.md`
 
-Do not invent a DOI before Zenodo creates it.
+Do not use the older `v0.1.0` DOI. Use only
+`10.5281/zenodo.20722666` for the corrected `v0.1.1` archive.

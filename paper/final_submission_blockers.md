@@ -12,13 +12,14 @@ journal upload.
    confirm author order, consent to submission, and CRediT roles. Student
    co-author roles are currently proposed and must be confirmed by the authors.
 
-2. **PreHOI archive DOI not finalized**
+2. **Final archive citation check before submission**
 
    The PreHOI-Rank repository is available at
-   `https://github.com/XessX/prehoi-rank-hot3d`, but the archive DOI remains
-   pending. `CITATION.cff` and `.zenodo.json` are prepared for a future
-   GitHub/Zenodo release. Do not reuse the Scientific Reports sparse 3D
-   Gaussian Splatting GitHub or Zenodo links for this paper.
+   `https://github.com/XessX/prehoi-rank-hot3d`, and the corrected `v0.1.1`
+   Zenodo archive DOI is `10.5281/zenodo.20722666`. Before submission, confirm
+   that the DOI resolves to the intended repository release. Do not reuse the
+   Scientific Reports sparse 3D Gaussian Splatting GitHub or Zenodo links for
+   this paper.
 
 3. **Final journal/APC/Research4Life verification depends on live submission context**
 

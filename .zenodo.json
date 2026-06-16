@@ -1,6 +1,7 @@
 {
   "title": "PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting",
   "upload_type": "software",
+  "version": "v0.1.1",
   "description": "PreHOI-Rank is a research-code release for leakage-safe, affordance-grounded candidate ranking in pre-contact 3D hand-object interaction forecasting on HOT3D-Clips. The repository includes scripts for HOT3D-Clips inspection, derived proxy-label generation, split optimization, candidate-order and forecast-frame leakage checks, candidate-ranker training, reproducibility documentation, and manuscript-support materials. Raw HOT3D-Clips data, processed dataset outputs, logs, checkpoints, caches, and model weights are not redistributed.",
   "creators": [
     {
@@ -40,7 +41,12 @@
       "identifier": "https://github.com/XessX/prehoi-rank-hot3d",
       "relation": "isSupplementTo",
       "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.20722666",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
     }
   ],
-  "notes": "Raw HOT3D-Clips data is not redistributed. Users must obtain HOT3D-Clips from official sources and follow the official HOT3D/HOT3D-Clips access, license, and citation terms. The archive DOI remains pending until Zenodo creates one for a GitHub release."
+  "notes": "Raw HOT3D-Clips data is not redistributed. Users must obtain HOT3D-Clips from official sources and follow the official HOT3D/HOT3D-Clips access, license, and citation terms. Corrected v0.1.1 release DOI: 10.5281/zenodo.20722666."
 }

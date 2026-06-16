@@ -77,9 +77,8 @@ public, commercial, or not-for-profit sectors.
 
 ## 9. Data and Code Repository
 
-- Public repository URL: Pending
-- Suggested future repository name: `https://github.com/XessX/prehoi-rank-hot3d`
-- Archive/DOI URL if required: Pending
+- Public repository URL: `https://github.com/XessX/prehoi-rank-hot3d`
+- Archive/DOI URL: `10.5281/zenodo.20722666`
 - Will code be released before review, after acceptance, or on request? Pending
 - Can derived sample indexes be shared under HOT3D-Clips terms? Pending
 - Can logs/checkpoints be shared without exposing restricted dataset content? Pending

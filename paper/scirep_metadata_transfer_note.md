@@ -53,9 +53,8 @@ misidentify the PreHOI-Rank repository and archive.
 
 ## Remaining PreHOI-Specific Repository/Archive Items
 
-- PreHOI-Rank repository URL: Pending.
-- Suggested future repository name: `https://github.com/XessX/prehoi-rank-hot3d`.
-- PreHOI-Rank archive DOI: Pending.
+- PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
+- PreHOI-Rank archive DOI: `10.5281/zenodo.20722666`.
 - Decision on sharing derived sample indexes, logs, and checkpoints under
   HOT3D-Clips terms: Pending.
 - Final HOT3D-Clips license/access wording: Pending final official check before

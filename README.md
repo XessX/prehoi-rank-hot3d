@@ -9,10 +9,10 @@ predicting a future MANO/UmeTrack pose-parameter vector.
 
 Repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
 
-Archive DOI status: pending.
+Archive DOI: `10.5281/zenodo.20722666`.
 
-Release metadata status: `CITATION.cff` and `.zenodo.json` are prepared for a
-future `v0.1.0` GitHub/Zenodo release. No Zenodo DOI has been created yet.
+Release metadata status: `CITATION.cff` and `.zenodo.json` are updated for the
+corrected `v0.1.1` GitHub/Zenodo release.
 
 ## What This Repository Contains
 
@@ -155,16 +155,17 @@ More detailed steps are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
 Manuscript and submission materials are under `paper/`. The current package is
 not submission-ready until final author consent, HOT3D license/access wording,
-Machine Learning with Applications APC/waiver checks, repository URL, and
-archive DOI are confirmed.
+Machine Learning with Applications APC/waiver checks, and final formatting are
+confirmed.
 
 ## Citation
 
-Citation metadata is available in `CITATION.cff`. The archive DOI remains
-pending until a GitHub release is archived by Zenodo. For now, cite this
-repository as:
+Citation metadata is available in `CITATION.cff`. The corrected `v0.1.1`
+Zenodo archive DOI is `10.5281/zenodo.20722666`. For now, cite this repository
+as:
 
 ```text
 PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.
 Repository URL: https://github.com/XessX/prehoi-rank-hot3d.
+Archive DOI: 10.5281/zenodo.20722666.
 ```

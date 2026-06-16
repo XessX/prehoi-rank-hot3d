@@ -57,8 +57,8 @@ candidate-ranking protocols.
 ## Release Status
 
 The GitHub repository is available at
-`https://github.com/XessX/prehoi-rank-hot3d`. Release metadata is prepared for
-`v0.1.0-draft`; the Zenodo/archive DOI remains pending.
+`https://github.com/XessX/prehoi-rank-hot3d`. Release metadata is updated for
+`v0.1.1`; the Zenodo archive DOI is `10.5281/zenodo.20722666`.
 
 ## Not Suitable For
 

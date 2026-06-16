@@ -52,10 +52,10 @@ def build_combined_markdown(include_captions: bool = True) -> str:
     manuscript = read_text(FORMATTED_DIR / "manuscript_formatted.md")
 
     parts = [
-        "<!-- DRAFT EXPORT: five-author metadata is filled; author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D license/access checks remain pending. -->",
+        "<!-- DRAFT EXPORT: five-author metadata, repository URL, and Zenodo DOI are filled; author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->",
         "# PreHOI-Rank Manuscript Draft Export",
         "",
-        "**Status:** DRAFT. Not submission-ready until final author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.",
+        "**Status:** DRAFT. Not submission-ready until final author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
         "",
         "## Title Page",
         "",
@@ -106,7 +106,7 @@ def write_export_instructions(pandoc_path: str | None, docx_created: bool, pdf_c
         "",
         f"Date: {date.today().isoformat()}",
         "",
-        "Status: draft export workflow. Do not submit exported files until author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D-Clips license/access checks are complete.",
+        "Status: draft export workflow. Do not submit exported files until author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.",
         "",
         "## Converter Status",
         "",
@@ -132,7 +132,7 @@ def write_export_instructions(pandoc_path: str | None, docx_created: bool, pdf_c
         "If using Word manually:",
         "",
         "1. Open `paper/exported_drafts/prehoi_rank_combined_draft.md` or copy its content into Word.",
-        "2. Preserve pending author-consent, contribution-confirmation, PreHOI repository/archive, and journal-system fields until they are confirmed.",
+        "2. Preserve pending author-consent, contribution-confirmation, APC/waiver, HOT3D license/access, and journal-system fields until they are confirmed.",
         "3. Insert figures from `paper/formatted_submission_draft/figures/` if needed.",
         "4. Insert tables from `paper/formatted_submission_draft/tables/` if needed.",
         "5. Export DOCX/PDF only after final author-consent, contribution-confirmation, journal, APC/waiver, and HOT3D license/access checks.",
@@ -159,7 +159,7 @@ def write_export_audit(
         "",
         f"Date: {date.today().isoformat()}",
         "",
-        "Status: draft export audit. Exported artifacts are not submission-ready until author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.",
+        "Status: draft export audit. Exported artifacts are not submission-ready until author consent, contribution confirmation, journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
         "",
         "## Output Files",
         "",
@@ -176,8 +176,8 @@ def write_export_audit(
         "",
         "- final author consent from all listed authors;",
         "- final student co-author contribution confirmation;",
-        "- final PreHOI-Rank repository URL;",
-        "- final archive DOI, if required;",
+        "- final co-author consent confirmation;",
+        "- final student CRediT confirmation;",
         "- final decision on derived index/log/checkpoint sharing;",
         "- final MLWA APC/tax/waiver/Research4Life checks;",
         "- final HOT3D-Clips license/access wording.",
@@ -198,7 +198,7 @@ def write_export_audit(
         "",
         "## Final Warning",
         "",
-        "These files are draft exports only. They must not be submitted until final author consent, contribution confirmation, journal formatting, PreHOI repository/archive details, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.",
+        "These files are draft exports only. They must not be submitted until final author consent, contribution confirmation, journal formatting, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.",
     ]
 
     path = EXPORT_DIR / "export_audit.md"

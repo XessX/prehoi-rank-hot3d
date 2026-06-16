@@ -45,9 +45,8 @@ Final author consent is pending for all listed authors before submission.
 
 ## Repository and Archive Status
 
-- PreHOI-Rank repository URL: Pending.
-- Suggested future repository name: `https://github.com/XessX/prehoi-rank-hot3d`.
-- Archive DOI: Pending.
+- PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
+- Archive DOI: `10.5281/zenodo.20722666`.
 
 ## SciRep Link Exclusion
 

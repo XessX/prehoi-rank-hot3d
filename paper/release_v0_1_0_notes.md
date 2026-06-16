@@ -1,6 +1,9 @@
-# Release Notes: v0.1.0
+# Release Notes: v0.1.1
 
-Status: draft release notes for the first GitHub/Zenodo archive.
+Note: these notes supersede the earlier draft `v0.1.0` release notes. Use the
+corrected `v0.1.1` Zenodo DOI `10.5281/zenodo.20722666` for archive citation.
+
+Status: release notes for the corrected first GitHub/Zenodo archive.
 
 ## Summary
 

@@ -89,7 +89,8 @@ push.
 
 - GitHub repository exists according to the user, but this local branch has not
   yet been pushed.
-- Zenodo/archive DOI is pending.
+- Zenodo/archive DOI was not yet available at the time of this pre-push audit;
+  it was later updated to `10.5281/zenodo.20722666`.
 - Co-author consent is pending.
 - Student co-author contribution confirmation is pending.
 - HOT3D-Clips license/access wording needs final official confirmation before

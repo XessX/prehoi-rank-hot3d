@@ -495,8 +495,9 @@ dataset directly from the official provider and follow the provider's license,
 access, and citation requirements.
 
 The code is available in the PreHOI-Rank repository at
-`https://github.com/XessX/prehoi-rank-hot3d`; the archive DOI is pending. The
-repository should include scripts for HOT3D-Clips inspection, proxy-label
+`https://github.com/XessX/prehoi-rank-hot3d`; the corrected `v0.1.1` Zenodo
+archive DOI is `10.5281/zenodo.20722666`. The repository should include
+scripts for HOT3D-Clips inspection, proxy-label
 generation, split optimization, leakage checks, candidate-order bias checks,
 training, metric collection, and figure generation. Generated sample indexes
 can be regenerated from downloaded HOT3D-Clips shards by authorized users.
