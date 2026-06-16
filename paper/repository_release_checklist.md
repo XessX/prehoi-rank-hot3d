@@ -6,6 +6,9 @@ Target future repository:
 Status: release preparation draft. The repository URL is pending until the new
 GitHub repository actually exists. The archive DOI is pending.
 
+Pre-push audit: completed on 2026-06-17 in
+`paper/pre_github_push_audit.md`.
+
 ## Required Public Files
 
 - [x] `README.md` exists.
@@ -14,6 +17,8 @@ GitHub repository actually exists. The archive DOI is pending.
 - [x] `MODEL_CARD.md` exists.
 - [x] Paper protocol notes exist under `paper/`.
 - [x] Figure-generation code exists under `src/visualization/`.
+- [x] Pre-GitHub push audit exists:
+      `paper/pre_github_push_audit.md`.
 
 ## Ignored Data and Generated Artifacts
 
@@ -26,6 +31,9 @@ GitHub repository actually exists. The archive DOI is pending.
 - [x] VRS/video/archive files ignored.
 - [x] model weights ignored with `*.pt`, `*.pth`, and `*.ckpt`.
 - [x] large cached feature files ignored with `*.npz`.
+- [x] Pre-push tracked risky file check completed.
+- [x] Public-facing scan completed for old SciRep links, student IDs, and
+      unresolved editing markers.
 
 ## Release Blockers
 

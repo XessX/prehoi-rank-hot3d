@@ -144,6 +144,8 @@ not a completed journal submission.
 - [ ] Create a clean release tag or archive after final review.
 - [x] Create GitHub release preparation checklist:
       `paper/repository_release_checklist.md`.
+- [x] Complete pre-GitHub push safety audit:
+      `paper/pre_github_push_audit.md`.
 
 ## Current Readiness Summary
 
