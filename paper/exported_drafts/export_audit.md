@@ -1,6 +1,6 @@
 # Export Audit
 
-Date: 2026-06-16
+Date: 2026-06-17
 
 Status: draft export audit. Exported artifacts are not submission-ready until author consent, contribution confirmation, journal, repository/archive, APC/waiver, and HOT3D license/access checks are complete.
 

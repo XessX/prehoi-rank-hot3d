@@ -494,10 +494,9 @@ streams, object models, or restricted annotations. Readers should obtain the
 dataset directly from the official provider and follow the provider's license,
 access, and citation requirements.
 
-The code can be released in a public repository after final cleanup. The
-PreHOI-Rank repository URL is pending creation at
-`https://github.com/XessX/prehoi-rank-hot3d`, and the archive DOI is pending.
-The repository should include scripts for HOT3D-Clips inspection, proxy-label
+The code is available in the PreHOI-Rank repository at
+`https://github.com/XessX/prehoi-rank-hot3d`; the archive DOI is pending. The
+repository should include scripts for HOT3D-Clips inspection, proxy-label
 generation, split optimization, leakage checks, candidate-order bias checks,
 training, metric collection, and figure generation. Generated sample indexes
 can be regenerated from downloaded HOT3D-Clips shards by authorized users.

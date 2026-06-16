@@ -3,8 +3,8 @@
 Target future repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
-Status: release preparation draft. The repository URL is pending until the new
-GitHub repository actually exists. The archive DOI is pending.
+Status: release preparation draft. The GitHub repository is available at
+`https://github.com/XessX/prehoi-rank-hot3d`. The archive DOI is pending.
 
 Pre-push audit: completed on 2026-06-17 in
 `paper/pre_github_push_audit.md`.
@@ -37,7 +37,8 @@ Pre-push audit: completed on 2026-06-17 in
 
 ## Release Blockers
 
-- [ ] Final repository URL pending creation.
+- [x] Final repository URL available:
+      `https://github.com/XessX/prehoi-rank-hot3d`.
 - [ ] Zenodo/archive DOI pending.
 - [ ] Final author consent pending.
 - [ ] Student co-author CRediT role confirmation pending.

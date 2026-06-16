@@ -1,6 +1,6 @@
 # Export Instructions
 
-Date: 2026-06-16
+Date: 2026-06-17
 
 Status: draft export workflow. Do not submit exported files until author consent, contribution confirmation, journal formatting, PreHOI repository/archive, APC/waiver, and HOT3D-Clips license/access checks are complete.
 

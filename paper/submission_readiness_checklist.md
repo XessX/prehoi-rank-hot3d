@@ -78,9 +78,10 @@ not a completed journal submission.
 - [x] Create final submission blockers list:
       `paper/final_submission_blockers.md`.
 - [ ] Complete final live submission-system metadata checks.
-- [ ] Create public PreHOI-Rank repository at
+- [x] Create public PreHOI-Rank repository at
       `https://github.com/XessX/prehoi-rank-hot3d`.
-- [ ] Add final PreHOI-Rank repository URL and archive DOI if required.
+- [x] Add final PreHOI-Rank repository URL.
+- [ ] Add archive DOI if required.
 - [ ] Convert the formatted draft to DOCX/PDF only after author details and
       journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
@@ -174,9 +175,8 @@ not a completed journal submission.
 - Author information and declarations: five-author metadata added.
 - Student co-author metadata: added; contribution roles and final consent
   remain pending.
-- PreHOI-Rank repository URL: pending creation at
-  `https://github.com/XessX/prehoi-rank-hot3d`; do not reuse prior Scientific
-  Reports sparse 3D Gaussian Splatting links.
+- PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`;
+  do not reuse prior Scientific Reports sparse 3D Gaussian Splatting links.
 - Archive DOI: pending.
 - Final formatting: pending.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.

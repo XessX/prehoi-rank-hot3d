@@ -12,10 +12,10 @@ journal upload.
    confirm author order, consent to submission, and CRediT roles. Student
    co-author roles are currently proposed and must be confirmed by the authors.
 
-2. **PreHOI repository/archive not finalized**
+2. **PreHOI archive DOI not finalized**
 
-   The PreHOI-Rank repository URL is pending creation at
-   `https://github.com/XessX/prehoi-rank-hot3d`, and the archive DOI remains
+   The PreHOI-Rank repository is available at
+   `https://github.com/XessX/prehoi-rank-hot3d`, but the archive DOI remains
    pending. Do not reuse the Scientific Reports sparse 3D Gaussian Splatting
    GitHub or Zenodo links for this paper.
 

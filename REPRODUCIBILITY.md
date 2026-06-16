@@ -107,4 +107,5 @@ Outputs are written under `paper/figures/`.
   ground truth.
 - Pose metrics are MANO/UmeTrack pose-parameter vector MAE/MSE, not MPJPE.
 - Residual class imbalance remains in the optimized splits.
-- The public repository and archive DOI are pending.
+- The public repository is available at
+  `https://github.com/XessX/prehoi-rank-hot3d`; the archive DOI is pending.

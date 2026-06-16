@@ -34,9 +34,9 @@ instructions instead.
 ## Code Availability
 
 The implementation can be released in a public GitHub repository after final
-cleanup. The PreHOI-Rank repository URL is pending creation at
-`https://github.com/XessX/prehoi-rank-hot3d`. No repository or archive DOI is
-claimed in this manuscript package yet.
+cleanup. The PreHOI-Rank repository is available at
+`https://github.com/XessX/prehoi-rank-hot3d`. No archive DOI is claimed in
+this manuscript package yet.
 
 The code should include:
 

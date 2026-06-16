@@ -7,8 +7,7 @@ forecasting on HOT3D-Clips. The central task is to rank visible object
 candidates from an observation window before hand-object contact, while also
 predicting a future MANO/UmeTrack pose-parameter vector.
 
-Repository URL status: pending creation at
-`https://github.com/XessX/prehoi-rank-hot3d`.
+Repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
 
 Archive DOI status: pending.
 
@@ -158,10 +157,10 @@ archive DOI are confirmed.
 
 ## Citation
 
-Citation metadata is pending until the public repository and manuscript are
-finalized. For now, cite this repository as:
+Citation metadata is pending until the manuscript and archive are finalized.
+For now, cite this repository as:
 
 ```text
 PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.
-Repository URL pending creation at https://github.com/XessX/prehoi-rank-hot3d.
+Repository URL: https://github.com/XessX/prehoi-rank-hot3d.
 ```
