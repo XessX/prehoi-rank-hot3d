@@ -14,9 +14,10 @@ journal upload.
 
 2. **PreHOI repository/archive not finalized**
 
-   The PreHOI-Rank repository URL and archive DOI remain pending. Do not reuse
-   the Scientific Reports sparse 3D Gaussian Splatting GitHub or Zenodo links
-   for this paper.
+   The PreHOI-Rank repository URL is pending creation at
+   `https://github.com/XessX/prehoi-rank-hot3d`, and the archive DOI remains
+   pending. Do not reuse the Scientific Reports sparse 3D Gaussian Splatting
+   GitHub or Zenodo links for this paper.
 
 3. **Final journal/APC/Research4Life verification depends on live submission context**
 

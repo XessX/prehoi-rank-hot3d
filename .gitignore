@@ -25,6 +25,7 @@ data/raw/hot3d_clips/
 data/processed/**
 results/checkpoints/**
 results/logs/**
+results/cache/**
 results/tables/**
 results/figures/**
 *.tar
@@ -33,11 +34,16 @@ results/figures/**
 *.mp4
 *.zip
 *.z01
+*.pt
+*.pth
+*.ckpt
+*.npz
 
 # Keep directory placeholders
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !results/checkpoints/.gitkeep
 !results/logs/.gitkeep
+!results/cache/.gitkeep
 !results/tables/.gitkeep
 !results/figures/.gitkeep
