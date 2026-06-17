@@ -5,8 +5,8 @@ co-author consent and CRediT role confirmations have been received. Student IDs
 are retained here for internal tracking only and must not be included in the
 manuscript, title page, cover letter, declarations, or submission package.
 
-Do not submit this file as-is until the final Siam/Seyam spelling check, live
-journal form, APC/waiver route, and HOT3D license/access wording are confirmed.
+Do not submit this file as-is until the live journal form, APC/waiver route,
+and HOT3D license/access wording are confirmed.
 
 ## Manuscript
 
@@ -24,7 +24,7 @@ Backup journal: PLOS ONE
 | 2 | ASIF SHAHRIAR SIAM | 1 | 23-50073-1@student.aiub.edu | Not provided | 23-50073-1 | Consent and CRediT roles confirmed |
 | 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | 22-47890-2@student.aiub.edu | Not provided | 22-47890-2 | Consent and CRediT roles confirmed |
 | 4 | Maria Sultana Alif | 1 | 24-57836-2@student.aiub.edu | Not provided | 24-57836-2 | Consent and CRediT roles confirmed |
-| 5 | Siam Rahman Nayem | 1 | 24-57857-2@student.aiub.edu | Not provided | 24-57857-2 | Consent and CRediT roles confirmed; final Siam/Seyam spelling check open |
+| 5 | Seyam Rahman Nayem | 1 | 24-57857-2@student.aiub.edu | Not provided | 24-57857-2 | Consent, spelling, and CRediT roles confirmed |
 
 ## Affiliations
 
@@ -50,7 +50,7 @@ Student CRediT roles are confirmed from the provided consent responses.
 | ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Confirmed |
 | MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Confirmed |
 | Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Confirmed |
-| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Confirmed; final Siam/Seyam spelling check open |
+| Seyam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Confirmed |
 
 ## Acknowledgments
 
@@ -75,7 +75,7 @@ public, commercial, or not-for-profit sectors.
 - Student co-author consent: Received for all four student co-authors.
 - Student CRediT role confirmation: Received for all four student co-authors.
 - Corresponding author self-check: Recorded.
-- Final spelling confirmation for Siam/Seyam Rahman Nayem: Open.
+- Final spelling confirmation for Seyam Rahman Nayem: Confirmed.
 
 ## Data and Code Availability Confirmation
 

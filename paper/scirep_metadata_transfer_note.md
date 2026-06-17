@@ -27,7 +27,7 @@ manuscript were not transferred.
   - ASIF SHAHRIAR SIAM.
   - MD. ABUBOKOR SIDDIK ROJAN.
   - Maria Sultana Alif.
-  - Siam Rahman Nayem.
+  - Seyam Rahman Nayem.
 - Corresponding author remains Al Jubair Hossain.
 - Student co-author ORCID IDs are not provided.
 - Student co-author CRediT roles are proposed and require final author

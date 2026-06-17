@@ -1,16 +1,15 @@
 # Co-Author Confirmation Message
 
 Status: reusable confirmation message retained for recordkeeping. Student
-confirmations have been received for the four student co-authors, except the
-Siam/Seyam spelling check remains open.
+confirmations have been received for the four student co-authors. Final
+fifth-author spelling is confirmed as `Seyam Rahman Nayem`.
 
 ## Current Confirmation Status
 
 - ASIF SHAHRIAR SIAM: received.
 - MD. ABUBOKOR SIDDIK ROJAN: received.
 - Maria Sultana Alif: received.
-- Siam Rahman Nayem / Seyam Rahman Nayem: consent received; final spelling
-  confirmation pending.
+- Seyam Rahman Nayem: consent received; final public-facing spelling confirmed.
 
 ## Reusable Message
 
@@ -26,10 +25,8 @@ Hand-Object Interaction Forecasting":
 4. You confirm the CRediT roles listed for you.
 5. You confirm whether your ORCID should be included, if available.
 
-For the fifth author, please also confirm the final spelling to use in all
-public-facing files:
+For the fifth author, the final public-facing spelling is recorded as:
 
-- `Siam Rahman Nayem`
 - `Seyam Rahman Nayem`
 
 Thank you.

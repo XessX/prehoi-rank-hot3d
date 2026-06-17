@@ -1,8 +1,9 @@
 # Cover Letter Draft: PreHOI-Rank
 
-Status: formatted draft. Five-author metadata has been filled and student
-co-author consent responses/contribution roles have been received; final date,
-fifth-author spelling check, and live submission-system checks remain pending.
+Status: formatted draft. Five-author metadata has been filled, student
+co-author consent responses/contribution roles have been received, and final
+author-name spelling is confirmed; final date and live submission-system checks
+remain pending.
 
 [Date]
 

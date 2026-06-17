@@ -9,7 +9,7 @@ input.
 
 ## Filled Author Information
 
-- Author order: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Siam Rahman Nayem.
+- Author order: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Seyam Rahman Nayem.
 - Shared affiliation: American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
 - Corresponding author: Al Jubair Hossain.
 - Corresponding author email: jubair.hossain@aiub.edu.
@@ -25,13 +25,11 @@ input.
 - ASIF SHAHRIAR SIAM: Investigation; Data curation; Validation; Visualization; Writing - review and editing.
 - MD. ABUBOKOR SIDDIK ROJAN: Software support; Validation; Formal analysis support; Data curation; Writing - review and editing.
 - Maria Sultana Alif: Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing.
-- Siam Rahman Nayem: Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing.
+- Seyam Rahman Nayem: Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing.
 
 ## Remaining Author-Side Items
 
-- Final spelling confirmation remains open for the fifth author:
-  `Siam Rahman Nayem` versus `Seyam Rahman Nayem`.
-- Current public-facing files keep `Siam Rahman Nayem` until the user confirms a change.
+- Final fifth-author spelling is confirmed as `Seyam Rahman Nayem`.
 - Student co-author ORCID IDs remain not provided unless authors supply them.
 - Phone number remains pending only if the submission system requires it.
 - Confirm whether a graphical abstract is needed or intentionally omitted.

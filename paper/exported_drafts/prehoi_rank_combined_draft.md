@@ -1,15 +1,15 @@
-<!-- DRAFT EXPORT: five-author metadata, repository URL, and Zenodo DOI are filled; student co-author consent responses/contribution roles have been received; fifth-author spelling, journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->
+<!-- DRAFT EXPORT: five-author metadata, author-name spelling, repository URL, and Zenodo DOI are filled; student co-author consent responses/contribution roles have been received; journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->
 # PreHOI-Rank Manuscript Draft Export
 
-**Status:** DRAFT. Not submission-ready until the fifth-author spelling check, journal formatting, APC/waiver, and HOT3D license/access checks are complete.
+**Status:** DRAFT. Not submission-ready until journal formatting, APC/waiver, and HOT3D license/access checks are complete.
 
 ## Title Page
 
 # Title Page Draft
 
-Status: five-author metadata filled. Student co-author consent and CRediT
-roles are confirmed. The fifth-author spelling check and journal-system checks
-remain pending.
+Status: five-author metadata filled. Student co-author consent, CRediT roles,
+and final author-name spelling are confirmed. Journal-system checks remain
+pending.
 
 ## Full Title
 
@@ -27,7 +27,7 @@ PreHOI-Rank for Pre-Contact Hand-Object Forecasting
 | 2 | ASIF SHAHRIAR SIAM | 1 | On file internally | Not provided |
 | 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | On file internally | Not provided |
 | 4 | Maria Sultana Alif | 1 | On file internally | Not provided |
-| 5 | Siam Rahman Nayem | 1 | On file internally; final fifth-author spelling check open | Not provided |
+| 5 | Seyam Rahman Nayem | 1 | On file internally | Not provided |
 
 ## Affiliation
 
@@ -57,7 +57,7 @@ consent responses.
   support, Data curation, Writing - review and editing.
 - Maria Sultana Alif: Literature review support, Data curation, Investigation,
   Visualization support, Writing - review and editing.
-- Siam Rahman Nayem: Dataset preparation support, Reproducibility checks,
+- Seyam Rahman Nayem: Dataset preparation support, Reproducibility checks,
   Validation, Documentation support, Writing - review and editing.
 
 ## Declarations Checklist
@@ -67,7 +67,7 @@ consent responses.
 - [x] Acknowledgments filled: no additional acknowledgments provided.
 - [x] Student co-author consent received.
 - [x] Student co-author CRediT roles confirmed.
-- [ ] Final fifth-author spelling check pending.
+- [x] Final author-name spelling confirmed.
 - [x] Data/code availability statement includes repository URL and Zenodo DOI.
 - [ ] HOT3D-Clips license/access wording final confirmation pending.
 - [ ] Machine Learning with Applications APC/waiver/Research4Life route checked
@@ -88,7 +88,7 @@ consent responses.
 | 2 | ASIF SHAHRIAR SIAM | 1 | On file internally | Not provided |
 | 3 | MD. ABUBOKOR SIDDIK ROJAN | 1 | On file internally | Not provided |
 | 4 | Maria Sultana Alif | 1 | On file internally | Not provided |
-| 5 | Siam Rahman Nayem | 1 | On file internally; final fifth-author spelling check open | Not provided |
+| 5 | Seyam Rahman Nayem | 1 | On file internally | Not provided |
 
 Affiliations:
 

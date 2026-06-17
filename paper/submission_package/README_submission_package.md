@@ -2,8 +2,8 @@
 
 Status: pre-submission assembly draft, not submission-ready. Five-author
 metadata has been filled, student co-author consent responses/contribution
-roles have been received, and the GitHub/Zenodo records are filled. The
-fifth-author spelling check, journal formatting, APC/Research4Life, and
+roles have been received, final author-name spelling is confirmed, and the
+GitHub/Zenodo records are filled. Journal formatting, APC/Research4Life, and
 HOT3D-Clips license checks remain pending.
 
 Target journal: Machine Learning with Applications.
@@ -56,7 +56,7 @@ submission.
 
 ## Author Metadata Status
 
-- Authors: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Siam Rahman Nayem.
+- Authors: Al Jubair Hossain; ASIF SHAHRIAR SIAM; MD. ABUBOKOR SIDDIK ROJAN; Maria Sultana Alif; Seyam Rahman Nayem.
 - Shared affiliation: American International University-Bangladesh (AIUB), Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
 - Corresponding author: Al Jubair Hossain, jubair.hossain@aiub.edu.
 - Corresponding author ORCID: 0009-0005-3498-5826.
@@ -65,7 +65,7 @@ submission.
 - Competing interests: no competing interests.
 - Student CRediT role confirmation: received.
 - Student co-author consent: received.
-- Final fifth-author spelling check: pending.
+- Final author-name spelling: confirmed.
 - PreHOI-Rank repository/archive: GitHub URL and Zenodo DOI filled.
 
 ## Not Submission-Ready Until
@@ -91,6 +91,5 @@ package root:
 - `paper/author_metadata_remaining_items.md`
 
 These files are no longer blank author fields, but they are still not final
-submission files. They retain pending fields for the fifth-author spelling
-check, the live submission system, APC/Research4Life route, and HOT3D-Clips
-license/access checks.
+submission files. They retain pending fields for the live submission system,
+APC/Research4Life route, and HOT3D-Clips license/access checks.

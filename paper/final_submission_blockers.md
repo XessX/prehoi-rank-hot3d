@@ -6,16 +6,7 @@ journal upload.
 
 ## Blockers
 
-1. **Final fifth-author spelling confirmation pending**
-
-   Student co-author consent and CRediT role confirmations have been received
-   for all four student co-authors. The only open author metadata issue is the
-   fifth author's exact public spelling: current manuscript spelling
-   `Siam Rahman Nayem` versus consent-text spelling `SEYAM RAHMAN NAYEM`.
-   Public-facing files keep `Siam Rahman Nayem` until the user confirms a
-   change.
-
-2. **Final archive citation check before submission**
+1. **Final archive citation check before submission**
 
    The PreHOI-Rank repository is available at
    `https://github.com/XessX/prehoi-rank-hot3d`, and the corrected `v0.1.1`
@@ -24,14 +15,14 @@ journal upload.
    Scientific Reports sparse 3D Gaussian Splatting GitHub or Zenodo links for
    this paper.
 
-3. **Final journal/APC/Research4Life verification depends on live submission context**
+2. **Final journal/APC/Research4Life verification depends on live submission context**
 
    The official-source route has been checked, but the final APC, taxes,
    institutional agreement coverage, waiver route, and Research4Life eligibility
    must be verified using the filled AIUB/Bangladesh affiliation and the live
    submission system.
 
-4. **Final HOT3D-Clips license/access wording**
+3. **Final HOT3D-Clips license/access wording**
 
    The current wording is cautious, but the final manuscript and any public code
    release need one last official HOT3D-Clips license/access check, especially

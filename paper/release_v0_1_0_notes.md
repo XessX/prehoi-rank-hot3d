@@ -39,8 +39,8 @@ Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.
 - Pose metrics are MANO/UmeTrack pose-parameter vector MAE/MSE; MPJPE is not
   reported.
 - Student co-author consent and CRediT confirmations have been received.
-- Final Siam/Seyam Rahman Nayem spelling confirmation and HOT3D license/access
-  wording still require author-side confirmation before manuscript submission.
+- Final Seyam Rahman Nayem spelling is confirmed. HOT3D license/access wording
+  still requires author-side confirmation before manuscript submission.
 
 ## Data Use
 

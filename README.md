@@ -154,9 +154,8 @@ More detailed steps are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 ## Paper Package
 
 Manuscript and submission materials are under `paper/`. The current package is
-not submission-ready until the fifth-author spelling check, HOT3D
-license/access wording, Machine Learning with Applications APC/waiver checks,
-and final formatting are confirmed.
+not submission-ready until HOT3D license/access wording, Machine Learning with
+Applications APC/waiver checks, and final formatting are confirmed.
 
 ## Citation
 

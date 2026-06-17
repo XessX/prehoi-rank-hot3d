@@ -10,7 +10,7 @@ Status: five-author metadata added for the PreHOI-Rank manuscript package.
 2. ASIF SHAHRIAR SIAM.
 3. MD. ABUBOKOR SIDDIK ROJAN.
 4. Maria Sultana Alif.
-5. Siam Rahman Nayem.
+5. Seyam Rahman Nayem.
 
 ## Corresponding Author
 
@@ -27,7 +27,7 @@ draft, submission package, or exported combined draft.
 | ASIF SHAHRIAR SIAM | 23-50073-1 |
 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2 |
 | Maria Sultana Alif | 24-57836-2 |
-| Siam Rahman Nayem | 24-57857-2 |
+| Seyam Rahman Nayem | 24-57857-2 |
 
 ## ORCID Status
 
@@ -41,8 +41,7 @@ Student CRediT roles have been confirmed from the provided consent responses.
 ## Consent Status
 
 Student co-author consent has been received for all four student co-authors.
-The only open author metadata issue is the final spelling check for
-`Siam Rahman Nayem` versus `Seyam Rahman Nayem`.
+Final fifth-author spelling is confirmed as `Seyam Rahman Nayem`.
 
 ## Repository and Archive Status
 

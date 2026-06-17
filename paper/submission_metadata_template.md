@@ -35,7 +35,7 @@ submission system.
 | 2 | ASIF SHAHRIAR SIAM | American International University-Bangladesh (AIUB) | On file internally | Not provided |
 | 3 | MD. ABUBOKOR SIDDIK ROJAN | American International University-Bangladesh (AIUB) | On file internally | Not provided |
 | 4 | Maria Sultana Alif | American International University-Bangladesh (AIUB) | On file internally | Not provided |
-| 5 | Siam Rahman Nayem | American International University-Bangladesh (AIUB) | On file internally; final Siam/Seyam spelling check open | Not provided |
+| 5 | Seyam Rahman Nayem | American International University-Bangladesh (AIUB) | On file internally | Not provided |
 
 Shared affiliation: American International University-Bangladesh (AIUB),
 Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
@@ -43,8 +43,7 @@ Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
 Corresponding author: Al Jubair Hossain, jubair.hossain@aiub.edu.
 
 Student co-author consent and CRediT role confirmations have been received.
-The final spelling check for `Siam Rahman Nayem` versus `Seyam Rahman Nayem`
-remains open before submission.
+The final spelling `Seyam Rahman Nayem` is confirmed.
 
 ## Abstract
 

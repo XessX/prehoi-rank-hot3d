@@ -54,7 +54,7 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] Older `v0.1.0` DOI is not used for manuscript citation.
 - [x] Student co-author consent received.
 - [x] Student co-author CRediT role confirmations received.
-- [ ] Final Siam/Seyam Rahman Nayem spelling check pending.
+- [x] Final Seyam Rahman Nayem spelling confirmed.
 - [ ] HOT3D-Clips license/access wording pending final official check.
 - [ ] Decision pending on whether derived indexes/logs/checkpoints can be
       shared under dataset terms.

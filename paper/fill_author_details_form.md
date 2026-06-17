@@ -18,7 +18,7 @@ paper.
 | 2 | ASIF SHAHRIAR SIAM | 23-50073-1 | Consent and CRediT roles confirmed |
 | 3 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2 | Consent and CRediT roles confirmed |
 | 4 | Maria Sultana Alif | 24-57836-2 | Consent and CRediT roles confirmed |
-| 5 | Siam Rahman Nayem | 24-57857-2 | Consent and CRediT roles confirmed; final Siam/Seyam spelling check open |
+| 5 | Seyam Rahman Nayem | 24-57857-2 | Consent, spelling, and CRediT roles confirmed |
 
 ## 2. Affiliations
 
@@ -34,7 +34,7 @@ paper.
 | ASIF SHAHRIAR SIAM | 23-50073-1@student.aiub.edu | Not provided | 1 |
 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2@student.aiub.edu | Not provided | 1 |
 | Maria Sultana Alif | 24-57836-2@student.aiub.edu | Not provided | 1 |
-| Siam Rahman Nayem | 24-57857-2@student.aiub.edu | Not provided | 1 |
+| Seyam Rahman Nayem | 24-57857-2@student.aiub.edu | Not provided | 1 |
 
 ## 4. Corresponding Author
 
@@ -54,7 +54,7 @@ Student CRediT roles are confirmed from the provided consent responses.
 | ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Confirmed |
 | MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Confirmed |
 | Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Confirmed |
-| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Confirmed; final Siam/Seyam spelling check open |
+| Seyam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Confirmed |
 
 ## 6. Acknowledgments
 
@@ -137,6 +137,5 @@ Confirm before submission:
 - Student co-author consent received: Yes, for all four student co-authors.
 - Student co-author CRediT roles confirmed: Yes.
 - Corresponding author self-check: Recorded.
-- Current public-facing fifth-author spelling: `Siam Rahman Nayem`.
-- Consent response spelling for fifth author: `SEYAM RAHMAN NAYEM`.
-- Final Siam/Seyam spelling confirmation: Open.
+- Final public-facing fifth-author spelling: `Seyam Rahman Nayem`.
+- Student co-author consent and CRediT confirmations: complete.

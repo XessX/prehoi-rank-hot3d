@@ -3,10 +3,10 @@
 Date: 2026-06-16
 
 Status: assembled pre-submission package. Five-author metadata has been filled,
-student co-author consent responses/contribution roles have been received, and
-the GitHub/Zenodo records are filled. This package is not submission-ready
-until the fifth-author spelling check, journal formatting, license/access, APC,
-and Research4Life checks are completed.
+student co-author consent responses/contribution roles have been received,
+final author-name spelling is confirmed, and the GitHub/Zenodo records are
+filled. This package is not submission-ready until journal formatting,
+license/access, APC, and Research4Life checks are completed.
 
 ## Expected Files
 
@@ -69,7 +69,6 @@ markers in `manuscript_main.md`.
 
 Expected pre-submission pending fields remain:
 
-- final fifth-author spelling check;
 - final HOT3D-Clips license/access wording in the data/code statement;
 - optional commented citation notes in `references.bib` that are not cited in
   the current manuscript.
@@ -108,7 +107,6 @@ depend on the exact author list, institution, and submitted artifact.
 ## Remaining Follow-Up Items
 
 - Final journal formatting.
-- Final fifth-author spelling check.
 - Live submission-system check of `paper/submission_metadata_template.md`.
 - Final author-side Machine Learning with Applications APC/tax/institutional
   agreement/Research4Life route verification.

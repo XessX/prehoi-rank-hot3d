@@ -61,7 +61,7 @@ not a completed journal submission.
 - [x] Add student author metadata in internal files only.
 - [x] Record student co-author consent for all four student co-authors.
 - [x] Confirm student co-author contribution roles.
-- [ ] Confirm final spelling for Siam/Seyam Rahman Nayem.
+- [x] Confirm final spelling for Seyam Rahman Nayem.
 - [ ] Confirm student co-author ORCID IDs or keep them as not provided.
 - [x] Assemble formatted Markdown submission draft:
       `paper/formatted_submission_draft/`.
@@ -135,7 +135,7 @@ not a completed journal submission.
 - [x] Add multi-author names, shared affiliation, corresponding author, funding
       statement, and competing interests statement from provided metadata.
 - [x] Record student co-author consent and CRediT role confirmations.
-- [ ] Confirm final spelling for Siam/Seyam Rahman Nayem.
+- [x] Confirm final spelling for Seyam Rahman Nayem.
 - [ ] Add final phone/contact field only if required by the submission system.
 - [x] Run final placeholder scan for the current paper folder and submission
       package:
@@ -183,7 +183,7 @@ not a completed journal submission.
   interest, funding, and data/code availability drafts: started.
 - Author information and declarations: five-author metadata added.
 - Student co-author metadata: added; consent and contribution roles confirmed.
-- Final Siam/Seyam Rahman Nayem spelling check remains open.
+- Final Seyam Rahman Nayem spelling is confirmed.
 - PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`;
   do not reuse prior Scientific Reports sparse 3D Gaussian Splatting links.
 - Archive DOI: `10.5281/zenodo.20722666`.
@@ -195,6 +195,6 @@ not a completed journal submission.
 - Post-polish final scan: completed; intentional human-input placeholders
   remain.
 - Author details fill-in form and final blocker list: updated for the
-  five-author metadata; only the Siam/Seyam spelling check remains open on the
-  author metadata side.
+  five-author metadata; student consent, contribution roles, and final author
+  spelling are confirmed.
 - Submission-ready status: not yet.

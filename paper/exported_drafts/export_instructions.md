@@ -2,7 +2,7 @@
 
 Date: 2026-06-18
 
-Status: draft export workflow. Do not submit exported files until the fifth-author spelling check, journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.
+Status: draft export workflow. Do not submit exported files until journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.
 
 ## Converter Status
 
@@ -28,7 +28,7 @@ If Pandoc PDF export fails because a LaTeX engine is missing, open the DOCX in W
 If using Word manually:
 
 1. Open `paper/exported_drafts/prehoi_rank_combined_draft.md` or copy its content into Word.
-2. Preserve pending fifth-author spelling, APC/waiver, HOT3D license/access, and journal-system fields until they are confirmed.
+2. Preserve pending APC/waiver, HOT3D license/access, and journal-system fields until they are confirmed.
 3. Insert figures from `paper/formatted_submission_draft/figures/` if needed.
 4. Insert tables from `paper/formatted_submission_draft/tables/` if needed.
-5. Export DOCX/PDF only after the final fifth-author spelling, journal, APC/waiver, and HOT3D license/access checks.
+5. Export DOCX/PDF only after the final journal, APC/waiver, and HOT3D license/access checks.

@@ -52,10 +52,10 @@ def build_combined_markdown(include_captions: bool = True) -> str:
     manuscript = read_text(FORMATTED_DIR / "manuscript_formatted.md")
 
     parts = [
-        "<!-- DRAFT EXPORT: five-author metadata, repository URL, and Zenodo DOI are filled; student co-author consent responses/contribution roles have been received; fifth-author spelling, journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->",
+        "<!-- DRAFT EXPORT: five-author metadata, author-name spelling, repository URL, and Zenodo DOI are filled; student co-author consent responses/contribution roles have been received; journal formatting, APC/waiver, and HOT3D license/access checks remain pending. -->",
         "# PreHOI-Rank Manuscript Draft Export",
         "",
-        "**Status:** DRAFT. Not submission-ready until the fifth-author spelling check, journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
+        "**Status:** DRAFT. Not submission-ready until journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
         "",
         "## Title Page",
         "",
@@ -106,7 +106,7 @@ def write_export_instructions(pandoc_path: str | None, docx_created: bool, pdf_c
         "",
         f"Date: {date.today().isoformat()}",
         "",
-        "Status: draft export workflow. Do not submit exported files until the fifth-author spelling check, journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.",
+        "Status: draft export workflow. Do not submit exported files until journal formatting, APC/waiver, and HOT3D-Clips license/access checks are complete.",
         "",
         "## Converter Status",
         "",
@@ -132,10 +132,10 @@ def write_export_instructions(pandoc_path: str | None, docx_created: bool, pdf_c
         "If using Word manually:",
         "",
         "1. Open `paper/exported_drafts/prehoi_rank_combined_draft.md` or copy its content into Word.",
-        "2. Preserve pending fifth-author spelling, APC/waiver, HOT3D license/access, and journal-system fields until they are confirmed.",
+        "2. Preserve pending APC/waiver, HOT3D license/access, and journal-system fields until they are confirmed.",
         "3. Insert figures from `paper/formatted_submission_draft/figures/` if needed.",
         "4. Insert tables from `paper/formatted_submission_draft/tables/` if needed.",
-        "5. Export DOCX/PDF only after the final fifth-author spelling, journal, APC/waiver, and HOT3D license/access checks.",
+        "5. Export DOCX/PDF only after the final journal, APC/waiver, and HOT3D license/access checks.",
     ]
 
     path = EXPORT_DIR / "export_instructions.md"
@@ -159,7 +159,7 @@ def write_export_audit(
         "",
         f"Date: {date.today().isoformat()}",
         "",
-        "Status: draft export audit. Exported artifacts are not submission-ready until the fifth-author spelling check, journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
+        "Status: draft export audit. Exported artifacts are not submission-ready until journal formatting, APC/waiver, and HOT3D license/access checks are complete.",
         "",
         "## Output Files",
         "",
@@ -174,7 +174,6 @@ def write_export_audit(
         "",
         "## Remaining Pending Fields",
         "",
-        "- final fifth-author spelling check;",
         "- final decision on derived index/log/checkpoint sharing;",
         "- final MLWA APC/tax/waiver/Research4Life checks;",
         "- final HOT3D-Clips license/access wording.",
@@ -195,7 +194,7 @@ def write_export_audit(
         "",
         "## Final Warning",
         "",
-        "These files are draft exports only. They must not be submitted until the final fifth-author spelling check, journal formatting, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.",
+        "These files are draft exports only. They must not be submitted until final journal formatting, APC/waiver route, and HOT3D-Clips license/access wording are confirmed.",
     ]
 
     path = EXPORT_DIR / "export_audit.md"

@@ -31,9 +31,9 @@ Scanned public-facing release/package files for:
 
 - `Repository URL: pending`
 - `Archive DOI: pending`
-- `10.5281/zenodo.20722360`
-- `zenodo.20479427`
-- `sparse3d-gaussian-splatting-benchmark`
+- older PreHOI `v0.1.0` DOI string
+- old Scientific Reports Zenodo DOI string
+- old Scientific Reports sparse 3D repository string
 - student ID numbers
 - `TODO`
 - `TBD`
@@ -57,8 +57,8 @@ Results:
 
 ## Old DOI Handling
 
-The older `v0.1.0` DOI `10.5281/zenodo.20722360` is not used for the
-manuscript, package citation, `CITATION.cff`, or `.zenodo.json`.
+The older PreHOI `v0.1.0` DOI is not used for the manuscript, package citation,
+`CITATION.cff`, or `.zenodo.json`.
 
 It appears only in `paper/zenodo_doi_update_note.md`, where it is explicitly
 marked as not used.
@@ -75,7 +75,7 @@ marked as not used.
 
 - Student co-author consent has been received.
 - Student CRediT confirmations have been received.
-- Final Siam/Seyam Rahman Nayem spelling confirmation remains pending.
+- Final Seyam Rahman Nayem spelling confirmation is complete.
 - Final HOT3D license/access wording check remains pending.
 - Final journal formatting and DOCX/PDF conversion remain pending.
 - Final Machine Learning with Applications APC/Research4Life route check
