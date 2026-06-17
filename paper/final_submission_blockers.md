@@ -6,11 +6,14 @@ journal upload.
 
 ## Blockers
 
-1. **Final multi-author consent and contribution confirmation pending**
+1. **Final fifth-author spelling confirmation pending**
 
-   Five-author metadata has been added. Before submission, all authors must
-   confirm author order, consent to submission, and CRediT roles. Student
-   co-author roles are currently proposed and must be confirmed by the authors.
+   Student co-author consent and CRediT role confirmations have been received
+   for all four student co-authors. The only open author metadata issue is the
+   fifth author's exact public spelling: current manuscript spelling
+   `Siam Rahman Nayem` versus consent-text spelling `SEYAM RAHMAN NAYEM`.
+   Public-facing files keep `Siam Rahman Nayem` until the user confirms a
+   change.
 
 2. **Final archive citation check before submission**
 

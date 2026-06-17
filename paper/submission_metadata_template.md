@@ -32,18 +32,19 @@ submission system.
 | Order | Author | Affiliation | Email | ORCID |
 | --- | --- | --- | --- | --- |
 | 1 | Al Jubair Hossain | American International University-Bangladesh (AIUB) | jubair.hossain@aiub.edu | 0009-0005-3498-5826 |
-| 2 | ASIF SHAHRIAR SIAM | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
-| 3 | MD. ABUBOKOR SIDDIK ROJAN | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
-| 4 | Maria Sultana Alif | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
-| 5 | Siam Rahman Nayem | American International University-Bangladesh (AIUB) | On file internally; pending final author confirmation | Not provided |
+| 2 | ASIF SHAHRIAR SIAM | American International University-Bangladesh (AIUB) | On file internally | Not provided |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | American International University-Bangladesh (AIUB) | On file internally | Not provided |
+| 4 | Maria Sultana Alif | American International University-Bangladesh (AIUB) | On file internally | Not provided |
+| 5 | Siam Rahman Nayem | American International University-Bangladesh (AIUB) | On file internally; final Siam/Seyam spelling check open | Not provided |
 
 Shared affiliation: American International University-Bangladesh (AIUB),
 Kuratoli, Khilkhet, Dhaka 1229, Bangladesh.
 
 Corresponding author: Al Jubair Hossain, jubair.hossain@aiub.edu.
 
-Final author consent, author-order confirmation, and student CRediT role
-confirmation remain pending before submission.
+Student co-author consent and CRediT role confirmations have been received.
+The final spelling check for `Siam Rahman Nayem` versus `Seyam Rahman Nayem`
+remains open before submission.
 
 ## Abstract
 

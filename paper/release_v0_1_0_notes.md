@@ -38,7 +38,8 @@ Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.
 - The 75-clip expansion is reported as robustness/scalability analysis.
 - Pose metrics are MANO/UmeTrack pose-parameter vector MAE/MSE; MPJPE is not
   reported.
-- Final co-author consent, student CRediT confirmation, and HOT3D license/access
+- Student co-author consent and CRediT confirmations have been received.
+- Final Siam/Seyam Rahman Nayem spelling confirmation and HOT3D license/access
   wording still require author-side confirmation before manuscript submission.
 
 ## Data Use

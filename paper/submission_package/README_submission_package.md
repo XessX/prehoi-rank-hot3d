@@ -1,9 +1,10 @@
 # PreHOI-Rank Pre-Submission Package
 
 Status: pre-submission assembly draft, not submission-ready. Five-author
-metadata has been filled, but final author consent, student contribution
-confirmation, repository/archive, journal, APC/Research4Life, and HOT3D-Clips
-license checks remain pending.
+metadata has been filled, student co-author consent responses/contribution
+roles have been received, and the GitHub/Zenodo records are filled. The
+fifth-author spelling check, journal formatting, APC/Research4Life, and
+HOT3D-Clips license checks remain pending.
 
 Target journal: Machine Learning with Applications.
 
@@ -62,9 +63,10 @@ submission.
 - Student co-author ORCID IDs: not provided.
 - Funding: no specific funding.
 - Competing interests: no competing interests.
-- Student CRediT role confirmation: pending.
-- Final author consent: pending.
-- PreHOI-Rank repository/archive: pending.
+- Student CRediT role confirmation: received.
+- Student co-author consent: received.
+- Final fifth-author spelling check: pending.
+- PreHOI-Rank repository/archive: GitHub URL and Zenodo DOI filled.
 
 ## Not Submission-Ready Until
 
@@ -89,7 +91,6 @@ package root:
 - `paper/author_metadata_remaining_items.md`
 
 These files are no longer blank author fields, but they are still not final
-submission files. They retain pending fields for author consent, student
-contribution confirmation, the live submission system, PreHOI-Rank
-repository/archive, APC/Research4Life route, and HOT3D-Clips license/access
-checks.
+submission files. They retain pending fields for the fifth-author spelling
+check, the live submission system, APC/Research4Life route, and HOT3D-Clips
+license/access checks.

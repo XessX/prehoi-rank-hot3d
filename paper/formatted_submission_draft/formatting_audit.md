@@ -2,10 +2,10 @@
 
 Date: 2026-06-16
 
-Status: formatted Markdown draft assembled with five-author metadata. This is
-not a final submission file until author consent, student CRediT confirmation,
-journal formatting, APC/waiver status, and HOT3D-Clips license/access wording
-are confirmed.
+Status: formatted Markdown draft assembled with five-author metadata. Student
+co-author consent and CRediT confirmations have been received. This is not a
+final submission file until the fifth-author spelling check, journal formatting,
+APC/waiver status, and HOT3D-Clips license/access wording are confirmed.
 
 ## Expected Files
 
@@ -55,9 +55,7 @@ The formatted manuscript includes:
 The following fields remain intentionally pending until final submission checks
 are completed:
 
-- final repository/archive URL;
-- final author consent from all listed authors;
-- final student co-author CRediT role confirmation;
+- final fifth-author spelling check;
 - final article type and upload requirements in the live submission system.
 
 ## Figure and Table References
@@ -78,8 +76,7 @@ the formatted draft because they are not cited in the current manuscript text.
 
 ## Not Final Until
 
-- Final author consent is confirmed.
-- Student co-author CRediT roles are confirmed.
+- Final fifth-author spelling is confirmed.
 - Conflict of interest, funding, acknowledgments, and author contributions are
   confirmed by all listed authors.
 - Machine Learning with Applications formatting is checked against the live

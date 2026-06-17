@@ -1,9 +1,11 @@
 # Author Metadata Remaining Items
 
-Date: 2026-06-16
+Date: 2026-06-18
 
-Status: five-author metadata has been added from the provided author details.
-This file lists items that still require human or submission-time input.
+Status: five-author metadata has been added, student co-author consent has been
+received, and student CRediT roles have been confirmed from the provided
+responses. This file lists items that still require human or submission-time
+input.
 
 ## Filled Author Information
 
@@ -15,12 +17,21 @@ This file lists items that still require human or submission-time input.
 - Student co-author ORCIDs: not provided.
 - Funding: no specific funding.
 - Competing interests: no competing interests.
+- Student co-author consent: received for all four student co-authors.
+- Student CRediT roles: confirmed for all four student co-authors.
+
+## Confirmed Student Co-Author Roles
+
+- ASIF SHAHRIAR SIAM: Investigation; Data curation; Validation; Visualization; Writing - review and editing.
+- MD. ABUBOKOR SIDDIK ROJAN: Software support; Validation; Formal analysis support; Data curation; Writing - review and editing.
+- Maria Sultana Alif: Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing.
+- Siam Rahman Nayem: Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing.
 
 ## Remaining Author-Side Items
 
-- Final consent from all five authors is pending.
-- Final author order confirmation from all five authors is pending.
-- Final CRediT role confirmation from all five authors is pending.
+- Final spelling confirmation remains open for the fifth author:
+  `Siam Rahman Nayem` versus `Seyam Rahman Nayem`.
+- Current public-facing files keep `Siam Rahman Nayem` until the user confirms a change.
 - Student co-author ORCID IDs remain not provided unless authors supply them.
 - Phone number remains pending only if the submission system requires it.
 - Confirm whether a graphical abstract is needed or intentionally omitted.
@@ -34,8 +45,6 @@ This file lists items that still require human or submission-time input.
 
 ## Required PreHOI-Specific Data/Code Decisions
 
-- Final public PreHOI-Rank repository URL.
-- Final archive DOI, if required.
 - Whether derived sample indexes can be shared under HOT3D-Clips terms.
 - Whether logs/checkpoints can be shared without exposing restricted dataset
   content.

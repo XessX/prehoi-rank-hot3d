@@ -36,12 +36,13 @@ draft, submission package, or exported combined draft.
 
 ## CRediT Status
 
-Student CRediT roles are proposed and require final author confirmation before
-submission.
+Student CRediT roles have been confirmed from the provided consent responses.
 
 ## Consent Status
 
-Final author consent is pending for all listed authors before submission.
+Student co-author consent has been received for all four student co-authors.
+The only open author metadata issue is the final spelling check for
+`Siam Rahman Nayem` versus `Seyam Rahman Nayem`.
 
 ## Repository and Archive Status
 

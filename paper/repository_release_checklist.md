@@ -52,8 +52,9 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] GitHub release `v0.1.1` archived.
 - [x] Zenodo/archive DOI added: `10.5281/zenodo.20722666`.
 - [x] Older `v0.1.0` DOI is not used for manuscript citation.
-- [ ] Final author consent pending.
-- [ ] Student co-author CRediT role confirmation pending.
+- [x] Student co-author consent received.
+- [x] Student co-author CRediT role confirmations received.
+- [ ] Final Siam/Seyam Rahman Nayem spelling check pending.
 - [ ] HOT3D-Clips license/access wording pending final official check.
 - [ ] Decision pending on whether derived indexes/logs/checkpoints can be
       shared under dataset terms.

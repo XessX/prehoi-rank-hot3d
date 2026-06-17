@@ -73,8 +73,9 @@ marked as not used.
 
 ## Remaining Blockers
 
-- Co-author consent remains pending.
-- Student CRediT confirmation remains pending.
+- Student co-author consent has been received.
+- Student CRediT confirmations have been received.
+- Final Siam/Seyam Rahman Nayem spelling confirmation remains pending.
 - Final HOT3D license/access wording check remains pending.
 - Final journal formatting and DOCX/PDF conversion remain pending.
 - Final Machine Learning with Applications APC/Research4Life route check

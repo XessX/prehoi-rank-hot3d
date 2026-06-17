@@ -1,7 +1,7 @@
 # Fill Author Details Form
 
-Status: multi-author metadata filled from the provided author details.
-PreHOI-specific repository/archive fields remain pending.
+Status: multi-author metadata filled from the provided author details. Student
+co-author consent and CRediT role confirmations have been received.
 
 This form records human-provided information needed before final DOCX/PDF
 conversion and journal submission. Student IDs are retained here for internal
@@ -15,10 +15,10 @@ paper.
 | Order | Full name exactly as it should appear | Internal student ID | Notes |
 | --- | --- | --- | --- |
 | 1 | Al Jubair Hossain | Not applicable | Corresponding author |
-| 2 | ASIF SHAHRIAR SIAM | 23-50073-1 | Student author; final consent pending |
-| 3 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2 | Student author; final consent pending |
-| 4 | Maria Sultana Alif | 24-57836-2 | Student author; final consent pending |
-| 5 | Siam Rahman Nayem | 24-57857-2 | Student author; final consent pending |
+| 2 | ASIF SHAHRIAR SIAM | 23-50073-1 | Consent and CRediT roles confirmed |
+| 3 | MD. ABUBOKOR SIDDIK ROJAN | 22-47890-2 | Consent and CRediT roles confirmed |
+| 4 | Maria Sultana Alif | 24-57836-2 | Consent and CRediT roles confirmed |
+| 5 | Siam Rahman Nayem | 24-57857-2 | Consent and CRediT roles confirmed; final Siam/Seyam spelling check open |
 
 ## 2. Affiliations
 
@@ -46,16 +46,15 @@ paper.
 
 ## 5. CRediT Roles
 
-All student CRediT roles are proposed and require final author confirmation
-before submission.
+Student CRediT roles are confirmed from the provided consent responses.
 
 | Author | Proposed CRediT roles | Confirmation status |
 | --- | --- | --- |
-| Al Jubair Hossain | Conceptualization; Methodology; Software; Validation; Formal analysis; Investigation; Data curation; Writing - original draft; Writing - review and editing; Visualization; Project administration; Supervision | Pending final author confirmation |
-| ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Pending final author confirmation |
-| MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Pending final author confirmation |
-| Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Pending final author confirmation |
-| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Pending final author confirmation |
+| Al Jubair Hossain | Conceptualization; Methodology; Software; Validation; Formal analysis; Investigation; Data curation; Writing - original draft; Writing - review and editing; Visualization; Project administration; Supervision | Corresponding author self-check recorded |
+| ASIF SHAHRIAR SIAM | Investigation; Data curation; Validation; Visualization; Writing - review and editing | Confirmed |
+| MD. ABUBOKOR SIDDIK ROJAN | Software support; Validation; Formal analysis support; Data curation; Writing - review and editing | Confirmed |
+| Maria Sultana Alif | Literature review support; Data curation; Investigation; Visualization support; Writing - review and editing | Confirmed |
+| Siam Rahman Nayem | Dataset preparation support; Reproducibility checks; Validation; Documentation support; Writing - review and editing | Confirmed; final Siam/Seyam spelling check open |
 
 ## 6. Acknowledgments
 
@@ -133,9 +132,11 @@ Confirm before submission:
 - Derived sample indexes/logs/checkpoints sharing decision: Pending.
 - Required HOT3D/HOT3D-Clips citations: Core citations added; final check pending.
 
-## 16. Final Author Consent
+## 16. Author Consent and Confirmation
 
-- All listed authors have reviewed the manuscript: Pending.
-- All listed authors consent to submission: Pending.
-- All listed authors confirm the author order: Pending.
-- All listed authors confirm CRediT roles: Pending.
+- Student co-author consent received: Yes, for all four student co-authors.
+- Student co-author CRediT roles confirmed: Yes.
+- Corresponding author self-check: Recorded.
+- Current public-facing fifth-author spelling: `Siam Rahman Nayem`.
+- Consent response spelling for fifth author: `SEYAM RAHMAN NAYEM`.
+- Final Siam/Seyam spelling confirmation: Open.
