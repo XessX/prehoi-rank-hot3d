@@ -2,15 +2,15 @@
 
 Date: 2026-06-17
 
-Status: completed after adding the corrected PreHOI-Rank Zenodo DOI.
+Status: completed after adding the final/current PreHOI-Rank Zenodo DOI.
 
 ## DOI Update Verification
 
 GitHub repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
-Corrected Zenodo DOI:
-`10.5281/zenodo.20722666`
+Final/current Zenodo DOI:
+`10.5281/zenodo.20736962`
 
 The repository URL and DOI are present in the main public-facing release and
 paper-package files:
@@ -32,6 +32,7 @@ Scanned public-facing release/package files for:
 - `Repository URL: pending`
 - `Archive DOI: pending`
 - older PreHOI `v0.1.0` DOI string
+- superseded PreHOI `v0.1.1` DOI string
 - old Scientific Reports Zenodo DOI string
 - old Scientific Reports sparse 3D repository string
 - student ID numbers
@@ -60,16 +61,19 @@ Results:
 The older PreHOI `v0.1.0` DOI is not used for the manuscript, package citation,
 `CITATION.cff`, or `.zenodo.json`.
 
-It appears only in `paper/zenodo_doi_update_note.md`, where it is explicitly
-marked as not used.
+The PreHOI `v0.1.1` DOI `10.5281/zenodo.20722666` is superseded because the
+final co-author spelling was corrected after that release.
+
+Older DOI strings appear only in internal notes, where they are explicitly
+marked as not used or superseded.
 
 ## GitHub/Zenodo Status
 
 - GitHub repository: available.
-- Corrected GitHub/Zenodo release: `v0.1.1`.
-- Corrected DOI: `10.5281/zenodo.20722666`.
-- `.zenodo.json`: updated for `v0.1.1`.
-- `CITATION.cff`: updated for `v0.1.1` and DOI.
+- Final/current GitHub/Zenodo release: `v0.1.2`.
+- Final/current DOI: `10.5281/zenodo.20736962`.
+- `.zenodo.json`: updated for `v0.1.2`.
+- `CITATION.cff`: updated for `v0.1.2` and DOI.
 
 ## Remaining Blockers
 

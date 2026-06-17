@@ -1,9 +1,10 @@
-# Release Notes: v0.1.1
+# Release Notes: v0.1.2
 
-Note: these notes supersede the earlier draft `v0.1.0` release notes. Use the
-corrected `v0.1.1` Zenodo DOI `10.5281/zenodo.20722666` for archive citation.
+Note: these notes supersede the earlier draft `v0.1.0` release notes and the
+`v0.1.1` release. Use the final/current `v0.1.2` Zenodo DOI
+`10.5281/zenodo.20736962` for archive citation.
 
-Status: release notes for the corrected first GitHub/Zenodo archive.
+Status: release notes for the final/current GitHub/Zenodo archive.
 
 ## Summary
 
@@ -41,6 +42,8 @@ Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting.
 - Student co-author consent and CRediT confirmations have been received.
 - Final Seyam Rahman Nayem spelling is confirmed. HOT3D license/access wording
   still requires author-side confirmation before manuscript submission.
+- The `v0.1.1` archive DOI is superseded because final co-author spelling was
+  corrected after that release.
 
 ## Data Use
 

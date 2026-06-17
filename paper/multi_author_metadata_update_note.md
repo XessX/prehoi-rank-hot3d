@@ -46,7 +46,7 @@ Final fifth-author spelling is confirmed as `Seyam Rahman Nayem`.
 ## Repository and Archive Status
 
 - PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`.
-- Archive DOI: `10.5281/zenodo.20722666`.
+- Archive DOI: `10.5281/zenodo.20736962`.
 
 ## SciRep Link Exclusion
 

@@ -35,8 +35,8 @@ instructions instead.
 
 The implementation can be released in a public GitHub repository after final
 cleanup. The PreHOI-Rank repository is available at
-`https://github.com/XessX/prehoi-rank-hot3d`. The corrected `v0.1.1` Zenodo
-archive DOI is `10.5281/zenodo.20722666`.
+`https://github.com/XessX/prehoi-rank-hot3d`. The final/current `v0.1.2` Zenodo
+archive DOI is `10.5281/zenodo.20736962`.
 
 The code should include:
 

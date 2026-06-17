@@ -1,20 +1,24 @@
 # Zenodo DOI Update Note
 
-Date: 2026-06-17
+Date: 2026-06-18
 
-Status: corrected Zenodo DOI added to the PreHOI-Rank package.
+Status: final/current Zenodo DOI added to the PreHOI-Rank package after the
+final co-author spelling correction.
 
-## Corrected Release DOI
+## Final Current Release DOI
 
-- Release: `v0.1.1`
-- DOI: `10.5281/zenodo.20722666`
+- Release: `v0.1.2`
+- DOI: `10.5281/zenodo.20736962`
 
 Use this DOI as the PreHOI-Rank archive DOI.
 
-## DOI Not Used
+## Older DOIs Not Used
 
 The older `v0.1.0` DOI `10.5281/zenodo.20722360` is not used for the
 manuscript or package citation.
+
+The `v0.1.1` DOI `10.5281/zenodo.20722666` is superseded because the final
+co-author spelling was corrected after that release.
 
 ## GitHub Repository
 
@@ -39,7 +43,8 @@ The DOI was added to:
 
 ## Remaining Blockers
 
-- Co-author consent remains pending.
-- Student CRediT confirmation remains pending.
+- Co-author consent is complete.
+- Student CRediT confirmation is complete.
+- Final co-author spelling is complete.
 - Final HOT3D license/access wording check remains pending.
 - Final journal formatting and DOCX/PDF conversion remain pending.

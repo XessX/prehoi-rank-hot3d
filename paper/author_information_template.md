@@ -80,6 +80,6 @@ public, commercial, or not-for-profit sectors.
 ## Data and Code Availability Confirmation
 
 - PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`
-- Archive DOI: `10.5281/zenodo.20722666`
+- Archive DOI: `10.5281/zenodo.20736962`
 - Derived index/log/checkpoint sharing decision under HOT3D-Clips terms: Pending
 - Raw HOT3D-Clips data redistribution: not included and not planned

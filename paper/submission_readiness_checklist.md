@@ -82,7 +82,7 @@ not a completed journal submission.
 - [x] Create public PreHOI-Rank repository at
       `https://github.com/XessX/prehoi-rank-hot3d`.
 - [x] Add final PreHOI-Rank repository URL.
-- [x] Add corrected Zenodo archive DOI.
+- [x] Add final/current Zenodo archive DOI.
 - [ ] Convert the formatted draft to DOCX/PDF only after author details and
       journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
@@ -152,8 +152,8 @@ not a completed journal submission.
 - [x] Prepare Zenodo/GitHub release metadata:
       `CITATION.cff`, `.zenodo.json`, and
       `paper/zenodo_release_plan.md`.
-- [x] Archive corrected GitHub release `v0.1.1` with Zenodo.
-- [x] Add generated Zenodo DOI: `10.5281/zenodo.20722666`.
+- [x] Archive final/current GitHub release `v0.1.2` with Zenodo.
+- [x] Add generated Zenodo DOI: `10.5281/zenodo.20736962`.
 - [x] Complete final post-DOI release audit:
       `paper/final_post_doi_release_audit.md`.
 
@@ -186,7 +186,7 @@ not a completed journal submission.
 - Final Seyam Rahman Nayem spelling is confirmed.
 - PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`;
   do not reuse prior Scientific Reports sparse 3D Gaussian Splatting links.
-- Archive DOI: `10.5281/zenodo.20722666`.
+- Archive DOI: `10.5281/zenodo.20736962`.
 - Final formatting: pending.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF

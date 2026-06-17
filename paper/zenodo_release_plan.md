@@ -1,13 +1,13 @@
 # Zenodo Release Plan
 
-Status: completed for the corrected `v0.1.1` GitHub/Zenodo software archive.
-The generated DOI is `10.5281/zenodo.20722666`.
+Status: completed for the final/current `v0.1.2` GitHub/Zenodo software archive.
+The generated DOI is `10.5281/zenodo.20736962`.
 
 Target repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
 Archived release tag:
-`v0.1.1`
+`v0.1.2`
 
 Current citation/release metadata files:
 
@@ -25,11 +25,11 @@ Current citation/release metadata files:
 5. Confirm the repository contains no raw HOT3D-Clips data, processed outputs,
    logs, checkpoints, caches, or model weights.
 6. Confirm the repository contains `CITATION.cff` and `.zenodo.json`.
-7. Create a GitHub release. Corrected release tag used: `v0.1.1`.
+7. Create a GitHub release. Final/current release tag used: `v0.1.2`.
 8. Use the release notes from `paper/release_v0_1_0_notes.md`, updated to
-   document the corrected `v0.1.1` archive.
+   document the final/current `v0.1.2` archive.
 9. Wait for Zenodo to archive the GitHub release.
-10. Copy the generated Zenodo DOI: `10.5281/zenodo.20722666`.
+10. Copy the generated Zenodo DOI: `10.5281/zenodo.20736962`.
 11. Update `README.md`, manuscript data/code availability, submission package,
     exported draft, `CITATION.cff`, `.zenodo.json`, and repository checklist
     with the generated DOI.
@@ -61,5 +61,5 @@ Updated or to be checked with the generated DOI:
 - `paper/repository_release_checklist.md`
 - `paper/submission_readiness_checklist.md`
 
-Do not use the older `v0.1.0` DOI. Use only
-`10.5281/zenodo.20722666` for the corrected `v0.1.1` archive.
+Do not use the older `v0.1.0` DOI or the superseded `v0.1.1` DOI. Use only
+`10.5281/zenodo.20736962` for the final/current `v0.1.2` archive.

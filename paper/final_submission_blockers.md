@@ -9,8 +9,8 @@ journal upload.
 1. **Final archive citation check before submission**
 
    The PreHOI-Rank repository is available at
-   `https://github.com/XessX/prehoi-rank-hot3d`, and the corrected `v0.1.1`
-   Zenodo archive DOI is `10.5281/zenodo.20722666`. Before submission, confirm
+   `https://github.com/XessX/prehoi-rank-hot3d`, and the final/current `v0.1.2`
+   Zenodo archive DOI is `10.5281/zenodo.20736962`. Before submission, confirm
    that the DOI resolves to the intended repository release. Do not reuse the
    Scientific Reports sparse 3D Gaussian Splatting GitHub or Zenodo links for
    this paper.

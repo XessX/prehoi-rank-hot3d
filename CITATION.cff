@@ -2,9 +2,9 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata in this file."
 type: software
 title: "PreHOI-Rank: Affordance-Grounded Candidate Ranking for Pre-Contact 3D Hand-Object Interaction Forecasting"
-version: "v0.1.1"
+version: "v0.1.2"
 repository-code: "https://github.com/XessX/prehoi-rank-hot3d"
-doi: "10.5281/zenodo.20722666"
+doi: "10.5281/zenodo.20736962"
 license: "MIT"
 abstract: >-
   PreHOI-Rank is a research-code package for leakage-safe, affordance-grounded
