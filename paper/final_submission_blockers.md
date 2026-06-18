@@ -18,15 +18,17 @@ journal upload.
 
 1. **Final journal/APC/Research4Life verification depends on live submission context**
 
-   The official-source route has been checked, but the final APC, taxes,
+   The official-source route and final documentation note have been prepared in
+   `paper/final_mlwa_apc_research4life_check.md`, but the final APC, taxes,
    institutional agreement coverage, waiver route, and Research4Life eligibility
-   must be verified using the filled AIUB/Bangladesh affiliation and the live
-   submission system.
+   must still be verified using the filled AIUB/Bangladesh affiliation and the
+   live submission system.
 
 2. **Final HOT3D-Clips license/access wording**
 
-   The current wording is cautious and says raw HOT3D-Clips data is not
-   redistributed, users must obtain data from official sources, users must
+   The current wording is cautious and documented in
+   `paper/final_hot3d_license_access_check.md`. It says raw HOT3D-Clips data is
+   not redistributed, users must obtain data from official sources, users must
    follow official access/license terms, derived proxy labels are generated
    locally, and processed outputs are shared only if permitted by dataset terms.
    A final author-side official HOT3D-Clips license/access check is still

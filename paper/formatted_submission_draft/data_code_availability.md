@@ -8,7 +8,10 @@ This study uses HOT3D-Clips, a third-party dataset distributed by its original
 providers. The authors do not redistribute HOT3D-Clips data, video frames,
 WebDataset shards, object models, annotations, or restricted dataset files.
 Readers should obtain HOT3D-Clips directly from the official provider and
-follow the applicable license, access, and usage terms.
+follow the applicable license, access, and usage terms. HOT3D toolkit/API code
+and HOT3D dataset data may have separate licensing, and different data types in
+the dataset may be subject to different terms. MANO/SMPLX or related hand-model
+dependencies also have their own licenses if used.
 
 The primary local experiments in the current draft use a 50-clip HOT3D-Clips
 subset. A 75-clip local expansion is reported as robustness/scalability
@@ -24,6 +27,7 @@ human-annotated contact or action labels. The proxy-label protocol is based on
 future-frame hand-object proximity and is documented in the manuscript and
 repository scripts. Generated sample-index files can be regenerated from the
 official HOT3D-Clips shards without redistributing restricted dataset content.
+These derived proxy labels are not direct HOT3D ground-truth contact labels.
 
 Before submission, decide whether derived index JSON files can be shared
 directly. If they contain only metadata and no restricted content, they may be

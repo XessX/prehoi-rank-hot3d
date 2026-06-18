@@ -15,6 +15,8 @@ not a completed journal submission.
 - [ ] Resolve or explicitly discuss remaining class-coverage warnings.
 - [x] Check official HOT3D-Clips license/access sources and record the current
       license wording in the package audit and placeholder scan.
+- [x] Document final cautious HOT3D/HOT3D-Clips license/access wording:
+      `paper/final_hot3d_license_access_check.md`.
 - [ ] Finalize HOT3D-Clips access/license wording for the exact manuscript and
       any public release artifacts.
 - [ ] Confirm downloaded data remains ignored by Git.
@@ -114,6 +116,8 @@ not a completed journal submission.
       against the live Guide for Authors before upload.
 - [ ] Verify final APC, taxes, institutional agreement coverage, waiver, or
       Research4Life route using the filled AIUB/Bangladesh affiliation.
+- [x] Document final MLWA/APC/Research4Life live-check requirements:
+      `paper/final_mlwa_apc_research4life_check.md`.
 - [x] Create submission-readiness decision audit:
       `paper/submission_readiness_decision_audit.md`.
 - [x] Complete 75-clip expansion and decide it is a robustness/scalability
@@ -197,6 +201,10 @@ not a completed journal submission.
 - GitHub/Zenodo release: complete for `v0.1.2`.
 - Final formatting workflow: completed for draft DOCX/PDF generation.
 - Formatted Markdown submission draft: assembled; DOCX/PDF drafts generated.
+- HOT3D/HOT3D-Clips license/access wording: documented cautiously; final
+  author-side official check remains pending.
+- MLWA/APC/Research4Life route: documented cautiously; final live verification
+  remains pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
   export remains pending because Pandoc is not available on PATH.
 - Author-voice polish: completed and scanned.

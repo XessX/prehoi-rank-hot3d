@@ -67,3 +67,6 @@ but still need visual review in Word/PDF viewer before journal upload.
 - Replace bracket placeholders such as the cover-letter date before submission.
 - Confirm final HOT3D-Clips license/access wording against official sources.
 - Confirm final APC/waiver/Research4Life details in the live submission system.
+- Final HOT3D and MLWA/APC documentation notes added:
+  `paper/final_hot3d_license_access_check.md` and
+  `paper/final_mlwa_apc_research4life_check.md`.
