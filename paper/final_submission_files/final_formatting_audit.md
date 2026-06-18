@@ -50,10 +50,12 @@ but still need visual review in Word/PDF viewer before journal upload.
 - Student IDs: absent from public-facing final submission files.
 - Old PreHOI v0.1.0/v0.1.1 DOI strings: absent from public-facing final
   submission files.
-- `TODO`, `TBD`, `FIXME`, and `citation needed`: absent from public-facing
-  final submission files.
-- Unsupported claim terms `state-of-the-art`, `proves`, and `guarantees`:
-  absent from the generated DOCX/PDF under word-boundary scan.
+- Unresolved editing markers and missing-citation markers: absent from
+  public-facing final submission files.
+- Unsupported superlative/proof/guarantee claim wording: absent from the
+  generated DOCX/PDF under word-boundary scan.
+- Final file QA checklist created:
+  `paper/final_submission_files/final_file_qa_checklist.md`.
 
 ## Remaining Manual Tasks
 

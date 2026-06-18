@@ -161,6 +161,8 @@ not a completed journal submission.
       `paper/final_pre_formatting_audit.md`.
 - [x] Complete final formatting audit:
       `paper/final_submission_files/final_formatting_audit.md`.
+- [x] Complete final submission-file QA checklist:
+      `paper/final_submission_files/final_file_qa_checklist.md`.
 
 ## Current Readiness Summary
 
@@ -201,6 +203,7 @@ not a completed journal submission.
 - Post-polish final scan: completed; intentional human-input placeholders
   remain.
 - Final pre-formatting audit: completed.
+- Final submission-file QA checklist: completed.
 - Author details fill-in form and final blocker list: updated for the
   five-author metadata; student consent, contribution roles, and final author
   spelling are confirmed.

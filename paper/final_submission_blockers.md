@@ -35,10 +35,10 @@ journal upload.
 3. **Final visual formatting review pending**
 
    Draft DOCX and PDF files were generated under
-   `paper/final_submission_files/`. Because LibreOffice is not available and
-   Word COM PDF export timed out locally, the PDF was generated with ReportLab
-   from the same Markdown source. The files need final visual review in Word/PDF
-   viewer before upload.
+   `paper/final_submission_files/`, and the final file QA checklist was
+   completed. Because LibreOffice is not available and Word COM PDF export timed
+   out locally, the PDF was generated with ReportLab from the same Markdown
+   source. The files need final visual review in Word/PDF viewer before upload.
 
 4. **Final upload-time placeholder scan pending**
 
