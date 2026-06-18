@@ -167,6 +167,9 @@ not a completed journal submission.
       `paper/final_submission_files/final_formatting_audit.md`.
 - [x] Complete final submission-file QA checklist:
       `paper/final_submission_files/final_file_qa_checklist.md`.
+- [x] Create human visual-review checklist:
+      `paper/final_submission_files/human_visual_review_checklist.md`.
+- [ ] Complete human visual review of generated DOCX/PDF.
 
 ## Current Readiness Summary
 
@@ -212,6 +215,8 @@ not a completed journal submission.
   remain.
 - Final pre-formatting audit: completed.
 - Final submission-file QA checklist: completed.
+- Human visual-review checklist: created; completion remains pending until the
+  author opens and checks the DOCX/PDF manually.
 - Author details fill-in form and final blocker list: updated for the
   five-author metadata; student consent, contribution roles, and final author
   spelling are confirmed.

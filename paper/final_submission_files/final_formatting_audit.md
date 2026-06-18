@@ -56,6 +56,8 @@ but still need visual review in Word/PDF viewer before journal upload.
   generated DOCX/PDF under word-boundary scan.
 - Final file QA checklist created:
   `paper/final_submission_files/final_file_qa_checklist.md`.
+- Human visual-review checklist created:
+  `paper/final_submission_files/human_visual_review_checklist.md`.
 
 ## Remaining Manual Tasks
 

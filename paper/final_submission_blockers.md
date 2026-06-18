@@ -38,15 +38,17 @@ journal upload.
 
    Draft DOCX and PDF files were generated under
    `paper/final_submission_files/`, and the final file QA checklist was
-   completed. Because LibreOffice is not available and Word COM PDF export timed
-   out locally, the PDF was generated with ReportLab from the same Markdown
-   source. The files need final visual review in Word/PDF viewer before upload.
+   completed. A human visual-review checklist has been created at
+   `paper/final_submission_files/human_visual_review_checklist.md`, but it
+   remains pending until the DOCX and PDF are opened and checked manually.
+   Because LibreOffice is not available and Word COM PDF export timed out
+   locally, the PDF was generated with ReportLab from the same Markdown source.
 
 4. **Final upload-time placeholder scan pending**
 
-   The post-formatting scan for the generated draft package is complete. After
-   APC, license, journal metadata, or any manual formatting changes are filled,
-   rerun the placeholder scan over the final upload files.
+   The post-formatting scan for the generated draft package is complete. If any
+   manual formatting edits are made after human visual review, rerun the
+   placeholder scan over the final upload files.
 
 ## Not Current Blockers
 
