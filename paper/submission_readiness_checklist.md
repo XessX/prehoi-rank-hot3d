@@ -83,6 +83,7 @@ not a completed journal submission.
       `https://github.com/XessX/prehoi-rank-hot3d`.
 - [x] Add final PreHOI-Rank repository URL.
 - [x] Add final/current Zenodo archive DOI.
+- [x] Confirm final GitHub/Zenodo release `v0.1.2`.
 - [ ] Convert the formatted draft to DOCX/PDF only after author details and
       journal formatting requirements are confirmed.
 - [x] Complete core related-work citation verification.
@@ -156,6 +157,8 @@ not a completed journal submission.
 - [x] Add generated Zenodo DOI: `10.5281/zenodo.20736962`.
 - [x] Complete final post-DOI release audit:
       `paper/final_post_doi_release_audit.md`.
+- [x] Complete final pre-formatting submission audit:
+      `paper/final_pre_formatting_audit.md`.
 
 ## Current Readiness Summary
 
@@ -187,6 +190,7 @@ not a completed journal submission.
 - PreHOI-Rank repository URL: `https://github.com/XessX/prehoi-rank-hot3d`;
   do not reuse prior Scientific Reports sparse 3D Gaussian Splatting links.
 - Archive DOI: `10.5281/zenodo.20736962`.
+- GitHub/Zenodo release: complete for `v0.1.2`.
 - Final formatting: pending.
 - Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
@@ -194,6 +198,7 @@ not a completed journal submission.
 - Author-voice polish: completed and scanned.
 - Post-polish final scan: completed; intentional human-input placeholders
   remain.
+- Final pre-formatting audit: completed.
 - Author details fill-in form and final blocker list: updated for the
   five-author metadata; student consent, contribution roles, and final author
   spelling are confirmed.

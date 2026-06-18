@@ -3,7 +3,8 @@
 Target future repository:
 `https://github.com/XessX/prehoi-rank-hot3d`
 
-Status: release preparation draft. The GitHub repository is available at
+Status: release complete for the final/current `v0.1.2` software archive. The
+GitHub repository is available at
 `https://github.com/XessX/prehoi-rank-hot3d`. The final/current `v0.1.2` Zenodo
 archive DOI is `10.5281/zenodo.20736962`.
 
@@ -56,7 +57,10 @@ Pre-push audit: completed on 2026-06-17 in
 - [x] Student co-author consent received.
 - [x] Student co-author CRediT role confirmations received.
 - [x] Final Seyam Rahman Nayem spelling confirmed.
-- [ ] HOT3D-Clips license/access wording pending final official check.
+- [x] Cautious HOT3D-Clips license/access wording is present in the manuscript
+      package.
+- [ ] HOT3D-Clips license/access wording pending final author-side official
+      check before submission/artifact sharing.
 - [ ] Decision pending on whether derived indexes/logs/checkpoints can be
       shared under dataset terms.
 
