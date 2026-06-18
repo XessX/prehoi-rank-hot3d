@@ -32,17 +32,19 @@ journal upload.
    A final author-side official HOT3D-Clips license/access check is still
    required before submission or artifact sharing.
 
-3. **DOCX/PDF conversion pending**
+3. **Final visual formatting review pending**
 
-   The combined Markdown draft is available, but DOCX/PDF export was not
-   produced because Pandoc is not available locally. Install/enable a converter
-   or convert manually after metadata is finalized.
+   Draft DOCX and PDF files were generated under
+   `paper/final_submission_files/`. Because LibreOffice is not available and
+   Word COM PDF export timed out locally, the PDF was generated with ReportLab
+   from the same Markdown source. The files need final visual review in Word/PDF
+   viewer before upload.
 
-4. **Final post-formatting placeholder scan pending**
+4. **Final upload-time placeholder scan pending**
 
-   The post-DOI release audit is complete. After APC, license, journal
-   metadata, or formatting changes are filled, rerun the placeholder scan over
-   the formatted submission draft and exported files before upload.
+   The post-formatting scan for the generated draft package is complete. After
+   APC, license, journal metadata, or any manual formatting changes are filled,
+   rerun the placeholder scan over the final upload files.
 
 ## Not Current Blockers
 

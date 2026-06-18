@@ -72,8 +72,8 @@ not a completed journal submission.
       `paper/paraphrase_author_voice_audit.md`.
 - [x] Complete post-polish final scan:
       `paper/post_polish_final_scan.md`.
-- [ ] Generate DOCX/PDF draft exports after Pandoc or another approved
-      converter is available.
+- [x] Generate DOCX/PDF draft exports:
+      `paper/final_submission_files/`.
 - [x] Create author details fill-in form:
       `paper/fill_author_details_form.md`.
 - [x] Create final submission blockers list:
@@ -84,8 +84,8 @@ not a completed journal submission.
 - [x] Add final PreHOI-Rank repository URL.
 - [x] Add final/current Zenodo archive DOI.
 - [x] Confirm final GitHub/Zenodo release `v0.1.2`.
-- [ ] Convert the formatted draft to DOCX/PDF only after author details and
-      journal formatting requirements are confirmed.
+- [x] Create final formatting workflow and draft DOCX/PDF files.
+- [ ] Visually inspect final DOCX/PDF before upload.
 - [x] Complete core related-work citation verification.
 - [x] Confirm no missing-citation markers or unresolved reference-key
       placeholders remain in the current submission manuscript.
@@ -159,6 +159,8 @@ not a completed journal submission.
       `paper/final_post_doi_release_audit.md`.
 - [x] Complete final pre-formatting submission audit:
       `paper/final_pre_formatting_audit.md`.
+- [x] Complete final formatting audit:
+      `paper/final_submission_files/final_formatting_audit.md`.
 
 ## Current Readiness Summary
 
@@ -191,8 +193,8 @@ not a completed journal submission.
   do not reuse prior Scientific Reports sparse 3D Gaussian Splatting links.
 - Archive DOI: `10.5281/zenodo.20736962`.
 - GitHub/Zenodo release: complete for `v0.1.2`.
-- Final formatting: pending.
-- Formatted Markdown submission draft: assembled; DOCX/PDF conversion pending.
+- Final formatting workflow: completed for draft DOCX/PDF generation.
+- Formatted Markdown submission draft: assembled; DOCX/PDF drafts generated.
 - Draft export workflow: created; combined Markdown export available. DOCX/PDF
   export remains pending because Pandoc is not available on PATH.
 - Author-voice polish: completed and scanned.
